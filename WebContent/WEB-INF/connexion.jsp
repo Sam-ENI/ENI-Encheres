@@ -1,4 +1,4 @@
-<@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 	
 	<div class="connex_container">
 		<h3> Connexion </h3>
-		<form action="UtilisateurServlet" method="POST">
+		<form action="ConnexionUtilisateurServlet" method="POST">
 		Pseudo : <input type="text" name="pseudo" value="${model.Utilisateur.pseudo}">
 		Mot de passe : <input type="password" name="mdp">
 		<input type="submit" name="Connexion" value="Connexion">
