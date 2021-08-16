@@ -1,15 +1,46 @@
 @charset "ISO-8859-1";
 
 
+body {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.pseudo, .mdp {
+	display:flex;
+	justify-content: center;
+	align-items : center;
+	margin : 10px;
+}
+
+
+.btn_co {	
+margin: 16px; 
+padding: 16px;
+ background-color: darkblue; 
+ color: aliceblue; 
+ border: none;
+ border-radius: 4px;
+ font-size: 12px;
+ cursor: pointer;
+ margin-left: 100px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.btn_co:hover {
+	 background-color: blue; 
+}
 
 
 .connex_container {
-	height : 200px;
-	width: 200px;
+	height : 300px;
+	width: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction : column;
 	border : 1px solid black;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 20px;
 }
-
