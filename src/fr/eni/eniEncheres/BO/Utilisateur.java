@@ -4,6 +4,7 @@ public class Utilisateur {
 	Integer noUtilsateur;
 	String pseudo;
 	String nom;
+	String prenom;
 	String email;
 	String telephone;
 	String rue;
@@ -16,11 +17,12 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String pseudo, String nom, String email, String telephone, String rue, String codePostal,
-			String ville, String motDePasse, Integer credit, Boolean administrateur) {
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse, Integer credit, Boolean administrateur) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
+		this.prenom = prenom;
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
@@ -53,6 +55,14 @@ public class Utilisateur {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public String getEmail() {
@@ -121,9 +131,12 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [noUtilsateur=" + noUtilsateur + ", pseudo=" + pseudo + ", nom=" + nom + ", email=" + email
-				+ ", telephone=" + telephone + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville
-				+ ", MotDePasse=" + MotDePasse + ", credit=" + credit + ", administrateur=" + administrateur + "]";
+		return "Utilisateur [noUtilsateur=" + noUtilsateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
+				+ codePostal + ", ville=" + ville + ", MotDePasse=" + MotDePasse + ", credit=" + credit
+				+ ", administrateur=" + administrateur + "]";
 	}
+
+	
 
 }
