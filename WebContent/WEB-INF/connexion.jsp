@@ -14,7 +14,7 @@
 		
 		<div class="pseudo">
 			<label for="pseudo">Pseudo :	</label>
-			<input type="text" name="pseudo" value="${model.Utilisateur.pseudo}">
+			<input type="text" name="pseudo" >
 		</div>
 		<div class="mdp">
 			<label for="mdp">Mot de passe :	</label>

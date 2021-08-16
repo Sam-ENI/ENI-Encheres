@@ -9,7 +9,7 @@ import fr.eni.eniEncheres.DAL.UtilisateurDAOFact;
 
 public class UtilisateurManagerImpl implements UtilisateurManager {
 	UtilisateurDAO dao = UtilisateurDAOFact.getInstanceDAO();
-	
+
 	@Override
 	public void addUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
@@ -21,20 +21,19 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 	@Override
 	public void deleteUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
+		dao.delete(utilisateur);
 
 	}
 
 	@Override
 	public void updateUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
+		dao.update(utilisateur);
 
 	}
 
 	@Override
 	public List<Utilisateur> getAllUtilisateur() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getAll();
 	}
 
 }

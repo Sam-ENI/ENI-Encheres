@@ -15,14 +15,14 @@ public class TestDAO {
 		System.out.println("Ajout un contact");
 		dao.insert(u1);
 		System.out.println(dao.getAll());
-		
-		System.out.println("modifier un contact");
-		u1.setNom("Gorge");
-		dao.update(u1);
-		System.out.println(dao.getAll());
-		
-		System.out.println("modifier un contact");
-		dao.delete(u1);
-		System.out.println(dao.getAll());
+//		
+//		System.out.println("modifier un contact");
+//		u1.setNom("Gorge");
+//		dao.update(u1);
+//		System.out.println(dao.getAll());
+//		
+//		System.out.println("modifier un contact");
+//		dao.delete(u1);
+//		System.out.println(dao.getAll());
 	}
 }
