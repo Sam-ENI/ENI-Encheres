@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+
+
+
+.connex_container {
+	height : 200px;
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border : 1px solid black;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
