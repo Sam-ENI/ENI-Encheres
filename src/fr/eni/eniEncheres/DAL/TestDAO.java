@@ -4,7 +4,7 @@ import fr.eni.eniEncheres.BO.Utilisateur;
 
 public class TestDAO {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DALException {
 		
 		
 		UtilisateurDAO dao = UtilisateurDAOFact.getInstanceDAO();

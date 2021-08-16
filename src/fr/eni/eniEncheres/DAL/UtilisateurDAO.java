@@ -5,7 +5,7 @@ import java.util.List;
 import fr.eni.eniEncheres.BO.Utilisateur;
 
 public interface UtilisateurDAO {
-	public void insert(Utilisateur utilisateur);
+	public void insert(Utilisateur utilisateur) throws DALException;
 
 	public void update(Utilisateur utilisateur);
 
