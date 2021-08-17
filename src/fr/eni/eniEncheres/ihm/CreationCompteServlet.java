@@ -66,6 +66,7 @@ public class CreationCompteServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			nextPage = "/WEB-INF/index.jsp";
 
 		}
