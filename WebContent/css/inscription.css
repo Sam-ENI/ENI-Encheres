@@ -1,1 +1,77 @@
 @charset "UTF-8";
+
+body{
+	background-color: #F3EBF6;
+	font-family: 'Ubuntu', sans-serif;
+	border : 2px solid black;
+}
+
+h2{
+	text-align : center;
+	border : 2px solid black;
+	font-size: 2em;
+}
+
+.form{
+	display : grid;
+	grid-template-columns : 1fr 1fr;
+	border : 2px solid black;	
+}
+
+.form1{
+	border : 2px solid black;
+
+}
+.form1 input{
+}
+.form2{
+	border : 2px solid black;
+}
+.btn_form{
+	text-align :center;
+}
+
+.input{
+	width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #ffffff385056;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    maring-top : 10px;
+    margin-bottom: 50px;
+    margin-right : 50px;
+    text-align: center;
+    margin-bottom: 27px;
+    border : 2px solid black;
+}
+
+.label{
+	margin-left : 10px;
+}
+
+.btn_creer, .btn_annuler{
+	margin: 16px;
+padding: 16px;
+ background-color: rgb(112, 111, 111); 
+ color: aliceblue; 
+ border: none;
+ border-radius: 20px;
+ font-size: 20px;
+ cursor: pointer;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+transition: all 0.2s;
+}
+
+
+
+.btn_creer:hover, .btn_annuler:hover{
+	 background-color: rgb(39, 39, 39); 
+	 transform: scale(1.2);
+}

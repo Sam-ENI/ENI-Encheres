@@ -4,44 +4,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="./css/inscription.css" rel="stylesheet">
 <title>Inscription ENI-Enchères</title>
 </head>
 <body>
 
 <h1>ENI-ENCHERES</h1>
 <h2>Mon Profil</h2>
-<div class="form">
-		<form action ="CreationCompteServlet" method="POST">
+
+		<form class="form" action ="CreationCompteServlet" method="POST">
 			<div class="form1">
 				<label class="label">Pseudo :</label>
-					<input type="text" name="pseudo">
+					<input class="input" type="text" name="pseudo"><br>
 				<label class="label">Prénom :</label>
-					<input type="text" name="prenom">
+					<input class="input" type="text" name="prenom"><br>
 				<label class="label">Téléphone :</label>
-					<input type="text" name="telephone">
+					<input class="input" type="text" name="telephone"><br>
 				<label class="label">Code Postal :</label>
-					<input type="text" name="codePostal">
+					<input class="input" type="text" name="codePostal"><br>
 				<label class="label">Mot de passe :</label>
-					<input type="password" name="mdp">
+					<input class="input" type="password" name="mdp"><br>
 			</div>
 			<div class="form2">
 				<label class="label" >Nom :</label>
-					<input type="text" name="nom">
+					<input class="input" type="text" name="nom"><br>
 				<label class="label">Email :</label>
-					<input type="text" name="email">
+					<input class="input" type="text" name="email"><br>
 				<label class="label">Rue :</label>
-					<input type="text" name="rue">
+					<input class="input" type="text" name="rue"><br>
 				<label class="label">Ville :</label>
-					<input type="text" name="ville">
+					<input class="input" type="text" name="ville"><br>
 				<label class="label">Confirmation :</label>
-					<input type="password" name="confirmation">
+					<input class="input" type="password" name="confirmation"><br>
 			</div>
 			<div class=btn_form>
-				<input type="submit" name="creer" value="Créer">
-				<input type="submit" name="annuler" value="Annuler">
+					<input class = "btn_creer" type="submit" name="creer" value="Créer">
+					<input class = "btn_annuler" type="submit" name="annuler" value="Annuler">
 			</div>
 		</form>
-</div>
+
 
 
 </body>
