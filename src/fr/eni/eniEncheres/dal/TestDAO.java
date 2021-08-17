@@ -1,6 +1,6 @@
-package fr.eni.eniEncheres.DAL;
+package fr.eni.eniEncheres.dal;
 
-import fr.eni.eniEncheres.BO.Utilisateur;
+import fr.eni.eniEncheres.bo.Utilisateur;
 
 public class TestDAO {
 	

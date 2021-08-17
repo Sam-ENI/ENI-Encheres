@@ -1,4 +1,4 @@
-package fr.eni.eniEncheres.BLL;
+package fr.eni.eniEncheres.bll;
 
 public class UtilisateurManagerSingl {
 

@@ -1,4 +1,4 @@
-package fr.eni.eniEncheres.DAL;
+package fr.eni.eniEncheres.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.eniEncheres.BO.Utilisateur;
+import fr.eni.eniEncheres.bo.Utilisateur;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String INSERT = "INSERT INTO utilisateur(pseudo,nom, prenom,email, telephone,rue,codePostal,ville,motDePasse,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -47,7 +47,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void update(Utilisateur utilisateur) throws fr.eni.eniEncheres.DAL.DALException {
+	public void update(Utilisateur utilisateur) throws fr.eni.eniEncheres.dal.DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, utilisateur.getPseudo());
@@ -69,7 +69,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void delete(Utilisateur utilisateur) throws fr.eni.eniEncheres.DAL.DALException {
+	public void delete(Utilisateur utilisateur) throws fr.eni.eniEncheres.dal.DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setInt(1, utilisateur.getNoUtilsateur());
@@ -82,7 +82,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public List<Utilisateur> getAll() throws fr.eni.eniEncheres.DAL.DALException {
+	public List<Utilisateur> getAll() throws fr.eni.eniEncheres.dal.DALException {
 		List<Utilisateur> result = new ArrayList<Utilisateur>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT);

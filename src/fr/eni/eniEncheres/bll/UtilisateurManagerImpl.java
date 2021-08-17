@@ -1,12 +1,12 @@
-package fr.eni.eniEncheres.BLL;
+package fr.eni.eniEncheres.bll;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.eniEncheres.BO.Utilisateur;
-import fr.eni.eniEncheres.DAL.DALException;
-import fr.eni.eniEncheres.DAL.UtilisateurDAO;
-import fr.eni.eniEncheres.DAL.UtilisateurDAOFact;
+import fr.eni.eniEncheres.bo.Utilisateur;
+import fr.eni.eniEncheres.dal.DALException;
+import fr.eni.eniEncheres.dal.UtilisateurDAO;
+import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
 public class UtilisateurManagerImpl implements UtilisateurManager {
 	UtilisateurDAO dao = UtilisateurDAOFact.getInstanceDAO();

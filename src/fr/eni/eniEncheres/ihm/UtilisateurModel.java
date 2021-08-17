@@ -1,9 +1,9 @@
-package fr.eni.eniEncheres.IHM;
+package fr.eni.eniEncheres.ihm;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.eniEncheres.BO.Utilisateur;
+import fr.eni.eniEncheres.bo.Utilisateur;
 
 public class UtilisateurModel {
 

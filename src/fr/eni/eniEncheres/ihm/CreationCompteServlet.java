@@ -1,4 +1,4 @@
-package fr.eni.eniEncheres.IHM;
+package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.eniEncheres.BO.Utilisateur;
+import fr.eni.eniEncheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class CreationCompteServlet

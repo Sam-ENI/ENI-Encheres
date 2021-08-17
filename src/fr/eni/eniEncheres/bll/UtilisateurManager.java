@@ -1,8 +1,8 @@
-package fr.eni.eniEncheres.BLL;
+package fr.eni.eniEncheres.bll;
 
 import java.util.List;
 
-import fr.eni.eniEncheres.BO.Utilisateur;
+import fr.eni.eniEncheres.bo.Utilisateur;
 
 public interface UtilisateurManager {
 

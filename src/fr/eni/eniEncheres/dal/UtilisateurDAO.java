@@ -1,9 +1,9 @@
-package fr.eni.eniEncheres.DAL;
+package fr.eni.eniEncheres.dal;
 
 import java.util.List;
 
-import fr.eni.eniEncheres.BLL.BLLException;
-import fr.eni.eniEncheres.BO.Utilisateur;
+import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bo.Utilisateur;
 
 public interface UtilisateurDAO {
 
