@@ -72,3 +72,9 @@ transition: all 0.2s;
 	border-radius: 20px;
 }
 
+.error {
+	margin: 0;
+	color: rgb(196, 13, 13);
+}
+
+

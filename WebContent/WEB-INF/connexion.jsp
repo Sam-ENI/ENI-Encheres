@@ -9,7 +9,7 @@
 	<body>
 		<div class="connex_container">
 			<h1> Connexion </h1>
-	
+			<p class="error">${erreur}</p>
 			<form action="ConnexionUtilisateurServlet" method="POST">
 			
 			<div class="login">
