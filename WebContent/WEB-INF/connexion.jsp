@@ -11,7 +11,7 @@
 		<h3> Connexion </h3>
 		<form action="UtilisateurServlet" method="POST">
 		
-		<div class="pseudo">
+		<div class="pseudo ${hidden}">
 			<label for="pseudo">Pseudo :	</label>
 			<input type="text" name="pseudo" value="${model.Utilisateur.pseudo}">
 		</div>
