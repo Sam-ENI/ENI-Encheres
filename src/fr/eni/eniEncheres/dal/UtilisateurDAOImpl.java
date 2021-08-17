@@ -11,10 +11,10 @@ import java.util.List;
 import fr.eni.eniEncheres.bo.Utilisateur;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
-	private final String INSERT = "INSERT INTO utilisateur(pseudo,nom, prenom,email, telephone,rue,codePostal,ville,motDePasse,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private final String UPDATE = "UPDATE utilisateur SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,rue=?,codePostal=?,ville=?,motDePasse=?,credit=?,administrateur=? WHERE noUtilisateur = ?";
-	private final String DELETE = "DELETE FROM utilisateur WHERE noUtilisateur =?";
-	private final String SELECT = "SELECT noUtilisateur ,pseudo,nom, prenom,email, telephone,rue,codePostal,ville,motDePasse,credit,administrateur FROM utilisateur";
+	private final String INSERT = "INSERT INTO UTILISATEURS(pseudo,nom, prenom,email, telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE no_utilisateur = ?";
+	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur =?";
+	private final String SELECT = "SELECT no_utilisateur ,pseudo,nom, prenom,email, telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS";
 
 	@Override
 	public void insert(Utilisateur utilisateur) throws DALException {
@@ -89,16 +89,16 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Utilisateur utilisateur = new Utilisateur();
-				utilisateur.setNoUtilsateur(rs.getInt("noUtilsateur"));
+				utilisateur.setNoUtilsateur(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));
 				utilisateur.setEmail(rs.getString("email"));
 				utilisateur.setTelephone(rs.getString("telephone"));
 				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("codePostal"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
 				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("motDePasse"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 			
