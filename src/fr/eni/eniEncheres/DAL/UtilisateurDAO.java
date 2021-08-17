@@ -7,10 +7,10 @@ import fr.eni.eniEncheres.BO.Utilisateur;
 public interface UtilisateurDAO {
 	public void insert(Utilisateur utilisateur) throws DALException;
 
-	public void update(Utilisateur utilisateur);
+	public void update(Utilisateur utilisateur) throws DALException;
 
-	public void delete(Utilisateur utilisateur);
+	public void delete(Utilisateur utilisateur) throws DALException;
 
-	public List<Utilisateur> getAll();
+	public List<Utilisateur> getAll() throws DALException;
 
 }
