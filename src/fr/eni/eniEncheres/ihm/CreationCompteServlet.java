@@ -37,13 +37,11 @@ public class CreationCompteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/inscription.jsp";
 		System.out.println("OKOKOKOKOOKKO");
-		UtilisateurModel model = (UtilisateurModel) request.getAttribute("model");
-		if (model == null) {
-			model = new UtilisateurModel(new Utilisateur(), null);
-		}
+		UtilisateurModel model = null;
+
 
 		if (request.getParameter("creer") != null) {
-			
+			model = new UtilisateurModel(new Utilisateur(), null);
 			model.getUtilisateur().setPseudo(request.getParameter("pseudo"));
 			model.getUtilisateur().setNom(request.getParameter("nom"));
 			model.getUtilisateur().setPrenom(request.getParameter("prenom"));
@@ -58,8 +56,8 @@ public class CreationCompteServlet extends HttpServlet {
 			
 			
 			request.getSession().setAttribute("model", model);
-			//Boolean hidden = true;
-		//	request.setAttribute("hidden", hidden);
+			Boolean hidden = true;
+			request.setAttribute("hidden", hidden);
 			
 			try {
 				manager.addUtilisateur(model.getUtilisateur());

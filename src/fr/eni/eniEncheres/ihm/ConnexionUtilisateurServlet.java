@@ -44,11 +44,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		String nextPage = "/WEB-INF/connexion.jsp";
-		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
-		if (model == null) {
-			model = new UtilisateurModel(new Utilisateur(), null);
-		}
-		
+		UtilisateurModel model = null;
 		
 		if (request.getParameter("Connexion") != null) {
 			try {
@@ -57,11 +53,14 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
+			Boolean hidden = true;
+			request.getSession().setAttribute("hidden", hidden);
 		}
 		
 		if (request.getParameter("Inscription") != null) {
 			nextPage = "/WEB-INF/inscription.jsp";
 		}
+		
 
 		request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher(nextPage).forward(request, response);

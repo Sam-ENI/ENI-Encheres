@@ -54,7 +54,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		return listU;
 	}
 	
-	
+	// Créer un user temp pour recup le contact dans la boucle
+	// le retourner 
 	public boolean isUserExist(String pseudo, String mdp) throws BLLException {
 		boolean isExist = false;
 		// Verification si l'utilisateur existe dans la BDD
