@@ -53,5 +53,29 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 		return listU;
 	}
+	
+	
+	public boolean isUserExist(String pseudo, String mdp) throws BLLException {
+		boolean isExist = false;
+		// Verification si l'utilisateur existe dans la BDD
+		try {
+			for (Utilisateur utilisateur : dao.getAll()) {
+				if (utilisateur.getMotDePasse().equals(mdp)
+						&& utilisateur.getPseudo().equals(pseudo)) {
+					isExist = true;
+				}
+			}
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+		// Si l'user existe : Retourne TRUE
+		// Sinon : Crée une exeception
+		if (isExist)
+			return true;
+		else
+			throw new BLLException("Mauvais pseudo/mdp !");
+		
+	}
 
 }
