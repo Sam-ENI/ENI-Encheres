@@ -1,0 +1,84 @@
+
+
+
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.listFilter {
+    display: flex;
+}
+.chekbox_cont {
+    margin : 10px 20px 0 40px;
+}
+.hidden {
+    display: none;
+}
+
+.cont_rech, .cat {
+    margin-top : 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.cat select {
+    height: 30px;
+    margin-left: 10px;
+}
+.right_cont_rech {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.right_cont_rech input {
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    width : 400px;
+    height: 100%;
+    border: 2px solid black;
+}
+.card img {
+    margin: 20px 0 20px 20px;
+    width: 120px;
+    height: 130px;
+    border: 2px solid black;
+}
+
+.nomArticle {
+    text-decoration: underline;
+}
+
+.link {
+    border :0;
+    cursor: pointer;
+    background-color: white;
+    text-decoration: underline;
+    color: blue; 
+}
+
+.cont_card {
+    display: flex;
+    flex-wrap: wrap;
+}
