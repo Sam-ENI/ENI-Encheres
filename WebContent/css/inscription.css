@@ -20,10 +20,18 @@ h2{
 
 .form1{
 	border : 2px solid black;
+}
 
-}
 .form1 input{
+		position :relative;
+	 right: 0;
 }
+
+.form1 label{
+		position :relative;
+	 left: 0;
+}
+
 .form2{
 	border : 2px solid black;
 }
