@@ -26,7 +26,7 @@ public class CreationCompteServlet extends HttpServlet {
 	 */
 	public CreationCompteServlet() {
 		super();
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubz
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class CreationCompteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/inscription.jsp";
-		
+		System.out.println("OKOKOKOKOOKKO");
 		UtilisateurModel model = (UtilisateurModel) request.getAttribute("model");
 		if (model == null) {
 			model = new UtilisateurModel(new Utilisateur(), null);
@@ -56,9 +56,10 @@ public class CreationCompteServlet extends HttpServlet {
 			model.getUtilisateur().setCredit(0);
 			model.getUtilisateur().setAdministrateur(false);
 			
-			Boolean hidden = true;
-			nextPage = "/WEB-INF/index.jsp";
-			request.setAttribute("hidden", hidden);
+			
+			request.getSession().setAttribute("model", model);
+			//Boolean hidden = true;
+		//	request.setAttribute("hidden", hidden);
 			
 			try {
 				manager.addUtilisateur(model.getUtilisateur());
@@ -72,7 +73,7 @@ public class CreationCompteServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			nextPage = "/WEB-INF/index.jsp";
 			
 		}
 		if (request.getParameter("annuler") != null) {
@@ -80,7 +81,7 @@ public class CreationCompteServlet extends HttpServlet {
 			Boolean hidden = false;
 			request.getSession().setAttribute("hidden", hidden);
 		}
-		request.setAttribute("model", model);
+
 		request.getRequestDispatcher(nextPage).forward(request, response);
 
 	}

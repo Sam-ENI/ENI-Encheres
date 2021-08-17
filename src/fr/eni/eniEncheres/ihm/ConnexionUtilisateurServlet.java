@@ -58,6 +58,10 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 				request.setAttribute("erreur", e.getMessage());
 			}
 		}
+		
+		if (request.getParameter("Inscription") != null) {
+			nextPage = "/WEB-INF/inscription.jsp";
+		}
 
 		request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher(nextPage).forward(request, response);
