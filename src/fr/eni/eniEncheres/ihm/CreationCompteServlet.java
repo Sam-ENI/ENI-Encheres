@@ -33,7 +33,9 @@ public class CreationCompteServlet extends HttpServlet {
 		String nextPage = "/WEB-INF/incription.jsp";
 		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
 		if (model == null) {
-			model = new UtilisateurModel(new Utilisateur(), null);
+			model = new UtilisateurModel(new Utilisateur(), null); 
+			}
+		
 			if (request.getParameter("creer") != null) {
 				model.getUtilisateur().setNoUtilsateur(Integer.parseInt(request.getParameter("name")));
 				model.getUtilisateur().setPseudo(request.getParameter("pseudo"));
@@ -53,7 +55,7 @@ public class CreationCompteServlet extends HttpServlet {
 			if(request.getParameter("annuler") != null) {
 				nextPage = "/WEB-INF/index.jsp";
 			}
-		}
+		
 		request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
