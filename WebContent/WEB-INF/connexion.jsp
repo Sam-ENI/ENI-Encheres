@@ -18,16 +18,24 @@
 				<input class="psd_input" type="password" name="mdp"
 				placeholder="Mot de passe" >			
 			</div>
-			<div class="remember">
-				<label for="rememberUser">Se souvenir de moi </label>
-				<input type="checkbox" name="rememberUser" >
-
+			
+			<div class="submit_cont">
+				<input class="btn_co" type="submit" name="Connexion" value="Connexion">
+				<div class="right_submit_cont">
+					<div class="remember">
+						<label for="rememberUser">Se souvenir de moi </label>
+						<input type="checkbox" name="rememberUser" >
+					</div>
+					<a href="lienmdpperdu"> Mot de passe oublié ?</a>
+				</div>
 			</div>
-			<input class="btn_co" type="submit" name="Connexion" value="Connexion">
+			<div class="btn_cont">
+				<input class="btn_insc" type="submit" name="Inscription" value="Crée un compte">
+			</div>
+
 
 		</form>
 
-		<a href="lienmdpperdu"> Mot de passe oublié ?</a>
 		</div>
 	</body>
 	</html>
