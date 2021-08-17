@@ -75,7 +75,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			return true;
 		else
 			throw new BLLException("Mauvais pseudo/mdp !");
-		
+	}
+	
+	public boolean verifMdp(String mdp, String mdpConfirm) throws BLLException {
+		// Verification si les deux mdp corresponde
+		if (!mdp.equals(mdpConfirm))
+			throw new BLLException("Les deux mots de passe ne correspondent pas !");
+		// Vérification si le mot de passe est alphanumérique
+		if(mdp == null || !mdp.matches("^[a-zA-Z0-9]*$")) 
+			throw new BLLException("Le mot de passe ne peut contenir que des caractères alphanumérique [a-z] / [A-Z] / [0-9]");
+		return true;
 	}
 
 }

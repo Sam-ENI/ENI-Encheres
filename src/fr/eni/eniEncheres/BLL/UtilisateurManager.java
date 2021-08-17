@@ -45,4 +45,16 @@ public interface UtilisateurManager {
 	 * @throws BLLException : L'exception de la BLL
 	 */
 	public boolean isUserExist(String pseudo, String mdp) throws BLLException;
+	/**
+	 * Vérification des mots de passe lors de la création du compte
+	 *  - Si le mot de passe et celui de confirmation sont les mêmes sinon : BLLException
+	 *  - Si le mot de passe est un texte alphanumérique sinon : BLLException
+	 *  
+	 * 
+	 * @param mdp : Mot de passe entrée par l'utilisateur
+	 * @param mdpConfirm : Mot de passe de confirmation rentrée par l'utilisateur
+	 * @return Vrai
+	 * @throws BLLException : L'exception de la BLL
+	 */
+	public boolean verifMdp(String mdp, String mdpConfirm) throws BLLException;
 }
