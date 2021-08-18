@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
 import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 
@@ -63,7 +62,7 @@ public class AccueilServlet extends HttpServlet {
 		if (request.getParameter("profil") != null) {
 			nextPage = "/WEB-INF/profil.jsp";
 		}
-	
+
 //		request.getSession().setAttribute("hidden", hidden);
 
 		// BOUTON DECONNEXION
