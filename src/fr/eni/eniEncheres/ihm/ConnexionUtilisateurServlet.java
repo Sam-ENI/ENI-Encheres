@@ -37,7 +37,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// AJOUT D'UN ADMIN
 		try {
 			if (cpt == 0) {
@@ -50,12 +50,17 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		}
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel model = null;
-	
 
 		if (request.getParameter("Connexion") != null) {
+			Utilisateur u = new Utilisateur();
 			try {
-				Utilisateur u = manager.isUserExist(request.getParameter("pseudo"), request.getParameter("mdp"));
-				if(u != null) {
+				// on récupère le paramètre pseudoEmail et on vérifie s'il est pseudo ou email puis si il existe en BDD
+				if (request.getParameter("pseudoEmail").matches(".+@.+\\.[a-z]+")) {
+					u = manager.isUserExistEmail(request.getParameter("pseudoEmail"), request.getParameter("mdp"));
+				} else {
+					u = manager.isUserExistPseudo(request.getParameter("pseudoEmail"), request.getParameter("mdp"));
+				}
+				if (u != null) {
 					model = new UtilisateurModel(new Utilisateur(), null);
 					nextPage = "/WEB-INF/index.jsp";
 					model.setUtilisateur(u);
@@ -66,13 +71,12 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			}
 			Boolean hidden = true;
 			request.getSession().setAttribute("hidden", hidden);
-			
+
 		}
-		
+
 		if (request.getParameter("Inscription") != null) {
 			nextPage = "/WEB-INF/inscription.jsp";
 		}
-		
 
 		request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher(nextPage).forward(request, response);

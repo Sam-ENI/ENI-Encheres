@@ -56,7 +56,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	
 	// Créer un user temp pour recup le contact dans la boucle
 	// le retourner 
-	public Utilisateur isUserExist(String pseudo, String mdp) throws BLLException {
+	public Utilisateur isUserExistPseudo(String pseudo, String mdp) throws BLLException {
 		boolean isExist = false;
 		Utilisateur utilisateurTemp = null;
 		// Verification si l'utilisateur existe dans la BDD
@@ -79,14 +79,41 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		else
 			throw new BLLException("Mauvais pseudo/mdp !");
 	}
+	public Utilisateur isUserExistEmail(String email, String mdp) throws BLLException {
+		boolean isExist = false;
+		Utilisateur utilisateurTemp = null;
+		// Verification si l'utilisateur existe dans la BDD
+		try {
+			for (Utilisateur utilisateur : dao.getAll()) {
+				if (utilisateur.getMotDePasse().equals(mdp)
+						&& utilisateur.getEmail().equals(email)) {
+					utilisateurTemp = utilisateur;
+					isExist = true;
+				}
+			}
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+		// Si l'user existe : Retourne TRUE
+		// Sinon : Crée une exeception
+		if (isExist)
+			return utilisateurTemp;
+		else
+			throw new BLLException("Mauvais email/mdp !");
+	}
+	
 	
 	public boolean verifInscription(String mdp, String mdpConfirm, String pseudo, String mail) throws BLLException {
-		// Verification si les deux mdp corresponde
+		// Verification si les deux mdp correspondent
 		if (!mdp.equals(mdpConfirm))
 			throw new BLLException("Les deux mots de passe ne correspondent pas !");
 		// Vérification si le mot de passe est alphanumérique
 		if(pseudo == null || !pseudo.matches("^[a-zA-Z0-9]*$")) 
 			throw new BLLException("Le pseudo ne peut contenir que des caractères alphanumérique [a-z] / [A-Z] / [0-9]");
+		// Vérification du format du mail
+		if(mail == null || !mail.matches(".+@.+\\.[a-z]+"))
+			throw new BLLException("adresse email non conforme");
 		// Vérification si pseudo/email est unique
 		try {
 			for (Utilisateur user : dao.getAll()) {
@@ -102,5 +129,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		return true;
 	}
+
+
 
 }

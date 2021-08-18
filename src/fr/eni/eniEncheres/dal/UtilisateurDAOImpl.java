@@ -29,7 +29,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(7, utilisateur.getCodePostal());
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
-			stmt.setInt(10, utilisateur.getCredit());
+			stmt.setInt(10,0);
 			stmt.setBoolean(11, utilisateur.getAdministrateur());
 
 			int nb = stmt.executeUpdate();

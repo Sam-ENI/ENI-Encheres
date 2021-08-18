@@ -13,7 +13,7 @@
 			<form action="ConnexionUtilisateurServlet" method="POST">
 			
 			<div class="login">
-				<input class="psd_input" type="text" name="pseudo"
+				<input class="psd_input" type="text" name="pseudoEmail"
 				placeholder="Pseudo" >
 				<input class="psd_input" type="password" name="mdp"
 				placeholder="Mot de passe" >			
