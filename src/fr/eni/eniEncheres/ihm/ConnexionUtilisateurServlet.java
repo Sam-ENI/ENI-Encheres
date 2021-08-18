@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
-import fr.eni.eniEncheres.bll.UtilisateurManagerSingl;
+import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 import fr.eni.eniEncheres.bo.Utilisateur;
 
 /**
@@ -19,7 +19,7 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 @WebServlet("/ConnexionUtilisateurServlet")
 public class ConnexionUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
+	UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
 	Utilisateur u1 = new Utilisateur("lol", "dupont", "jack", "j@dd.com", "021547898", "5 des oui", "44000", "Nantes",
 			"1245", 0, false);
 	private int cpt = 0;
@@ -36,6 +36,18 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String nextPage = "/WEB-INF/connexion.jsp";
+
+		request.getRequestDispatcher(nextPage).forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		// AJOUT D'UN ADMIN
@@ -79,16 +91,6 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		}
 
 		request.getSession().setAttribute("model", model);
-		request.getRequestDispatcher(nextPage).forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+		request.getRequestDispatcher(nextPage).forward(request, response);	}
 
 }

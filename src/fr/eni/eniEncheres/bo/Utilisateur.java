@@ -1,18 +1,18 @@
 package fr.eni.eniEncheres.bo;
 
 public class Utilisateur {
-	Integer noUtilsateur;
-	String pseudo;
-	String nom;
-	String prenom;
-	String email;
-	String telephone;
-	String rue;
-	String codePostal;
-	String ville;
-	String MotDePasse;
-	Integer credit;
-	Boolean administrateur;
+	private Integer noUtilsateur;
+	private String pseudo;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String telephone;
+	private String rue;
+	private String codePostal;
+	private String ville;
+	private String MotDePasse;
+	private Integer credit;
+	private Boolean administrateur;
 
 	public Utilisateur() {
 	}
@@ -136,7 +136,5 @@ public class Utilisateur {
 				+ codePostal + ", ville=" + ville + ", MotDePasse=" + MotDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";
 	}
-
-	
 
 }

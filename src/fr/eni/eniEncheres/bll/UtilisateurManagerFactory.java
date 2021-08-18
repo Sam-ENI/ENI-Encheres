@@ -1,6 +1,6 @@
 package fr.eni.eniEncheres.bll;
 
-public class UtilisateurManagerSingl {
+public class UtilisateurManagerFactory {
 
 	private static UtilisateurManager instance;
 	

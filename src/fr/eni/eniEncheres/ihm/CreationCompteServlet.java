@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
-import fr.eni.eniEncheres.bll.UtilisateurManagerSingl;
+import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 import fr.eni.eniEncheres.bo.Utilisateur;
 
 /**
@@ -19,7 +19,7 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 @WebServlet("/CreationCompteServlet")
 public class CreationCompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
+	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
