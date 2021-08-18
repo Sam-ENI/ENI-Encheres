@@ -36,6 +36,18 @@ public class CreationCompteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/inscription.jsp";
+
+		request.getRequestDispatcher(nextPage).forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String nextPage = "/WEB-INF/inscription.jsp";
 		UtilisateurModel model = null;
 
 
@@ -75,17 +87,6 @@ public class CreationCompteServlet extends HttpServlet {
 		}
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
