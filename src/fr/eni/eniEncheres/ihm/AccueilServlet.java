@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eniEncheres.bo.Utilisateur;
+
 /**
  * Servlet implementation class AccueilServlet
  */
@@ -49,7 +51,15 @@ public class AccueilServlet extends HttpServlet {
 		if (request.getParameter("insci/connex") != null) {
 			nextPage = "/WEB-INF/connexion.jsp";
 		}
+		if (request.getParameter("profil") != null) {
+			nextPage = "/WEB-INF/profil.jsp";
+		}
+		if (request.getParameter("modifierBtn") != null) {
+		
+			nextPage = "/WEB-INF/profil.jsp";
+		}
 //		request.getSession().setAttribute("hidden", hidden);
 		request.getRequestDispatcher(nextPage).forward(request, response);	}
-
+		
+	
 }
