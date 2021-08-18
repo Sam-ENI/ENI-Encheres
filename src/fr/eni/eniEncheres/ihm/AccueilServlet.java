@@ -60,10 +60,6 @@ public class AccueilServlet extends HttpServlet {
 		if (request.getParameter("profil") != null) {
 			nextPage = "/WEB-INF/profil.jsp";
 		}
-		if (request.getParameter("modifierBtn") != null) {
-
-			nextPage = "/WEB-INF/profil.jsp";
-		}
 		
 //		request.getSession().setAttribute("hidden", hidden);
 
