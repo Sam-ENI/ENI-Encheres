@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.eniEncheres.bo.Utilisateur;
+import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.UtilisateurManager;
+import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 
 /**
  * Servlet implementation class AccueilServlet
@@ -16,6 +18,7 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 @WebServlet("/AccueilServlet")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -60,10 +63,7 @@ public class AccueilServlet extends HttpServlet {
 		if (request.getParameter("profil") != null) {
 			nextPage = "/WEB-INF/profil.jsp";
 		}
-		if (request.getParameter("modifierBtn") != null) {
-
-			nextPage = "/WEB-INF/profil.jsp";
-		}
+	
 //		request.getSession().setAttribute("hidden", hidden);
 
 		// BOUTON DECONNEXION

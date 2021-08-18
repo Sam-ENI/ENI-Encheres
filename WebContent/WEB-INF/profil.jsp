@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="AccueilServlet" method="POST">
+	<form action="ModifierProfilServlet" method="POST">
 
 		<div class="center">
 			<label class="label">Pseudo :</label> <input class="input"
