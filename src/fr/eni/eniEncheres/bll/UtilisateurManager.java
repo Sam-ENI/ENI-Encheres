@@ -56,5 +56,5 @@ public interface UtilisateurManager {
 	 * @return Vrai
 	 * @throws BLLException : L'exception de la BLL
 	 */
-	public boolean verifMdp(String mdp, String mdpConfirm) throws BLLException;
+	public boolean verifInscription(String mdp, String mdpConfirm, String pseudo, String mail) throws BLLException;
 }

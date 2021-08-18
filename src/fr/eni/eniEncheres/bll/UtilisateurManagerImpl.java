@@ -80,13 +80,26 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			throw new BLLException("Mauvais pseudo/mdp !");
 	}
 	
-	public boolean verifMdp(String mdp, String mdpConfirm) throws BLLException {
+	public boolean verifInscription(String mdp, String mdpConfirm, String pseudo, String mail) throws BLLException {
 		// Verification si les deux mdp corresponde
 		if (!mdp.equals(mdpConfirm))
 			throw new BLLException("Les deux mots de passe ne correspondent pas !");
 		// Vérification si le mot de passe est alphanumérique
-		if(mdp == null || !mdp.matches("^[a-zA-Z0-9]*$")) 
-			throw new BLLException("Le mot de passe ne peut contenir que des caractères alphanumérique [a-z] / [A-Z] / [0-9]");
+		if(pseudo == null || !pseudo.matches("^[a-zA-Z0-9]*$")) 
+			throw new BLLException("Le pseudo ne peut contenir que des caractères alphanumérique [a-z] / [A-Z] / [0-9]");
+		// Vérification si pseudo/email est unique
+		try {
+			for (Utilisateur user : dao.getAll()) {
+				if (user.getPseudo().equals(pseudo))
+					throw new BLLException("Le pseudo est déjà utilisé !");
+				if (user.getEmail().equals(mail))
+					throw new BLLException("L'email est déjà utilisé !");
+			}
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 

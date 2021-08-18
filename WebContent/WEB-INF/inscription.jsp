@@ -9,7 +9,7 @@
 
 	<h1>ENI-ENCHERES</h1>
 	<h2>Mon Profil</h2>
-
+	<h3 style="color:red" >${erreur} </h3>
 	<form class="form" action="CreationCompteServlet" method="POST">
 		<div class=doubleForm>
 			<div class="form1">
