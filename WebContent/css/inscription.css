@@ -8,7 +8,7 @@ body {
 
 h2 {
 	text-align: center;
-	width : 80vh;
+	width: 80vh;
 	border: 2px solid black;
 	font-size: 2em;
 }
@@ -19,9 +19,8 @@ h2 {
 	border: 2px solid black;
 }
 
-
 .form1 {
-	float:left;
+	float: left;
 	border: 2px solid black;
 	width: 50%;
 }
@@ -31,9 +30,7 @@ h2 {
 }
 
 .form2 {
-	
 	border: 2px solid black;
-	  
 }
 
 .btn_form {
@@ -67,9 +64,9 @@ h2 {
 }
 
 .label {
-  display: inline-block;
-  width: 140px;
-  text-align: left;
+	display: inline-block;
+	width: 140px;
+	text-align: left;
 }
 
 .btn_creer, .btn_annuler {

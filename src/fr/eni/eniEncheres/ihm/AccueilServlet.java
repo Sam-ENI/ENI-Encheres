@@ -8,30 +8,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eniEncheres.bll.UtilisateurManager;
+import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
+
 /**
  * Servlet implementation class AccueilServlet
  */
 @WebServlet("/AccueilServlet")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccueilServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AccueilServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
 		System.out.println(request.getSession().getAttribute("model"));
 
 		Boolean hidden = false;
-		if (request.getSession().getAttribute("model") != null ) {
+		if (request.getSession().getAttribute("model") != null) {
 			hidden = true;
 		}
 		request.getSession().setAttribute("hidden", hidden);
@@ -39,26 +45,36 @@ public class AccueilServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
 		Boolean hidden = true;
 
-		UtilisateurModel model =  (UtilisateurModel) request.getSession().getAttribute("model");
-		
+		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
+
 		if (request.getParameter("insci/connex") != null) {
 			nextPage = "/WEB-INF/connexion.jsp";
 		}
-		
+
+		if (request.getParameter("profil") != null) {
+			nextPage = "/WEB-INF/profil.jsp";
+		}
+
+//		request.getSession().setAttribute("hidden", hidden);
+
 		// BOUTON DECONNEXION
 		if (request.getParameter("deco") != null) {
 			hidden = false;
 			model = null;
 		}
-		
+
 		request.getSession().setAttribute("hidden", hidden);
 		request.getSession().setAttribute("model", model);
-		request.getRequestDispatcher(nextPage).forward(request, response);	}
+
+		request.getRequestDispatcher(nextPage).forward(request, response);
+	}
 
 }

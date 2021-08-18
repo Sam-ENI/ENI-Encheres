@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,20 +19,20 @@
 			</div>
 			<form action="ConnexionUtilisateurServlet" method="POST">
 			
+
 			<div class="login">
 				<input class="psd_input" type="text" name="pseudoEmail"
-				placeholder="Pseudo" >
-				<input class="psd_input" type="password" name="mdp"
-				placeholder="Mot de passe" >			
+					placeholder="Pseudo"> <input class="psd_input"
+					type="password" name="mdp" placeholder="Mot de passe">
 			</div>
-			
+
 			<div class="submit_cont">
-				<input class="btn_co" type="submit" name="Connexion" value="Connexion">
+				<input class="btn_co" type="submit" name="Connexion"
+					value="Connexion">
 				<div class="right_submit_cont">
 					<div class="remember">
 						<input type="checkbox" name="rememberUser">
 						<label for="rememberUser">Se souvenir de moi </label>
-
 					</div>
 					<a href="lienmdpperdu"> Mot de passe oublié ?</a>
 				</div>
@@ -39,10 +40,7 @@
 			<div class="btn_cont">
 				<input class="btn_insc" type="submit" name="Inscription" value="Créer un compte">
 			</div>
-
-
 		</form>
-
-		</div>
-	</body>
-	</html>
+	</div>
+</body>
+</html>

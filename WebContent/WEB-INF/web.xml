@@ -6,6 +6,6 @@
 	<display-name>ENI-Encheres</display-name>
 	<welcome-file-list>
 		<welcome-file>AccueilServlet</welcome-file>
-		
+
 	</welcome-file-list>
 </web-app>
