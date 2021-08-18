@@ -56,13 +56,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	
 	// Créer un user temp pour recup le contact dans la boucle
 	// le retourner 
-	public boolean isUserExist(String pseudo, String mdp) throws BLLException {
+	public Utilisateur isUserExist(String pseudo, String mdp) throws BLLException {
 		boolean isExist = false;
+		Utilisateur utilisateurTemp = null;
 		// Verification si l'utilisateur existe dans la BDD
 		try {
 			for (Utilisateur utilisateur : dao.getAll()) {
 				if (utilisateur.getMotDePasse().equals(mdp)
 						&& utilisateur.getPseudo().equals(pseudo)) {
+					utilisateurTemp = utilisateur;
 					isExist = true;
 				}
 			}
@@ -73,7 +75,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		// Si l'user existe : Retourne TRUE
 		// Sinon : Crée une exeception
 		if (isExist)
-			return true;
+			return utilisateurTemp;
 		else
 			throw new BLLException("Mauvais pseudo/mdp !");
 	}

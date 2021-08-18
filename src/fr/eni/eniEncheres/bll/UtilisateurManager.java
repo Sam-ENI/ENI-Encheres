@@ -44,7 +44,7 @@ public interface UtilisateurManager {
 	 * @return Vrai si l'utilisateur existe dans la BDD 
 	 * @throws BLLException : L'exception de la BLL
 	 */
-	public boolean isUserExist(String pseudo, String mdp) throws BLLException;
+	public Utilisateur isUserExist(String pseudo, String mdp) throws BLLException;
 	/**
 	 * Vérification des mots de passe lors de la création du compte
 	 *  - Si le mot de passe et celui de confirmation sont les mêmes sinon : BLLException

@@ -45,16 +45,23 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		}
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel model = null;
-		
+
 		if (request.getParameter("Connexion") != null) {
 			try {
-				if(manager.isUserExist(request.getParameter("pseudo"), request.getParameter("mdp")));
+				Utilisateur u = manager.isUserExist(request.getParameter("pseudo"), request.getParameter("mdp"));
+				if(u != null) {
+					System.out.println("KKOKKKOKO");
 					nextPage = "/WEB-INF/index.jsp";
+					System.out.println(u);
+					model.setUtilisateur(u);
+					model.setLstUtilisateur(manager.getAllUtilisateur());
+				}
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
 			Boolean hidden = true;
 			request.getSession().setAttribute("hidden", hidden);
+			
 		}
 		
 		if (request.getParameter("Inscription") != null) {
