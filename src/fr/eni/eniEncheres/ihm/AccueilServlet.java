@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,8 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
+		System.out.println(request.getSession().getAttribute("model"));
+
 		Boolean hidden = false;
 		if (request.getSession().getAttribute("model") != null ) {
 			hidden = true;
@@ -40,16 +43,22 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
-		Boolean hidden = false;
-		System.out.println(request.getSession().getAttribute("model"));
-//		if (request.getSession().getAttribute("model") != null ) {
-//			hidden = true;
-//		}
+		Boolean hidden = true;
+
+		UtilisateurModel model =  (UtilisateurModel) request.getSession().getAttribute("model");
 		
 		if (request.getParameter("insci/connex") != null) {
 			nextPage = "/WEB-INF/connexion.jsp";
 		}
-//		request.getSession().setAttribute("hidden", hidden);
+		
+		// BOUTON DECONNEXION
+		if (request.getParameter("deco") != null) {
+			hidden = false;
+			model = null;
+		}
+		
+		request.getSession().setAttribute("hidden", hidden);
+		request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher(nextPage).forward(request, response);	}
 
 }
