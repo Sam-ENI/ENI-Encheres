@@ -22,6 +22,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 	Utilisateur u1 = new Utilisateur("lol", "dupont", "jack", "j@dd.com", "021547898", "5 des oui", "44000", "Nantes",
 			"1245", 0, false);
+	private int cpt = 0;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,23 +37,27 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		// AJOUT D'UN ADMIN
 		try {
-			manager.addUtilisateur(u1);
+			if (cpt == 0) {
+				manager.addUtilisateur(u1);
+				cpt++;
+			}
 		} catch (BLLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel model = null;
+	
 
 		if (request.getParameter("Connexion") != null) {
 			try {
 				Utilisateur u = manager.isUserExist(request.getParameter("pseudo"), request.getParameter("mdp"));
 				if(u != null) {
-					System.out.println("KKOKKKOKO");
+					model = new UtilisateurModel(new Utilisateur(), null);
 					nextPage = "/WEB-INF/index.jsp";
-					System.out.println(u);
 					model.setUtilisateur(u);
 					model.setLstUtilisateur(manager.getAllUtilisateur());
 				}
