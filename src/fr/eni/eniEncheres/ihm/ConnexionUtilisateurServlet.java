@@ -60,6 +60,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel model = null;
 
