@@ -10,28 +10,28 @@
 
 	<form action="ProfilServlet" method="POST">
 		<div class="center">
-			<p>value="${model.utilisateur.pseudo}"</p>
+			<p>Pseudo : ${model.utilisateur.pseudo}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.nom}"</p>
+			<p>Nom : ${model.utilisateur.nom}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.prenom}"</p>
+			<p>Prénom : ${model.utilisateur.prenom}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.email}"</p>
+			<p>Email : ${model.utilisateur.email}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.telephone}"</p>
+			<p>Telephone : ${model.utilisateur.telephone}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.rue}"</p>
+			<p>Rue : ${model.utilisateur.rue}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.codePostal}"</p>
+			<p>Code Postal : ${model.utilisateur.codePostal}</p>
 		</div>
 		<div class="center">
-			<p>value="${model.utilisateur.ville}"</p>
+			<p>Ville :${model.utilisateur.ville}</p>
 		</div>
 		<input type="submit" name="modifierBtn" value="Modifier">
 	</form>

@@ -63,6 +63,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(9, utilisateur.getMotDePasse());
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.getAdministrateur());
+			stmt.setInt(12,utilisateur.getNoUtilsateur());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

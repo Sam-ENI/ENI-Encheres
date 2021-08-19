@@ -44,7 +44,26 @@ public class ModifierProfilServlet extends HttpServlet {
 		boolean hidden =  true;
 		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
 		
-		
+		// MODIFIER PROFIL
+		if(request.getParameter("enregistrer")!= null) {
+			try {
+				if(manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),request.getParameter("nom"),request.getParameter("email"))) {
+					model.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+					model.getUtilisateur().setPrenom(request.getParameter("prenom"));
+					model.getUtilisateur().setTelephone(request.getParameter("telephone"));
+					model.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
+					model.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
+					model.getUtilisateur().setNom(request.getParameter("nom"));
+					model.getUtilisateur().setEmail(request.getParameter("email"));
+					model.getUtilisateur().setRue(request.getParameter("rue"));
+					model.getUtilisateur().setVille(request.getParameter("ville"));
+					manager.updateUtilisateur(model.getUtilisateur());
+					nextPage = "/WEB-INF/index.jsp";	
+				}
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		// BOUTON SUPPRIMER LE COMPTE
 		if (request.getParameter("supprimerCompte")!= null) {
