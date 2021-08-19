@@ -1,10 +1,10 @@
 package fr.eni.eniEncheres.dal;
 
-import fr.eni.eniEncheres.dal.jdbc.ArticleVenduImpl;
+import fr.eni.eniEncheres.dal.jdbc.ArticleVenduDAOImpl;
 
 public class ArticleVenduDAOFact {
 	public static ArticleVenduDAO getInstanceDAO() {
-		return new ArticleVenduImpl();
+		return new ArticleVenduDAOImpl();
 		
 	}
 }

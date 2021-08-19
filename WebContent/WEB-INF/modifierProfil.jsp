@@ -15,19 +15,19 @@
 
 				<div class="center">
 					<label class="label">Pseudo :</label> <input class="input"
-						type="text" name="pseudo" value="${model.utilisateur.pseudo}"><br>
+						type="text" name="pseudo" value="${utlisateurModel.utilisateur.pseudo}"><br>
 				</div>
 				<div class="center">
 					<label class="label">Prénom :</label> <input class="input"
-						type="text" name="prenom" value="${model.utilisateur.prenom}"><br>
+						type="text" name="prenom" value="${utlisateurModel.utilisateur.prenom}"><br>
 				</div>
 				<div class="center">
 					<label class="label">Téléphone :</label> <input class="input"
-						type="text" name="telephone" value="${model.utilisateur.telephone}"><br>
+						type="text" name="telephone" value="${utlisateurModel.utilisateur.telephone}"><br>
 				</div>
 				<div class="center">
 					<label class="label">Code Postal :</label> <input class="input"
-						type="text" name="codePostal" value="${model.utilisateur.codePostal}"><br>
+						type="text" name="codePostal" value="${utlisateurModel.utilisateur.codePostal}"><br>
 				</div>
 				<div class="center">
 					<label class="label">Mot de passe :</label> <input class="input"
@@ -45,11 +45,11 @@
 				</div>
 				<div class="center">
 					<label class="label">Rue :</label> <input class="input" type="text"
-						name="rue" value="${model.utilisateur.rue}"><br>
+						name="rue" value="${utlisateurModel.utilisateur.rue}"><br>
 				</div>
 				<div class="center">
 					<label class="label">Ville :</label> <input class="input"
-						type="text" name="ville" value="${model.utilisateur.ville}"><br>
+						type="text" name="ville" value="${utlisateurModel.utilisateur.ville}"><br>
 				</div>
 				<div class="center">
 					<label class="label">Confirmation :</label> <input class="input"

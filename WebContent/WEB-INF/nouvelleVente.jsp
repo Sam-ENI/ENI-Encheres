@@ -10,7 +10,7 @@
 	<div class="image">
 		<img src="" alt="image de l'objet en vente">
 	</div>
-	<form>
+	<form action ="NouvelleVenteServlet" method="post">
 	<div>
 		
 			<label for="article">Article : </label> <input type="text"
@@ -27,12 +27,10 @@
 					<option value="sportloisirs">Sport&Loisirs</option>
 				</select>
 			</div>
-			<label for="uploader">Photo de l'article </label> <input
-				type="submit" name="uploader" value="uploader photo"> <label
-				for="miseAprix">Mise à prix : </label> <input type="number">
-			<label for="debutEnchere">Début de l'enchère</label> <input
-				type="date"> <label for="finEnchere">Fin de
-				l'enchère</label> <input type="date">
+			<label for="uploader">Photo de l'article </label> <input type="submit" name="uploader" value="uploader photo"> 
+			<label for="miseAprix">Mise à prix : </label>  <input type="number" name="miseAprix">
+			<label for="debutEnchere">Début de l'enchère</label> <input type="date" name="dateDebutEncheres"> 
+			<label for="finEnchere">Fin de l'enchère</label> <input type="date" name="dateFinEncheres">
 	</div>
 	<div class="retrait">
 		<h3>Retrait</h3>

@@ -42,22 +42,22 @@ public class ModifierProfilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "/WEB-INF/modifierProfil.jsp";
 		boolean hidden =  true;
-		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
+		UtilisateurModel utlisateurModel = (UtilisateurModel) request.getSession().getAttribute("model");
 		
 		// MODIFIER PROFIL
 		if(request.getParameter("enregistrer")!= null) {
 			try {
 				if(manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),request.getParameter("nom"),request.getParameter("email"))) {
-					model.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-					model.getUtilisateur().setPrenom(request.getParameter("prenom"));
-					model.getUtilisateur().setTelephone(request.getParameter("telephone"));
-					model.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
-					model.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
-					model.getUtilisateur().setNom(request.getParameter("nom"));
-					model.getUtilisateur().setEmail(request.getParameter("email"));
-					model.getUtilisateur().setRue(request.getParameter("rue"));
-					model.getUtilisateur().setVille(request.getParameter("ville"));
-					manager.updateUtilisateur(model.getUtilisateur());
+					utlisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+					utlisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
+					utlisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
+					utlisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
+					utlisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
+					utlisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
+					utlisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
+					utlisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
+					utlisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
+					manager.updateUtilisateur(utlisateurModel.getUtilisateur());
 					request.setAttribute("msgModif", "Votre profil à été modifié");
 					nextPage = "/WEB-INF/modifierProfil.jsp";	
 				}
@@ -69,9 +69,9 @@ public class ModifierProfilServlet extends HttpServlet {
 		// BOUTON SUPPRIMER LE COMPTE
 		if (request.getParameter("supprimerCompte")!= null) {
 			try {
-				manager.deleteUtilisateur(model.getUtilisateur());
+				manager.deleteUtilisateur(utlisateurModel.getUtilisateur());
 				hidden = false;
-				model = null;
+				utlisateurModel = null;
 				nextPage = "/WEB-INF/index.jsp";
 			} catch (BLLException e) {
 				e.printStackTrace();
@@ -79,7 +79,7 @@ public class ModifierProfilServlet extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("hidden", hidden);
-		request.getSession().setAttribute("model", model);
+		request.getSession().setAttribute("utlisateurModel", utlisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 
 	}

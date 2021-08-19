@@ -43,6 +43,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/nouvelleVente.jsp";
 		ArticleVenduModel articleVenduModel = new ArticleVenduModel();
+		UtilisateurModel utilisateurModel = (UtilisateurModel)request.getSession().getAttribute("utlisateurModel");
 
 		if (request.getParameter("enregister") != null) {
 			articleVenduModel.getArticleVendu().setNomArticle(request.getParameter("nomArticle"));

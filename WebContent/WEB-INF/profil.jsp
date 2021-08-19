@@ -13,28 +13,28 @@
 	<div class="form">
 		<form action="ProfilServlet" method="POST">
 			<div class="center">
-				<p><span class="nomChamps" >Pseudo : </span><span class="model" >${model.utilisateur.pseudo}</span></p>
+				<p><span class="nomChamps" >Pseudo : </span><span class="model" >${utlisateurModel.utilisateur.pseudo}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps" >Nom : </span><span class="model" >${model.utilisateur.nom}</span></p>
+				<p><span class="nomChamps" >Nom : </span><span class="model" >${utlisateurModel.utilisateur.nom}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Prénom : </span><span class="model" >${model.utilisateur.prenom}</span></p>
+				<p><span class="nomChamps">Prénom : </span><span class="model" >${utlisateurModel.utilisateur.prenom}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Email : </span><span class="model" >${model.utilisateur.email}</span></p>
+				<p><span class="nomChamps">Email : </span><span class="model" >${utlisateurModel.utilisateur.email}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Telephone : </span><span class="model" >${model.utilisateur.telephone}</span></p>
+				<p><span class="nomChamps">Telephone : </span><span class="model" >${utlisateurModel.utilisateur.telephone}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Rue : </span><span class="model" >${model.utilisateur.rue}</span></p>
+				<p><span class="nomChamps">Rue : </span><span class="model" >${utlisateurModel.utilisateur.rue}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Code Postal : </span><span class="model" >${model.utilisateur.codePostal}</span></p>
+				<p><span class="nomChamps">Code Postal : </span><span class="model" >${utlisateurModel.utilisateur.codePostal}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Ville : </span><span class="model" >${model.utilisateur.ville}</span></p>
+				<p><span class="nomChamps">Ville : </span><span class="model" >${utlisateurModel.utilisateur.ville}</span></p>
 			</div>
 			<input class="modifierBtn" type="submit" name="modifierBtn" value="Modifier">
 		</form>
