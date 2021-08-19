@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-	<form action="ProfilServlet" method="POST">
->>>>>>> branch 'main' of https://github.com/Sam-ENI/ENI-Encheres.git
 
 	<form action="ProfilServlet" method="POST">
 		<div class="center">
