@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="ProfilServlet" method="POST">
 
+	<form action="ProfilServlet" method="POST">
 		<div class="center">
 			<label class="label">Pseudo :</label> <input class="input"
 				type="text" name="pseudo" value="${model.utilisateur.pseudo}"><br>
