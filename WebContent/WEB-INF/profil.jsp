@@ -7,39 +7,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="ModifierProfilServlet" method="POST">
+	<form action="ProfilServlet" method="POST">
 
 		<div class="center">
-			<label class="label">Pseudo :</label> <input class="input"
-				type="text" name="pseudo" value="${model.utilisateur.pseudo}"><br>
+			<p>value="${model.utilisateur.pseudo}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Nom :</label> <input class="input" type="text"
-				name="nom" value="${model.utilisateur.nom}"><br>
+			<p>value="${model.utilisateur.nom}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Prénom :</label> <input class="input"
-				type="text" name="prenom" value="${model.utilisateur.prenom}"><br>
+			<p>value="${model.utilisateur.prenom}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Email :</label> <input class="input" type="text"
-				name="email" value="${model.utilisateur.email}"><br>
+			<p>value="${model.utilisateur.email}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Téléphone :</label> <input class="input"
-				type="text" name="telephone" value="${model.utilisateur.telephone}"><br>
+			<p>value="${model.utilisateur.telephone}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Rue :</label> <input class="input" type="text"
-				name="rue" value="${model.utilisateur.rue}"><br>
+			<p>value="${model.utilisateur.rue}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Code Postal :</label> <input class="input"
-				type="text" name="codePostal" value="${model.utilisateur.codePostal}"><br>
+			<p>value="${model.utilisateur.codePostal}"</p>
 		</div>
 		<div class="center">
-			<label class="label">Ville :</label> <input class="input" type="text"
-				name="ville" value="${model.utilisateur.ville}"><br>
+			<p>value="${model.utilisateur.ville}"</p>
 		</div>
 		<input type="submit" name="modifierBtn" value="Modifier">
 	</form>
