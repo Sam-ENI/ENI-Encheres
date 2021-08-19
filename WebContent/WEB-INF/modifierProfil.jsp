@@ -57,6 +57,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="credit">
+			<p>Crédit : ${model.utilisateur.credit}</p>
+		</div>
 		<div class=btn_form>
 			<input class="btn_enregistrer" type="submit" name="enregistrer" value="Enregistrer">
 			<input class="btn_supprimer" type="submit" name="supprimerCompte"
