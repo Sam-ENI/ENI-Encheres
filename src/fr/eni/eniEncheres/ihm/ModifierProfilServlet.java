@@ -47,7 +47,7 @@ public class ModifierProfilServlet extends HttpServlet {
 		
 		
 		// BOUTON SUPPRIMER LE COMPTE
-		if (request.getParameter("supprimerCompe")!= null) {
+		if (request.getParameter("supprimerCompte")!= null) {
 			try {
 				manager.deleteUtilisateur(model.getUtilisateur());
 				hidden = false;
