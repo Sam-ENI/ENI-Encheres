@@ -31,15 +31,16 @@ public class ModifierProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String nextPage = "/WEB-INF/modifierProfil.jsp";
+
+		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String nextPage = "/WEB-INF/modifierProfil.jsp";
 		boolean hidden =  true;
 		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
 		
@@ -51,6 +52,7 @@ public class ModifierProfilServlet extends HttpServlet {
 				manager.deleteUtilisateur(model.getUtilisateur());
 				hidden = false;
 				model = null;
+				nextPage = "/WEB-INF/index.jsp";
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
@@ -58,6 +60,8 @@ public class ModifierProfilServlet extends HttpServlet {
 		
 		request.getSession().setAttribute("hidden", hidden);
 		request.getSession().setAttribute("model", model);
+		request.getRequestDispatcher(nextPage).forward(request, response);
+
 	}
 
 }
