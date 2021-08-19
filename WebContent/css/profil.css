@@ -1,0 +1,63 @@
+@charset "UTF-8";
+body{
+    background-color: #F3EBF6;
+   
+    
+}
+
+h1{
+    text-align: center;
+    font-size: 5em;
+    
+   
+}
+
+.center{
+    border: 1px solid black;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    background-color:rgba(209, 209, 209, 0.5) ; 
+    padding-top: auto;
+    padding-bottom: auto;
+}
+.center:hover{
+    color: white;
+    background-color: rgb(39, 39, 39); 
+    transform: scale(1.2);
+}
+
+.form{
+   text-align: center;
+}
+
+.nomChamps{
+    font-size: 2.2em;
+    font-weight : bold;
+    
+}
+
+.model{
+    font-size: 2em;
+    
+}
+
+
+.modifierBtn{
+margin: 16px;
+padding: 16px;
+ background-color: rgb(112, 111, 111); 
+ color: aliceblue; 
+ border: none;
+ border-radius: 20px;
+ font-size: 20px;
+ cursor: pointer;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+transition: all 0.2s;
+}
+
+.modifierBtn:hover{
+    background-color: rgb(39, 39, 39); 
+    transform: scale(1.2);
+}

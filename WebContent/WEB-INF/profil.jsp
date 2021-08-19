@@ -1,39 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link href="./css/profil.css" rel="stylesheet">
+<title>Votre Profil</title>
 </head>
 <body>
-
-	<form action="ProfilServlet" method="POST">
-		<div class="center">
-			<p>Pseudo : ${model.utilisateur.pseudo}</p>
-		</div>
-		<div class="center">
-			<p>Nom : ${model.utilisateur.nom}</p>
-		</div>
-		<div class="center">
-			<p>Prénom : ${model.utilisateur.prenom}</p>
-		</div>
-		<div class="center">
-			<p>Email : ${model.utilisateur.email}</p>
-		</div>
-		<div class="center">
-			<p>Telephone : ${model.utilisateur.telephone}</p>
-		</div>
-		<div class="center">
-			<p>Rue : ${model.utilisateur.rue}</p>
-		</div>
-		<div class="center">
-			<p>Code Postal : ${model.utilisateur.codePostal}</p>
-		</div>
-		<div class="center">
-			<p>Ville :${model.utilisateur.ville}</p>
-		</div>
-		<input type="submit" name="modifierBtn" value="Modifier">
-	</form>
+<h1>Votre Profil</h1>
+	<div class="form">
+		<form action="ProfilServlet" method="POST">
+			<div class="center">
+				<p><span class="nomChamps" >Pseudo : </span><span class="model" >${model.utilisateur.pseudo}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps" >Nom : </span><span class="model" >${model.utilisateur.nom}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps">Prénom : </span><span class="model" >${model.utilisateur.prenom}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps">Email : </span><span class="model" >${model.utilisateur.email}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps">Telephone : </span><span class="model" >${model.utilisateur.telephone}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps">Rue : </span><span class="model" >${model.utilisateur.rue}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps">Code Postal : </span><span class="model" >${model.utilisateur.codePostal}</span></p>
+			</div>
+			<div class="center">
+				<p><span class="nomChamps">Ville : </span><span class="model" >${model.utilisateur.ville}</span></p>
+			</div>
+			<input class="modifierBtn" type="submit" name="modifierBtn" value="Modifier">
+		</form>
+	</div>
 </body>
 </html>
