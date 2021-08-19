@@ -63,7 +63,11 @@ public class AccueilServlet extends HttpServlet {
 			nextPage = "/WEB-INF/profil.jsp";
 		}
 		
-//		request.getSession().setAttribute("hidden", hidden);
+		if (request.getParameter("vente") != null) {
+			nextPage = "/WEB-INF/nouvelleVente.jsp";
+		}
+		
+		//		request.getSession().setAttribute("hidden", hidden);
 
 		// BOUTON DECONNEXION
 		if (request.getParameter("deco") != null) {
