@@ -1,84 +1,476 @@
+body {
+    height: 100vh;
+    background-color: rgb(199, 199, 199);
+    font-family: 'Saira Extra Condensed', sans-serif;
+}
+
+.page_cont {
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    margin: 20px;
+}
+
 header {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-wrap: wrap;
 }
 
 .listFilter {
-	display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
 }
 
 .chekbox_cont {
-	margin: 10px 20px 0 40px;
+    margin: 10px 20px 0 30px;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
-.cont_rech, .cat {
-	margin-top: 20px;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	flex-wrap: wrap;
+.cat {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 15px;
 }
 
 .cat select {
-	height: 30px;
-	margin-left: 10px;
+    height: 30px;
+    margin-left: 10px;
 }
 
 .right_cont_rech {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .right_cont_rech input {
-	width: 200px;
-	height: 100px;
-	cursor: pointer;
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
 }
 
 h1 {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .card {
-	margin: 30px;
-	padding: 10px;
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
-	align-items: center;
-	width: 400px;
-	height: 100%;
-	border: 2px solid black;
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 400px;
+    height: 100%;
+    border: 1px solid rgb(184, 184, 184);
+    transition: all 0.2s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .card img {
-	margin: 20px 0 20px 20px;
-	width: 120px;
-	height: 130px;
-	border: 2px solid black;
+    object-fit: contain;
+    width: 100%;
+    height: 200px;
+    border: solid 1px #CCC
 }
 
 .nomArticle {
-	text-decoration: underline;
+    margin-top: 15px;
+    text-decoration: underline;
 }
 
-.link {
-	border: 0;
-	cursor: pointer;
-	background-color: white;
-	text-decoration: underline;
-	color: blue;
+.link,
+.nav input {
+    border: 0;
+    font-size: 1.3em;
+    cursor: pointer;
+    background-color: white;
+    text-decoration: none;
+    color: rgb(136, 136, 136);
+}
+
+.link:hover,
+.nav input:hover {
+    color: rgb(49, 49, 49);
 }
 
 .cont_card {
-	display: flex;
-	flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.txt_head {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    z-index: 2;
+    transition: 0.3s;
+    margin: 30px;
+    text-align: center;
+}
+
+.txt_head:hover {
+    transform: rotate(1deg);
+    font-size: 1.1em;
+}
+
+.intro img {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.cont_rech {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: rgb(104, 104, 104);
+    display: block;
+    margin: 25px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+
+/* BOUTON CHECKBOX ET RADO */
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type='checkbox'],
+    input[type='radio'] {
+        --active: #275efe;
+        --active-inner: #fff;
+        --focus: 2px rgba(39, 94, 254, .3);
+        --border: #bbc1e1;
+        --border-hover: #275efe;
+        --disabled: #f6f8ff;
+        --disabled-inner: #e1e6f9;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 21px;
+        outline: none;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        margin: 0;
+        cursor: pointer;
+        border: 1px solid var(--bc, var(--border));
+        background: var(--b, var(--background));
+        transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    }
+    input[type='checkbox']:after,
+    input[type='radio']:after {
+        content: '';
+        display: block;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+    }
+    input[type='checkbox']:checked,
+    input[type='radio']:checked {
+        --b: var(--active);
+        --bc: var(--active);
+        --d-o: 0.3s;
+        --d-t: 0.6s;
+        --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+    }
+    input[type='checkbox']:disabled,
+    input[type='radio']:disabled {
+        --b: var(--disabled);
+        cursor: not-allowed;
+        opacity: 0.9;
+    }
+    input[type='checkbox']:disabled:checked,
+    input[type='radio']:disabled:checked {
+        --b: var(--disabled-inner);
+        --bc: var(--border);
+    }
+    input[type='checkbox']:disabled+label,
+    input[type='radio']:disabled+label {
+        cursor: not-allowed;
+    }
+    input[type='checkbox']:hover:not(:checked):not(:disabled),
+    input[type='radio']:hover:not(:checked):not(:disabled) {
+        --bc: var(--border-hover);
+    }
+    input[type='checkbox']:focus,
+    input[type='radio']:focus {
+        box-shadow: 0 0 0 var(--focus);
+    }
+    input[type='checkbox']:not(.switch),
+    input[type='radio']:not(.switch) {
+        width: 21px;
+    }
+    input[type='checkbox']:not(.switch):after,
+    input[type='radio']:not(.switch):after {
+        opacity: var(--o, 0);
+    }
+    input[type='checkbox']:not(.switch):checked,
+    input[type='radio']:not(.switch):checked {
+        --o: 1;
+    }
+    input[type='checkbox']+label,
+    input[type='radio']+label {
+        font-size: 14px;
+        line-height: 21px;
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin-left: 4px;
+    }
+    input[type='checkbox']:not(.switch) {
+        border-radius: 7px;
+    }
+    input[type='checkbox']:not(.switch):after {
+        width: 5px;
+        height: 9px;
+        border: 2px solid var(--active-inner);
+        border-top: 0;
+        border-left: 0;
+        left: 7px;
+        top: 4px;
+        transform: rotate(var(--r, 20deg));
+    }
+    input[type='checkbox']:not(.switch):checked {
+        --r: 43deg;
+    }
+    input[type='checkbox'].switch {
+        width: 38px;
+        border-radius: 11px;
+    }
+    input[type='checkbox'].switch:after {
+        left: 2px;
+        top: 2px;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        background: var(--ab, var(--border));
+        transform: translateX(var(--x, 0));
+    }
+    input[type='checkbox'].switch:checked {
+        --ab: var(--active-inner);
+        --x: 17px;
+    }
+    input[type='checkbox'].switch:disabled:not(:checked):after {
+        opacity: 0.6;
+    }
+    input[type='radio'] {
+        border-radius: 50%;
+    }
+    input[type='radio']:after {
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;
+        background: var(--active-inner);
+        opacity: 0;
+        transform: scale(var(--s, 0.7));
+    }
+    input[type='radio']:checked {
+        --s: 0.5;
+    }
+}
+
+ul {
+    margin: 12px;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    max-width: 320px;
+}
+
+ul li {
+    margin: 16px 0;
+    position: relative;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+/* FIN */
+
+.filtre {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #00bbec;
+    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);
+}
+
+.left_cont_rech {
+    width: 100%;
+}
+
+.filtre input {
+    width: 90%;
+    height: 40px;
+    border: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 10px;
+    outline: none;
+}
+
+.filtre input:focus {
+    border: 0;
+}
+
+.filtre img {
+    height: 100%;
+}
+
+.desc {
+    margin: 20px;
+    font-size: 12px;
+}
+
+.selectcat {
+    width: 180px;
+    border-radius: 5px;
+}
+
+.footer_search {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.footer_search input {
+    margin-right: 20px;
+    height: 70px;
+    border: 0;
+    background-color: cornflowerblue;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 5px;
+    font-size: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.footer_search input:hover {
+    background-color: rgb(81, 108, 160);
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 120%;
+    margin: 10px;
+}
+
+.textArticle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.textArticle p {
+    margin: 5px;
+}
+
+.nomArticle {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.btn_vendeur {
+    color: rgb(81, 108, 160);
+    font-size: 1em;
+}
+
+.box_card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media all and (max-width: 700px) {
+    .Ventes {
+        padding-top: 10px;
+    }
+    header {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .nav {
+
+    }
+    .nav input {
+    	width: 100%;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid rgb(122, 122, 122);
+    }
+    .nav input:hover {
+        border: 1px solid rgb(0, 0, 0);
+    }
+}
+
+@media all and (max-width: 320px) {
+    .chekbox_cont {
+        margin: 10px 20px 0 0px;
+    }
+}
+
+@media all and (max-width: 430px) {
+    .footer_search {
+        justify-content: center;
+        align-items: center;
+    }
+    .titre {
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 1240px) {
+    .cont_card {
+        justify-content: center;
+    }
 }
