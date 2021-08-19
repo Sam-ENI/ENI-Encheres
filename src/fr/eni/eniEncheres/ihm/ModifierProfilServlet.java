@@ -58,10 +58,11 @@ public class ModifierProfilServlet extends HttpServlet {
 					model.getUtilisateur().setRue(request.getParameter("rue"));
 					model.getUtilisateur().setVille(request.getParameter("ville"));
 					manager.updateUtilisateur(model.getUtilisateur());
-					nextPage = "/WEB-INF/index.jsp";	
+					request.setAttribute("msgModif", "Votre profil à été modifié");
+					nextPage = "/WEB-INF/modifierProfil.jsp";	
 				}
 			} catch (BLLException e) {
-				e.printStackTrace();
+				request.setAttribute("erreur", e.getMessage());;
 			}
 		}
 		

@@ -63,5 +63,7 @@
 				value="Supprimer mon compte">
 		</div>
 	</form>
+	<div class="msgModif">${msgModif}</div>
+	<div class="msgErreur">${erreur}</div>
 </body>
 </html>
