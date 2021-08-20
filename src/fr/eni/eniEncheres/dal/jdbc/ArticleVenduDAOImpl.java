@@ -12,6 +12,8 @@ import java.util.List;
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.DALException;
+import fr.eni.eniEncheres.dal.UtilisateurDAO;
+import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -75,6 +77,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	@Override
 	public List<ArticleVendu> getAll() throws DALException {
 		List<ArticleVendu> result = new ArrayList<ArticleVendu>();
+		UtilisateurDAO daoUser = UtilisateurDAOFact.getInstanceDAO();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
@@ -92,9 +95,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setDateFinEncheres(ld2);
 				articleVendu.setMiseAprix(Integer.parseInt(rs.getString("prix_initial")));
 				articleVendu.setPrixVente(Integer.parseInt(rs.getString("prix_vente")));
-				articleVendu.getUtilisateur().setNoUtilisateur(Integer.parseInt(rs.getString("no_utilisateur")));
-				articleVendu.getCategorie().setNoCategorie(Integer.parseInt(rs.getString("no_categorie")));
-				;
+				
+				// Je sélectionne l'utilisateur par le numéro d'utilisateur contenue dans la table ArticleVendu
+				articleVendu.setUtilisateur(daoUser.getByID(Integer.parseInt(rs.getString("no_utilisateur"))));
+				
+				//articleVendu.getCategorie().setNoCategorie(Integer.parseInt(rs.getString("no_categorie")));
+				
 			
 				
 				result.add(articleVendu);

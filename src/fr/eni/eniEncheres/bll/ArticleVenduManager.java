@@ -12,4 +12,6 @@ public interface ArticleVenduManager {
 	public void updateArticleVendu(ArticleVendu articleVendu) throws BLLException;
 
 	public List<ArticleVendu> getAllArticleVendu() throws BLLException;
+	
+	public ArticleVendu getArticleByName (String string) throws BLLException;
 }

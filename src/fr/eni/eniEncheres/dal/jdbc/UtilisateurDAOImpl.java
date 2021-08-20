@@ -17,6 +17,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE no_utilisateur = ?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur =?";
 	private final String SELECT = "SELECT no_utilisateur ,pseudo,nom, prenom,email, telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS";
+	private final String SELECTBYID = "SELECT no_utilisateur ,pseudo,nom, prenom,email, telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE no_utilisateur = ?";
 
 	@Override
 	public void insert(Utilisateur utilisateur) throws DALException {
@@ -114,5 +115,34 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		return result;
 	}
+	
+	@Override
+	public Utilisateur getByID(int nbUtilisateur) throws fr.eni.eniEncheres.dal.DALException {
+		Utilisateur utilisateur = new Utilisateur();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
+			stmt.setInt(1,nbUtilisateur);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+			utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+			utilisateur.setPseudo(rs.getString("pseudo"));
+			utilisateur.setNom(rs.getString("nom"));
+			utilisateur.setPrenom(rs.getString("prenom"));
+			utilisateur.setEmail(rs.getString("email"));
+			utilisateur.setTelephone(rs.getString("telephone"));
+			utilisateur.setRue(rs.getString("rue"));
+			utilisateur.setCodePostal(rs.getString("code_postal"));
+			utilisateur.setVille(rs.getString("ville"));
+			utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+			utilisateur.setCredit(rs.getInt("credit"));
+			utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Problème SQL");
+		}
+		return utilisateur;
+	}
+
 
 }

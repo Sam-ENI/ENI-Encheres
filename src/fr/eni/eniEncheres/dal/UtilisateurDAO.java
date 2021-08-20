@@ -35,5 +35,6 @@ public interface UtilisateurDAO {
 	 * @throws DALException : L'exception de la DAL
 	 */
 	public List<Utilisateur> getAll() throws DALException;
+	Utilisateur getByID(int nbUtilisateur) throws DALException;
 
 }
