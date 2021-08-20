@@ -1,7 +1,7 @@
 package fr.eni.eniEncheres.bo;
 
 public class Utilisateur {
-	private Integer noUtilsateur;
+	private Integer noUtilisateur;
 	private String pseudo;
 	private String nom;
 	private String prenom;
@@ -33,12 +33,12 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
-	public Integer getNoUtilsateur() {
-		return noUtilsateur;
+	public Integer getNoUtilisateur() {
+		return noUtilisateur;
 	}
 
-	public void setNoUtilsateur(Integer noUtilsateur) {
-		this.noUtilsateur = noUtilsateur;
+	public void setNoUtilisateur(Integer noUtilsateur) {
+		this.noUtilisateur = noUtilsateur;
 	}
 
 	public String getPseudo() {
@@ -131,7 +131,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [noUtilsateur=" + noUtilsateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+		return "Utilisateur [noUtilsateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", MotDePasse=" + MotDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";

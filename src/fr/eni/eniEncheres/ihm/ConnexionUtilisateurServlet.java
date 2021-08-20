@@ -62,7 +62,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		}
 		
 		String nextPage = "/WEB-INF/connexion.jsp";
-		UtilisateurModel utlisateurModel = null;
+		UtilisateurModel utilisateurModel = null;
 
 		if (request.getParameter("Connexion") != null) {
 			Utilisateur u = new Utilisateur();
@@ -74,10 +74,10 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 					u = manager.isUserExistPseudo(request.getParameter("pseudoEmail"), request.getParameter("mdp"));
 				}
 				if (u != null) {
-					utlisateurModel = new UtilisateurModel(new Utilisateur(), null);
+					utilisateurModel = new UtilisateurModel(new Utilisateur(), null);
 					nextPage = "/WEB-INF/index.jsp";
-					utlisateurModel.setUtilisateur(u);
-					utlisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
+					utilisateurModel.setUtilisateur(u);
+					utilisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
 				}
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
@@ -91,7 +91,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			nextPage = "/WEB-INF/inscription.jsp";
 		}
 
-		request.getSession().setAttribute("utlisateurModel", utlisateurModel);
+		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);	}
 
 }

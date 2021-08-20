@@ -1,13 +1,13 @@
 package fr.eni.eniEncheres.bo;
 
-public class Categeorie {
+public class Categorie {
 	Integer noCategorie;
 	String libelle;
 
-	public Categeorie() {
+	public Categorie() {
 	}
 
-	public Categeorie(String libelle) {
+	public Categorie(String libelle) {
 		super();
 		this.libelle = libelle;
 	}

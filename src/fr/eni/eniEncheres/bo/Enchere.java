@@ -5,18 +5,27 @@ import java.time.LocalDate;
 public class Enchere {
 	LocalDate dateEnchere;
 	Integer montant_enchere;
-	Integer noUtilisateur;
-	Integer noArticle;
+	Utilisateur utilisateur;
+	ArticleVendu articleVendu;
+//	Integer noUtilisateur;
+//	Integer noArticle;
 
 	public Enchere() {
 	}
+//	public Enchere(LocalDate dateEnchere, Integer montant_enchere, Integer noUtilisateur, Integer noArticle) {
+//	super();
+//	this.dateEnchere = dateEnchere;
+//	this.montant_enchere = montant_enchere;
+//	this.noUtilisateur = noUtilisateur;
+//	this.noArticle = noArticle;
+//}
 
-	public Enchere(LocalDate dateEnchere, Integer montant_enchere, Integer noUtilisateur, Integer noArticle) {
+	public Enchere(LocalDate dateEnchere, Integer montant_enchere, Utilisateur utilisateur, ArticleVendu articleVendu) {
 		super();
 		this.dateEnchere = dateEnchere;
 		this.montant_enchere = montant_enchere;
-		this.noUtilisateur = noUtilisateur;
-		this.noArticle = noArticle;
+		this.utilisateur = utilisateur;
+		this.articleVendu = articleVendu;
 	}
 
 	public LocalDate getDateEnchere() {
@@ -35,26 +44,26 @@ public class Enchere {
 		this.montant_enchere = montant_enchere;
 	}
 
-	public Integer getNoUtilisateur() {
-		return noUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNoUtilisateur(Integer noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public Integer getNoArticle() {
-		return noArticle;
+	public ArticleVendu getArticleVendu() {
+		return articleVendu;
 	}
 
-	public void setNoArticle(Integer noArticle) {
-		this.noArticle = noArticle;
+	public void setArticleVendu(ArticleVendu articleVendu) {
+		this.articleVendu = articleVendu;
 	}
 
 	@Override
 	public String toString() {
-		return "Enchere [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + ", noUtilisateur="
-				+ noUtilisateur + ", noArticle=" + noArticle + "]";
+		return "Enchere [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + ", utilisateur="
+				+ utilisateur + ", articleVendu=" + articleVendu + "]";
 	}
 
 }

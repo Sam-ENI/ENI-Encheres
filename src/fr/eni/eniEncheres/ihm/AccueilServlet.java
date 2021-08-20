@@ -34,10 +34,10 @@ public class AccueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
-		System.out.println(request.getSession().getAttribute("utlisateurModel"));
+		System.out.println(request.getSession().getAttribute("utilisateurModel"));
 
 		Boolean hidden = false;
-		if (request.getSession().getAttribute("utlisateurModel") != null) {
+		if (request.getSession().getAttribute("utilisateurModel") != null) {
 			hidden = true;
 		}
 		request.getSession().setAttribute("hidden", hidden);
@@ -53,7 +53,7 @@ public class AccueilServlet extends HttpServlet {
 		String nextPage = "/WEB-INF/index.jsp";
 		Boolean hidden = true;
 
-		UtilisateurModel utlisateurModel = (UtilisateurModel) request.getSession().getAttribute("utlisateurModel");
+		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 
 		if (request.getParameter("insci/connex") != null) {
 			nextPage = "/WEB-INF/connexion.jsp";
@@ -72,11 +72,11 @@ public class AccueilServlet extends HttpServlet {
 		// BOUTON DECONNEXION
 		if (request.getParameter("deco") != null) {
 			hidden = false;
-			utlisateurModel = null;
+			utilisateurModel = null;
 		}
 
 		request.getSession().setAttribute("hidden", hidden);
-		request.getSession().setAttribute("utlisateurModel", utlisateurModel);
+		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

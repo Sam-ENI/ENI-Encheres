@@ -10,16 +10,33 @@ public class ArticleVendu {
 	LocalDate dateFinEncheres;
 	Integer miseAprix;
 	Integer prixVente;
-	String etatVente;
-	Integer noUtilisateur;
-	Integer noCategorie;
+	Boolean etatVente = false;
+	Utilisateur utilisateur;
+	Categorie categorie;
+//	Integer noUtilisateur;
+//	Integer noCategorie;
 
 	public ArticleVendu() {
 	}
 
+//	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+//	LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, Integer noUtilisateur,
+//	Integer noCategorie) {
+//super();
+//this.noArticle = noArticle;
+//this.nomArticle = nomArticle;
+//this.description = description;
+//this.dateDebutEncheres = dateDebutEncheres;
+//this.dateFinEncheres = dateFinEncheres;
+//this.miseAprix = miseAprix;
+//this.prixVente = prixVente;
+//this.noUtilisateur = noUtilisateur;
+//this.noCategorie = noCategorie;
+//
+//}
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, String etatVente, Integer noUtilisateur,
-			Integer noCategorie) {
+			LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, Boolean etatVente, Utilisateur utilisateur,
+			Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -29,23 +46,8 @@ public class ArticleVendu {
 		this.miseAprix = miseAprix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
-	}
-	
-
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer miseAprix, Integer prixVente, String etatVente, Integer noUtilisateur, Integer noCategorie) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAprix = miseAprix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
 	public Integer getNoArticle() {
@@ -104,36 +106,36 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public String getEtatVente() {
+	public Boolean getEtatVente() {
 		return etatVente;
 	}
 
-	public void setEtatVente(String etatVente) {
+	public void setEtatVente(Boolean etatVente) {
 		this.etatVente = etatVente;
 	}
 
-	public Integer getNoUtilisateur() {
-		return noUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNoUtilisateur(Integer noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public Integer getNoCategorie() {
-		return noCategorie;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setNoCategorie(Integer noCategorie) {
-		this.noCategorie = noCategorie;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAprix="
-				+ miseAprix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
-				+ noUtilisateur + ", noCategorie=" + noCategorie + "]";
+				+ miseAprix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur
+				+ ", categorie=" + categorie + "]";
 	}
 
 }
