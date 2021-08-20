@@ -74,7 +74,7 @@ public class AccueilServlet extends HttpServlet {
 			hidden = false;
 			utilisateurModel = null;
 		}
-
+		
 		request.getSession().setAttribute("hidden", hidden);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 
