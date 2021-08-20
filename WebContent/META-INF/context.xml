@@ -9,8 +9,9 @@
 		type="javax.sql.DataSource"
 
 
-
-		url="jdbc:sqlserver://10.21.200.11;databasename=ENCHERES"
+		url="jdbc:sqlserver://localhost:1433;databasename=ENCHERES"
 		username="sa" password="Pa$$w0rd" maxTotal="100" maxIdle="30"
 		maxWaitMillis="10000" />
 </Context>
+
+	<!-- 10.21.200.11 -->
