@@ -8,8 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eniEncheres.bll.ArticleVenduManager;
+import fr.eni.eniEncheres.bll.ArticleVenduManagerFactory;
+import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
 import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
+import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Retrait;
 
 /**
  * Servlet implementation class AccueilServlet
@@ -18,6 +23,7 @@ import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
+	private ArticleVenduManager managerArticle = ArticleVenduManagerFactory.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,13 +39,21 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
 		String nextPage = "/WEB-INF/index.jsp";
 		System.out.println(request.getSession().getAttribute("utilisateurModel"));
-
+		try {
+			articleModel.setLstArticles(managerArticle.getAllArticleVendu());
+		} catch (BLLException e1) {
+			e1.printStackTrace();
+		}
 		Boolean hidden = false;
 		if (request.getSession().getAttribute("utilisateurModel") != null) {
 			hidden = true;
 		}
+		
+		System.out.println("KKOKOOKKOKOK :" +articleModel.getLstArticles());
+		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("hidden", hidden);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -54,7 +68,10 @@ public class AccueilServlet extends HttpServlet {
 		Boolean hidden = true;
 
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
 
+
+		
 		if (request.getParameter("insci/connex") != null) {
 			nextPage = "/WEB-INF/connexion.jsp";
 		}
@@ -67,8 +84,16 @@ public class AccueilServlet extends HttpServlet {
 			nextPage = "/WEB-INF/nouvelleVente.jsp";
 		}
 		
-		//		request.getSession().setAttribute("hidden", hidden);
-
+		// CLICK SUR NOM D'UN ARTICLE
+		if (request.getParameter("nomArticle") != null) {
+			try {
+				articleModel.setArticleVendu(managerArticle.getArticleByName(request.getParameter("nomArticle")));
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			request.getSession().setAttribute("article", articleModel);
+		}
+		
 		// BOUTON DECONNEXION
 		if (request.getParameter("deco") != null) {
 			hidden = false;

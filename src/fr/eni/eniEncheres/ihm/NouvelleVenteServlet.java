@@ -91,26 +91,20 @@ public class NouvelleVenteServlet extends HttpServlet {
 				break;
 			case "sportloisirs":
 				articleVenduModel.getArticleVendu().getCategorie().setNoCategorie(4);
-
 				break;
 
 			}
 			try {
 				manager.addArticleVendu(articleVenduModel.getArticleVendu());
-			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
 				articleVenduModel.setLstArticles(manager.getAllArticleVendu());
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			request.getRequestDispatcher(nextPage).forward(request, response);
 		}
+		
 		System.out.println(articleVenduModel.getArticleVendu());
-
 	}
 
 }

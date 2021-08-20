@@ -109,36 +109,44 @@
             </div>
 
             <!-- UNE card enchères -->
-
-            <div class="cont_card">
+            <div class="cont_card">      
+            
+            <c:forEach items="${articleModel.lstArticles}" var="article">
                 <div class="card">
                     <img src="./img/horloge.jpg" alt="" style="object-fit:contain;
                     width:100%;
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-
+                        <input class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
                         <div class="box_card">
                             <p> Prix : </p>
-                            <p> [Prix de l'article] points</p>
+                            <p> ${article.miseAprix} points</p>
                         </div>
                         <div class="box_card">
                             <p> Fin de l'enchère : </p>
-                            <p>[Date fin enchères]</p>
-
+                            <p>${article.dateFinEncheres}</p>
                         </div>
-
-                        <form action="AccueilServlet">
                             <div class="vendeur box_card">
                                 <p>Vendeur : </p>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
+                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="${article.utilisateur.pseudo}" />
                             </div>
-                        </form>
                     </div>
                 </div>
-                <!--  TEST C/C -->
+       
+       
+       
+       
+       
+       
+       
+       
+       
+            </c:forEach>
 
+
+                <!--  TEST C/C -->
+<!-- 
                 <div class="card">
                     <img src="./img/hand.png" alt="" style="object-fit:contain;
                     width:100%;
@@ -240,18 +248,19 @@
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
+                     <form action="AccueilServlet">
                         <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
                         <p> Prix : [Prix de l'article] points</p>
                         <p> Fin de l'enchère : [Date fin enchères]</p>
 
-                        <form action="AccueilServlet">
+                       
                             <div class="vendeur">
                                 <label for="pseudoVendeur">Vendeur : </label>
                                 <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
                 <!-- FFFIINNN  TEST-->
             </div>
         </form>

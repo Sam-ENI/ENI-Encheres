@@ -47,13 +47,30 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	@Override
 	public List<ArticleVendu> getAllArticleVendu() throws BLLException {
 		List<ArticleVendu> listArticleVendus = new ArrayList<ArticleVendu>();
+		System.out.println("KMKLJLKHJNMKLHKLn");
 		try {
 			listArticleVendus = dao.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(listArticleVendus);
 		return listArticleVendus;
 	}
+	
+	
+	public ArticleVendu getArticleByName (String name) throws BLLException{
+		try {
+			for (ArticleVendu av : dao.getAll()) {
+				if (av.getNomArticle().equals(name)) {
+					return av;
+				}
+			}
+			// TODO : Ajouter exception BLL
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 
 }
