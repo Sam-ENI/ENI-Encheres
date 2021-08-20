@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="./css/profil.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Votre Profil</title>
 </head>
 <body>
