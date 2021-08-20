@@ -32,8 +32,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setDate(4,jsd2 );
 			stmt.setInt(5,articleVendu.getMiseAprix());
 			stmt.setInt(6,0);
-			stmt.setInt(7,articleVendu.getNoUtilisateur());
-			stmt.setInt(8,articleVendu.getNoCategorie());
+			stmt.setInt(7,articleVendu.getUtilisateur().getNoUtilisateur());
+			stmt.setInt(8,articleVendu.getCategorie().getNoCategorie());
 			stmt.setBoolean(9,articleVendu.getEtatVente());
 		
 
@@ -92,8 +92,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setDateFinEncheres(ld2);
 				articleVendu.setMiseAprix(Integer.parseInt(rs.getString("prix_initial")));
 				articleVendu.setPrixVente(Integer.parseInt(rs.getString("prix_vente")));
-				articleVendu.setNoUtilisateur(Integer.parseInt(rs.getString("no_utilisateur")));
-				articleVendu.setNoCategorie(Integer.parseInt(rs.getString("no_categorie")));
+				articleVendu.getUtilisateur().setNoUtilisateur(Integer.parseInt(rs.getString("no_utilisateur")));
+				articleVendu.getCategorie().setNoCategorie(Integer.parseInt(rs.getString("no_categorie")));
 				;
 			
 				

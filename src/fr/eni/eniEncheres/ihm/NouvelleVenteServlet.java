@@ -69,27 +69,28 @@ public class NouvelleVenteServlet extends HttpServlet {
 			articleVenduModel.getArticleVendu().setMiseAprix(Integer.parseInt(request.getParameter("miseAprix")));
 			// articleVenduModel.getArticleVendu().setPrixVente(Integer.parseInt(request.getParameter("prixVente")));
 			articleVenduModel.getArticleVendu().setEtatVente(false);
-			articleVenduModel.getArticleVendu().setNoUtilisateur(utilisateurModel.getUtilisateur().getNoUtilisateur());
+			articleVenduModel.getArticleVendu().getUtilisateur()
+					.setNoUtilisateur(utilisateurModel.getUtilisateur().getNoUtilisateur());
 			articleVenduModel.getRetrait().setRue(request.getParameter("rue"));
 			articleVenduModel.getRetrait().setCode_postal(request.getParameter("codePostal"));
 			articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
-			articleVenduModel.getRetrait().setNoArticle(articleVenduModel.getArticleVendu().getNoArticle());
+			articleVenduModel.getRetrait().getArticleVendu().setNoArticle(articleVenduModel.getArticleVendu().getNoArticle());
 
 			switch (request.getParameter("categorie")) {
 			case "informatique":
-				articleVenduModel.getArticleVendu().setNoCategorie(1);
+				articleVenduModel.getArticleVendu().getCategorie().setNoCategorie(1);
 
 				break;
 			case "ameublement":
-				articleVenduModel.getArticleVendu().setNoCategorie(2);
+				articleVenduModel.getArticleVendu().getCategorie().setNoCategorie(2);
 
 				break;
 			case "vetement":
-				articleVenduModel.getArticleVendu().setNoCategorie(3);
+				articleVenduModel.getArticleVendu().getCategorie().setNoCategorie(3);
 
 				break;
 			case "sportloisirs":
-				articleVenduModel.getArticleVendu().setNoCategorie(4);
+				articleVenduModel.getArticleVendu().getCategorie().setNoCategorie(4);
 
 				break;
 
