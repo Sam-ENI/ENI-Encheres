@@ -30,7 +30,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 												" AND nom_article LIKE ?");
 										
 	@Override
-	public List<Card> getAllByNomArt(String saisie) throws DALException {
+	public List<Card> selectAllByNomArt(String saisie) throws DALException {
 		List<Card> result = new ArrayList<>();
 		try(Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALLBYNOM);
@@ -52,7 +52,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 	}
 
 	@Override
-	public List<Card> getAllByCat(Integer cat) throws DALException {
+	public List<Card> selectAllByCat(Integer cat) throws DALException {
 		List<Card> result = new ArrayList<>();
 		try(Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALLBYCAT);
@@ -73,7 +73,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 	}
 
 	@Override
-	public List<Card> getAllByNomArtAndCat(String saisie, Integer cat) throws DALException {
+	public List<Card> selectAllByNomArtAndCat(String saisie, Integer cat) throws DALException {
 		List<Card> result = new ArrayList<>();
 		try(Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALLBYNOMANDCAT);
