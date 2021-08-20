@@ -67,8 +67,8 @@ public class CreationCompteServlet extends HttpServlet {
 				utilisateurModel.getUtilisateur().setCredit(0);
 				utilisateurModel.getUtilisateur().setAdministrateur(false);
 				request.getSession().setAttribute("utlisateurModel", utilisateurModel);
-				Boolean hidden = true;
-				request.setAttribute("hidden", hidden);
+				Boolean isConnecte = true;
+				request.setAttribute("isConnecte", isConnecte);
 				manager.addUtilisateur(utilisateurModel.getUtilisateur());
 				utilisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
 				nextPage = "/WEB-INF/index.jsp";
@@ -82,8 +82,8 @@ public class CreationCompteServlet extends HttpServlet {
 		}
 		if (request.getParameter("annuler") != null) {
 			nextPage = "/WEB-INF/index.jsp";
-			Boolean hidden = false;
-			request.getSession().setAttribute("hidden", hidden);
+			Boolean isConnecte = false;
+			request.getSession().setAttribute("isConnecte", isConnecte);
 		}
 
 		request.getRequestDispatcher(nextPage).forward(request, response);

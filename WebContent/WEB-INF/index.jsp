@@ -17,10 +17,10 @@
 		<form action="AccueilServlet" method="POST">
 			<!-- Si utilisateur déconnectée-->
 			<!-- on cache le bouton "S'inscrire - Se connecter" -->
-           <input class="link <c:if test="${hidden == true}"> hidden </c:if>" type="submit" name="insci/connex" value="S'inscrire - Se connecter">
+           <input class="link <c:if test="${isConnecte == true}"> hidden </c:if>" type="submit" name="insci/connex" value="S'inscrire - Se connecter">
 
 			<!-- Si utilisateur connectée -->
-			<nav class="nav  <c:if test="${hidden == false}"> hidden </c:if>">
+			<nav class="nav  <c:if test="${isConnecte == false}"> hidden </c:if>">
                     <input type="submit" name="Encheres" value="Enchères">
                     <input type="submit" name="vente" value="Vendre un article">
                     <input type="submit" name="profil" value="Mon profil">
@@ -60,7 +60,7 @@
                         </div>
 
                         <!-- Si utilisateur connectée -->
-                        <div class="listFilter <c:if test="${hidden == false}"> hidden </c:if>">
+                        <div class="listFilter <c:if test="${isConnecte == false}"> hidden </c:if>">
                             <div class="achats">
                                 <input type="radio" name="choixFiltre" id="achats" value="achats">
                                 <label for="achats">Achats</label>

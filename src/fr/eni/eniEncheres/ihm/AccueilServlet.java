@@ -47,14 +47,14 @@ public class AccueilServlet extends HttpServlet {
 		} catch (BLLException e1) {
 			e1.printStackTrace();
 		}
-		Boolean hidden = false;
+		Boolean isConnecte = false;
 		if (request.getSession().getAttribute("utilisateurModel") != null) {
-			hidden = true;
+			isConnecte = true;
 		}
 		
 		System.out.println("KKOKOOKKOKOK :" +articleModel.getLstArticles());
 		request.setAttribute("articleModel", articleModel);
-		request.getSession().setAttribute("hidden", hidden);
+		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
@@ -65,7 +65,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
-		Boolean hidden = true;
+		Boolean isConnecte = true;
 
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
@@ -96,11 +96,11 @@ public class AccueilServlet extends HttpServlet {
 		
 		// BOUTON DECONNEXION
 		if (request.getParameter("deco") != null) {
-			hidden = false;
+			isConnecte = false;
 			utilisateurModel = null;
 		}
 		
-		request.getSession().setAttribute("hidden", hidden);
+		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 
 		request.getRequestDispatcher(nextPage).forward(request, response);

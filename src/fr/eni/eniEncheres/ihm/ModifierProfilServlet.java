@@ -41,7 +41,7 @@ public class ModifierProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "/WEB-INF/modifierProfil.jsp";
-		boolean hidden =  true;
+		boolean isConnecte =  true;
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		
 		// MODIFIER PROFIL
@@ -70,7 +70,7 @@ public class ModifierProfilServlet extends HttpServlet {
 		if (request.getParameter("supprimerCompte")!= null) {
 			try {
 				manager.deleteUtilisateur(utilisateurModel.getUtilisateur());
-				hidden = false;
+				isConnecte = false;
 				utilisateurModel = null;
 				nextPage = "/WEB-INF/index.jsp";
 			} catch (BLLException e) {
@@ -78,7 +78,7 @@ public class ModifierProfilServlet extends HttpServlet {
 			}
 		}
 		
-		request.getSession().setAttribute("hidden", hidden);
+		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getSession().setAttribute("utlisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 

@@ -82,8 +82,8 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
-			Boolean hidden = true;
-			request.getSession().setAttribute("hidden", hidden);
+			Boolean isConnecte = true;
+			request.getSession().setAttribute("isConnecte", isConnecte);
 
 		}
 
