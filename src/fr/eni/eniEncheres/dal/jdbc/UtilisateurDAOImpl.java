@@ -38,7 +38,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					utilisateur.setNoUtilsateur(rs.getInt(1));
+					utilisateur.setNoUtilisateur(rs.getInt(1));
 				}
 			}
 
@@ -63,7 +63,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(9, utilisateur.getMotDePasse());
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.getAdministrateur());
-			stmt.setInt(12,utilisateur.getNoUtilsateur());
+			stmt.setInt(12,utilisateur.getNoUtilisateur());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public void delete(Utilisateur utilisateur) throws fr.eni.eniEncheres.dal.DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(DELETE);
-			stmt.setInt(1, utilisateur.getNoUtilsateur());
+			stmt.setInt(1, utilisateur.getNoUtilisateur());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Utilisateur utilisateur = new Utilisateur();
-				utilisateur.setNoUtilsateur(rs.getInt("no_utilisateur"));
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));

@@ -48,29 +48,29 @@ public class CreationCompteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/inscription.jsp";
-		UtilisateurModel utlisateurModel = null;
+		UtilisateurModel utilisateurModel = null;
 
 
 		if (request.getParameter("creer") != null) {
 			try {
-			utlisateurModel = new UtilisateurModel(new Utilisateur(), null);
+			utilisateurModel = new UtilisateurModel(new Utilisateur(), null);
 			if (manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"), request.getParameter("pseudo"), request.getParameter("email"))) {
-				utlisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-				utlisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
-				utlisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
-				utlisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
-				utlisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
-				utlisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
-				utlisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
-				utlisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
-				utlisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
-				utlisateurModel.getUtilisateur().setCredit(0);
-				utlisateurModel.getUtilisateur().setAdministrateur(false);
-				request.getSession().setAttribute("utlisateurModel", utlisateurModel);
+				utilisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+				utilisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
+				utilisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
+				utilisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
+				utilisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
+				utilisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
+				utilisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
+				utilisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
+				utilisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
+				utilisateurModel.getUtilisateur().setCredit(0);
+				utilisateurModel.getUtilisateur().setAdministrateur(false);
+				request.getSession().setAttribute("utlisateurModel", utilisateurModel);
 				Boolean hidden = true;
 				request.setAttribute("hidden", hidden);
-				manager.addUtilisateur(utlisateurModel.getUtilisateur());
-				utlisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
+				manager.addUtilisateur(utilisateurModel.getUtilisateur());
+				utilisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
 				nextPage = "/WEB-INF/index.jsp";
 			}
 

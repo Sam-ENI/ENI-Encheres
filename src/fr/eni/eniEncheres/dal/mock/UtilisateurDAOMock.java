@@ -13,7 +13,7 @@ public class UtilisateurDAOMock implements UtilisateurDAO{
 	
 	@Override
 	public void insert(Utilisateur utilisateur) {
-		utilisateur.setNoUtilsateur(cpt++);
+		utilisateur.setNoUtilisateur(cpt++);
 		lstUser.add(utilisateur);
 	}
 
@@ -21,7 +21,7 @@ public class UtilisateurDAOMock implements UtilisateurDAO{
 	public void update(Utilisateur utilisateur) {
 		int cptLst = 0;
 		for(Utilisateur user : lstUser) {
-		    if(user!=null && utilisateur.getNoUtilsateur() == user.getNoUtilsateur()) {
+		    if(user!=null && utilisateur.getNoUtilisateur() == user.getNoUtilisateur()) {
 		        lstUser.set(cptLst, utilisateur);
 		        break;
 		    }
@@ -31,7 +31,7 @@ public class UtilisateurDAOMock implements UtilisateurDAO{
 
 	@Override
 	public void delete(Utilisateur utilisateur) {
-		lstUser.removeIf(u -> u.getNoUtilsateur()== utilisateur.getNoUtilsateur());
+		lstUser.removeIf(u -> u.getNoUtilisateur()== utilisateur.getNoUtilisateur());
 	}
 
 	@Override

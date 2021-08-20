@@ -33,17 +33,17 @@ public class TestArticleVenduDAOServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	ArticleVenduDAO daoArticleVendu = ArticleVenduDAOFact.getInstanceDAO();
-	ArticleVendu articleVendu = new ArticleVendu("guitare","Fender Stratocaster", LocalDate.of(2021, 8, 20),LocalDate.of(2021, 8, 27),2500,3300,"TBE",2,2);
-		try {
-			daoArticleVendu.insert(articleVendu);
-			;
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("/WEB-INF/profil.jsp").forward(request, response);
-	}
+	//ArticleVenduDAO daoArticleVendu = ArticleVenduDAOFact.getInstanceDAO();
+	//ArticleVendu articleVendu = new ArticleVendu("guitare","Fender Stratocaster", LocalDate.of(2021, 8, 20),LocalDate.of(2021, 8, 27),2500,3300,"TBE",2,2);
+//		try {
+//			daoArticleVendu.insert(articleVendu);
+//			;
+//		} catch (DALException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		request.getRequestDispatcher("/WEB-INF/profil.jsp").forward(request, response);
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

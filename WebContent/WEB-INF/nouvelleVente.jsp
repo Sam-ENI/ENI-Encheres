@@ -34,9 +34,10 @@
 	</div>
 	<div class="retrait">
 		<h3>Retrait</h3>
-		<label for="rue">Rue : </label> <input type="text"> <label
-			for="codePostal">Code postal :</label> <label for="Ville">Ville
-			:</label> <input type="submit" name="enregister" value="enregister">
+		<label for="rue">Rue : </label> <input type="text" name="rue" value="${utilisateurModel.utilisateur.rue}"> 
+		<label for="codePostal">Code postal :</label> <input type="text" name="codePostal" value="${utilisateurModel.utilisateur.codePostal}">
+		<label for="Ville">Ville:</label> <input type="text" name="ville" value="${utilisateurModel.utilisateur.ville}">
+		<input type="submit" name="enregister" value="enregister">
 		<input type="submit" name="annuler" value="annuler">
 
 	</div>

@@ -14,10 +14,10 @@ import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.DALException;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
-	private final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie) VALUES (?,?,?,?,?,?,?,?)";
+	private final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente) VALUES (?,?,?,?,?,?,?,?,?)";
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?, date_debut_encheres=?,date_fin_encheres=?, prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article = ?";
 	private final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article =?";
-	private final String SELECT = "SELECT nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private final String SELECT = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
 
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
@@ -31,9 +31,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			java.sql.Date jsd2 = java.sql.Date.valueOf(articleVendu.getDateFinEncheres());
 			stmt.setDate(4,jsd2 );
 			stmt.setInt(5,articleVendu.getMiseAprix());
-			stmt.setInt(6,articleVendu.getPrixVente());
+			stmt.setInt(6,0);
 			stmt.setInt(7,articleVendu.getNoUtilisateur());
 			stmt.setInt(8,articleVendu.getNoCategorie());
+			stmt.setBoolean(9,articleVendu.getEtatVente());
 		
 
 			int nb = stmt.executeUpdate();

@@ -10,7 +10,7 @@ public class ArticleVendu {
 	LocalDate dateFinEncheres;
 	Integer miseAprix;
 	Integer prixVente;
-	String etatVente;
+	Boolean etatVente = false;
 	Integer noUtilisateur;
 	Integer noCategorie;
 
@@ -18,7 +18,7 @@ public class ArticleVendu {
 	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, String etatVente, Integer noUtilisateur,
+			LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, Integer noUtilisateur,
 			Integer noCategorie) {
 		super();
 		this.noArticle = noArticle;
@@ -28,24 +28,9 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAprix = miseAprix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
-	}
-	
 
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer miseAprix, Integer prixVente, String etatVente, Integer noUtilisateur, Integer noCategorie) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAprix = miseAprix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
 	}
 
 	public Integer getNoArticle() {
@@ -104,11 +89,11 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public String getEtatVente() {
+	public Boolean getEtatVente() {
 		return etatVente;
 	}
 
-	public void setEtatVente(String etatVente) {
+	public void setEtatVente(Boolean etatVente) {
 		this.etatVente = etatVente;
 	}
 
