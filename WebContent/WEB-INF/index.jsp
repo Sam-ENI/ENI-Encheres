@@ -111,14 +111,14 @@
             <!-- UNE card enchères -->
             <div class="cont_card">      
             
-            <c:forEach items="${articleModel.lstArticles}" var="article">
+          <c:forEach items="${articleModel.lstArticles}" var="article" varStatus = "status">
                 <div class="card">
                     <img src="./img/horloge.jpg" alt="" style="object-fit:contain;
                     width:100%;
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
+                        <input  class="link nomArticle" type="submit" name="btn_Article${status.count}" value="${article.nomArticle}" />
                         <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.miseAprix} points</p>

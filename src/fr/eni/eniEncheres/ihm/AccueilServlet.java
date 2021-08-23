@@ -92,6 +92,8 @@ public class AccueilServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.getSession().setAttribute("article", articleModel);
+		
+			nextPage = "/EncheresServlet";
 		}
 		
 		// BOUTON DECONNEXION
