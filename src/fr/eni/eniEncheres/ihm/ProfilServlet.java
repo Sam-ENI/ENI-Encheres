@@ -31,6 +31,10 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "/WEB-INF/profil.jsp";
+		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
+
+		System.out.println("USER PROFIL : " + utilisateurModel);
+		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
@@ -39,9 +43,12 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = "/WEB-INF/profil.jsp";
+		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
+		System.out.println("USER PROFIL : " + utilisateurModel);
 		if(request.getParameter("modifierBtn") != null) {
 			nextPage ="/WEB-INF/modifierProfil.jsp";
 		}
+		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 

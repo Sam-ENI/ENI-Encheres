@@ -41,7 +41,6 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
 		String nextPage = "/WEB-INF/index.jsp";
-		System.out.println(request.getSession().getAttribute("utilisateurModel"));
 		try {
 			articleModel.setLstArticles(managerArticle.getAllArticleVendu());
 		} catch (BLLException e1) {
@@ -70,7 +69,7 @@ public class AccueilServlet extends HttpServlet {
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
 
-
+		
 		
 		if (request.getParameter("insci/connex") != null) {
 			nextPage = "/WEB-INF/connexion.jsp";
