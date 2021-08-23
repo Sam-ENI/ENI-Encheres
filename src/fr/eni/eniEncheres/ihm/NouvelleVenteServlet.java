@@ -113,5 +113,9 @@ public class NouvelleVenteServlet extends HttpServlet {
 
 		System.out.println(articleVenduModel.getArticleVendu());
 	}
+	
+	
+	
+	
 
 }

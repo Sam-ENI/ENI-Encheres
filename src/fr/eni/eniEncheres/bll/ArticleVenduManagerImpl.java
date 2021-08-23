@@ -57,6 +57,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
+		System.out.println(listArticleVendus);
 		return listArticleVendus;
 	}
 	

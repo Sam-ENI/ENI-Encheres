@@ -162,127 +162,63 @@
                 </div>
             </c:forEach>
 			</c:if>
-
-                <!--  TEST C/C -->
-<!-- 
-                <div class="card">
-                    <img src="./img/hand.png" alt="" style="object-fit:contain;
-                    width:100%;
-                    height:200px;
-                    border: solid 1px #CCC">
-                    <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-                        <p> Prix : [Prix de l'article] points</p>
-                        <p> Fin de l'enchère : [Date fin enchères]</p>
-
-                        <form action="AccueilServlet">
-                            <div class="vendeur">
-                                <label for="pseudoVendeur">Vendeur : </label>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./img/montre.jpg" alt="" style="object-fit:contain;
-                    width:100%;
-                    height:200px;
-                    border: solid 1px #CCC">
-                    <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-                        <p> Prix : [Prix de l'article] points</p>
-                        <p> Fin de l'enchère : [Date fin enchères]</p>
-
-                        <form action="AccueilServlet">
-                            <div class="vendeur">
-                                <label for="pseudoVendeur">Vendeur : </label>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./img/robinet.jpg" alt="" style="object-fit:contain;
-                    width:100%;
-                    height:200px;
-                    border: solid 1px #CCC">
-                    <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-                        <p> Prix : [Prix de l'article] points</p>
-                        <p> Fin de l'enchère : [Date fin enchères]</p>
-
-                        <form action="AccueilServlet">
-                            <div class="vendeur">
-                                <label for="pseudoVendeur">Vendeur : </label>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./img/orange.jpg" alt="" style="object-fit:contain;
-                    width:100%;
-                    height:200px;
-                    border: solid 1px #CCC">
-                    <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-                        <p> Prix : [Prix de l'article] points</p>
-                        <p> Fin de l'enchère : [Date fin enchères]</p>
-
-                        <form action="AccueilServlet">
-                            <div class="vendeur">
-                                <label for="pseudoVendeur">Vendeur : </label>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./img/tournevis.jpg" alt="" style="object-fit:contain;
-                    width:100%;
-                    height:200px;
-                    border: solid 1px #CCC">
-                    <div class="textArticle">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-                        <p> Prix : [Prix de l'article] points</p>
-                        <p> Fin de l'enchère : [Date fin enchères]</p>
-
-                        <form action="AccueilServlet">
-                            <div class="vendeur">
-                                <label for="pseudoVendeur">Vendeur : </label>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
- 
-                <div class="card">
-                    <img src="./img/jsp.jpg" alt="" style="object-fit:contain;
-                    width:100%;
-                    height:200px;
-                    border: solid 1px #CCC">
-                    <div class="textArticle">
-                     <form action="AccueilServlet">
-                        <input class="link nomArticle" type="submit" name="pseudoVendeur" value="[NOM ARTICLE]" />
-                        <p> Prix : [Prix de l'article] points</p>
-                        <p> Fin de l'enchère : [Date fin enchères]</p>
-
-                       
-                            <div class="vendeur">
-                                <label for="pseudoVendeur">Vendeur : </label>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="[PSEUDO VENDEUR]" />
-                            </div>
-                        </form>
-                    </div>
-                </div> -->
-                <!-- FFFIINNN  TEST-->
             </div>
         </form>
     </div>
 </body>
+
+
+	<!-- Code JS pour désactiver les checkbox en fonction des bouton radio achats/ventes -->
+	<script>
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(function() {
+			'use strict';
+
+			window
+					.addEventListener(
+							'load',
+							function() {
+								checkAchats();
+								checkVentes();
+								achats.addEventListener('change', function(
+										event) {
+									checkAchats();
+								}, false);
+								ventes.addEventListener('change', function(
+										event) {
+									checkVentes();
+								}, false);
+
+								function checkAchats() {
+									//id radio button achats
+									var achats = document
+											.getElementById('achats');
+									if (achats.checked) {
+										//id des checkbox
+										document.getElementById('venteEnCours').disabled = true;
+										document.getElementById('venteNonDebute').disabled = true;
+										document.getElementById('venteTerminer').disabled = true;
+										document.getElementById('encheresEnCours').disabled = false;
+										document.getElementById('encheresOuvertes').disabled = false;
+										document.getElementById('encheresRemporte').disabled = false;
+									}
+								}
+								function checkVentes() {
+									//id radio button ventes
+									var ventes = document
+											.getElementById('ventes');
+									if (ventes.checked) {
+										//id des checkbox
+										document.getElementById('venteEnCours').disabled = false;
+										document.getElementById('venteNonDebute').disabled = false;
+										document.getElementById('venteTerminer').disabled = false;
+										document.getElementById('encheresEnCours').disabled = true;
+										document.getElementById('encheresOuvertes').disabled = true;
+										document.getElementById('encheresRemporte').disabled = true;
+									}
+								}
+							}, false);
+		})();
+	</script>
 
 </html>
