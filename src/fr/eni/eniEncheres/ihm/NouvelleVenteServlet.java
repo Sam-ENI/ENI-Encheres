@@ -78,6 +78,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 
 			switch (request.getParameter("categorie")) {
 			case "informatique":
+				System.out.println("C RENTRERRRRRR");
 				articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(1));
 				break;
 			case "ameublement":
@@ -92,6 +93,8 @@ public class NouvelleVenteServlet extends HttpServlet {
 				articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(4));
 				break;
 			}
+			
+			System.out.println(articleVenduModel);
 			try {
 				manager.addArticleVendu(articleVenduModel.getArticleVendu());
 				articleVenduModel.setLstArticles(manager.getAllArticleVendu());

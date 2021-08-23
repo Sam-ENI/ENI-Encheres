@@ -74,7 +74,12 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	}
 	
 	public Categorie getCategById (int id) {
-		return selectCat;
+		try {
+			return dao.selectCategorieByNumeroCategorie(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 
