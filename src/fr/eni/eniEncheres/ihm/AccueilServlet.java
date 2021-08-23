@@ -14,6 +14,7 @@ import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
 import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Retrait;
 
 /**
@@ -39,7 +40,7 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null);
 		String nextPage = "/WEB-INF/index.jsp";
 		try {
 			articleModel.setLstArticles(managerArticle.getAllArticleVendu());
@@ -67,7 +68,7 @@ public class AccueilServlet extends HttpServlet {
 		Boolean isConnecte = true;
 
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), null);
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),  null);
 
 		
 		
@@ -92,7 +93,7 @@ public class AccueilServlet extends HttpServlet {
 			}
 			request.getSession().setAttribute("article", articleModel);
 		
-			nextPage = "/EncheresServlet";
+			nextPage = "/WEB-INF/encheres.jsp";
 		}
 		
 		// BOUTON DECONNEXION

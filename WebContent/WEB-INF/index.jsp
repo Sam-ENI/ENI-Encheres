@@ -39,7 +39,7 @@
         </div>
 
         <h1 class="titre">Liste des enchères</h1>
-        <form action="AccueilServlet">
+        <form action="AccueilServlet" method="POST">
             <div class="cont_rech">
                 <div class="left_cont_rech">
                     <div class="filtre_cat">

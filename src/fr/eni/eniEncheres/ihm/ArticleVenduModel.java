@@ -4,23 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Retrait;
 
 public class ArticleVenduModel {
 	private ArticleVendu articleVendu;
 	private Retrait retrait;
+	private Categorie categorie;
 	private List<ArticleVendu> lstArticles = new ArrayList<>();
 
 	public ArticleVenduModel() {
-
+		// TODO Auto-generated constructor stub
 	}
 
-	public ArticleVenduModel(ArticleVendu articleVendu, Retrait retrait, List<ArticleVendu> lstArticles) {
+	
+	
+	public ArticleVenduModel(ArticleVendu articleVendu, Retrait retrait, Categorie categorie,
+			List<ArticleVendu> lstArticles) {
 		super();
 		this.articleVendu = articleVendu;
 		this.retrait = retrait;
+		this.categorie = categorie;
 		this.lstArticles = lstArticles;
 	}
+
+
 
 	public ArticleVendu getArticleVendu() {
 		return articleVendu;
@@ -38,6 +46,14 @@ public class ArticleVenduModel {
 		this.retrait = retrait;
 	}
 
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
 	public List<ArticleVendu> getLstArticles() {
 		return lstArticles;
 	}
@@ -48,8 +64,10 @@ public class ArticleVenduModel {
 
 	@Override
 	public String toString() {
-		return "ArticleVenduModel [articleVendu=" + articleVendu + ", retrait=" + retrait + ", lstArticles="
-				+ lstArticles + "]";
+		return "ArticleVenduModel [articleVendu=" + articleVendu + ", retrait=" + retrait + ", categorie=" + categorie
+				+ ", lstArticles=" + lstArticles + "]";
 	}
+	
+	
 
 }

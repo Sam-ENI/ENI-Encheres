@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.ArticleVenduDAOFact;
 import fr.eni.eniEncheres.dal.DALException;
@@ -70,6 +71,10 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public Categorie getCategById (int id) {
+		return selectCat;
 	}
 	
 

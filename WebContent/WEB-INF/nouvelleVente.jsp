@@ -12,7 +12,6 @@
 	</div>
 	<form action ="NouvelleVenteServlet" method="post">
 	<div>
-		
 			<label for="article">Article : </label> <input type="text"
 				name="article"> <label for="description">Description
 				: </label>
