@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dal.UtilisateurDAO;
@@ -20,24 +21,24 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?, date_debut_encheres=?,date_fin_encheres=?, prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article = ?";
 	private final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article =?";
 	private final String SELECT = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private final String SELECTBYNUMEROCAT = "SELECT libelle FROM CATEGORIE WHERE no_categorie=?";
 
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1,articleVendu.getNomArticle());
-			stmt.setString(2,articleVendu.getDescription());
+			stmt.setString(1, articleVendu.getNomArticle());
+			stmt.setString(2, articleVendu.getDescription());
 			// conversion LocalDate en java.sql.date
 			java.sql.Date jsd = java.sql.Date.valueOf(articleVendu.getDateDebutEncheres());
-			stmt.setDate(3,jsd);
+			stmt.setDate(3, jsd);
 			java.sql.Date jsd2 = java.sql.Date.valueOf(articleVendu.getDateFinEncheres());
-			stmt.setDate(4,jsd2 );
-			stmt.setInt(5,articleVendu.getMiseAprix());
-			stmt.setInt(6,0);
-			stmt.setInt(7,articleVendu.getUtilisateur().getNoUtilisateur());
-			stmt.setInt(8,articleVendu.getCategorie().getNoCategorie());
-			stmt.setBoolean(9,articleVendu.getEtatVente());
-		
+			stmt.setDate(4, jsd2);
+			stmt.setInt(5, articleVendu.getMiseAprix());
+			stmt.setInt(6, 0);
+			stmt.setInt(7, articleVendu.getUtilisateur().getNoUtilisateur());
+			stmt.setInt(8, articleVendu.getCategorie().getNoCategorie());
+			stmt.setBoolean(9, articleVendu.getEtatVente());
 
 			int nb = stmt.executeUpdate();
 			if (nb > 0) {
@@ -71,7 +72,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			throw new DALException("Problème SQL");
 		}
 
-
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				ArticleVendu articleVendu = new ArticleVendu();
 				articleVendu.setNoArticle(rs.getInt("no_article"));
 				articleVendu.setNomArticle(rs.getString("nom_article"));
@@ -95,14 +95,13 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setDateFinEncheres(ld2);
 				articleVendu.setMiseAprix(Integer.parseInt(rs.getString("prix_initial")));
 				articleVendu.setPrixVente(Integer.parseInt(rs.getString("prix_vente")));
-				
-				// Je sélectionne l'utilisateur par le numéro d'utilisateur contenue dans la table ArticleVendu
+
+				// Je sélectionne l'utilisateur par le numéro d'utilisateur contenue dans la
+				// table ArticleVendu
 				articleVendu.setUtilisateur(daoUser.getByID(Integer.parseInt(rs.getString("no_utilisateur"))));
-				
-				//articleVendu.getCategorie().setNoCategorie(Integer.parseInt(rs.getString("no_categorie")));
-				
-			
-				
+
+				// articleVendu.getCategorie().setNoCategorie(Integer.parseInt(rs.getString("no_categorie")));
+
 				result.add(articleVendu);
 			}
 		} catch (SQLException e) {
@@ -112,4 +111,26 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return result;
 	}
 
+	@Override
+	public Categorie selectCategorieByNumeroCategorie(Integer numeroCategorie) throws DALException {
+
+		Categorie categorie = new Categorie();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYNUMEROCAT);
+			stmt.setInt(1, numeroCategorie);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+
+				categorie.setLibelle(rs.getString("libelle"));
+				categorie.setNoCategorie(rs.getInt("no_categorie"));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return categorie;
+
+	}
 }
