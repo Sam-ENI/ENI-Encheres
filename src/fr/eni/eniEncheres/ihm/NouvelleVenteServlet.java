@@ -53,7 +53,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 
 		if (request.getParameter("enregister") != null) {
-			System.out.println(request.getParameter("categorie"));
+			System.out.println(request.getParameter("utilisateurModel"));
 			System.out.println((request.getParameter("categorie")).getClass());
 			articleVenduModel.getArticleVendu().setNomArticle(request.getParameter("article"));
 			articleVenduModel.getArticleVendu().setDescription(request.getParameter("description"));

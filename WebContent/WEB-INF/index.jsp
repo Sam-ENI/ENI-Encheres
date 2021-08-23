@@ -39,7 +39,7 @@
         </div>
 
         <h1 class="titre">Liste des enchères</h1>
-        <form action="AccueilServlet">
+        <form action="AccueilServlet" method="post">
             <div class="cont_rech">
                 <div class="left_cont_rech">
                     <div class="filtre_cat">
@@ -118,7 +118,8 @@
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <input  class="link nomArticle" type="submit" name="btn_Article${status.count}" value="${article.nomArticle}" />
+                    	
+                        <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
                         <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.miseAprix} points</p>

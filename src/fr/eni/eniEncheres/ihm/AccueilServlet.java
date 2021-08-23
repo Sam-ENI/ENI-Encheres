@@ -85,15 +85,15 @@ public class AccueilServlet extends HttpServlet {
 		}
 		
 		// CLICK SUR NOM D'UN ARTICLE
-		if (request.getParameter("nomArticle") != null) {
+		if (request.getParameter("btn_Article") != null) {
 			try {
 				articleModel.setArticleVendu(managerArticle.getArticleByName(request.getParameter("nomArticle")));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 			request.getSession().setAttribute("article", articleModel);
-		
-			nextPage = "/EncheresServlet";
+			
+			nextPage = "/WEB-INF/encheres.jsp";
 		}
 		
 		// BOUTON DECONNEXION
