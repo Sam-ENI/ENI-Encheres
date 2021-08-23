@@ -6,29 +6,28 @@ import java.util.List;
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Retrait;
+import fr.eni.eniEncheres.dto.Card;
 
 public class ArticleVenduModel {
 	private ArticleVendu articleVendu;
 	private Retrait retrait;
 	private Categorie categorie;
 	private List<ArticleVendu> lstArticles = new ArrayList<>();
+	private List<Card> lstCardbyName = new ArrayList<>();
 
 	public ArticleVenduModel() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	public ArticleVenduModel(ArticleVendu articleVendu, Retrait retrait, Categorie categorie,
-			List<ArticleVendu> lstArticles) {
+			List<ArticleVendu> lstArticles, List<Card> lstCardbyName) {
 		super();
 		this.articleVendu = articleVendu;
 		this.retrait = retrait;
 		this.categorie = categorie;
 		this.lstArticles = lstArticles;
+		this.lstCardbyName = lstCardbyName;
 	}
-
-
 
 	public ArticleVendu getArticleVendu() {
 		return articleVendu;
@@ -62,11 +61,21 @@ public class ArticleVenduModel {
 		this.lstArticles = lstArticles;
 	}
 
+	public List<Card> getLstCardbyName() {
+		return lstCardbyName;
+	}
+
+	public void setLstCardbyName(List<Card> lstCardbyName) {
+		this.lstCardbyName = lstCardbyName;
+	}
+
 	@Override
 	public String toString() {
 		return "ArticleVenduModel [articleVendu=" + articleVendu + ", retrait=" + retrait + ", categorie=" + categorie
-				+ ", lstArticles=" + lstArticles + "]";
+				+ ", lstArticles=" + lstArticles + ", lstCardbyName=" + lstCardbyName + "]";
 	}
+
+	
 	
 	
 

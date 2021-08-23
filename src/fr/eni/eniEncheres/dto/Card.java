@@ -10,7 +10,6 @@ public class Card {
 	private String nomVendeur;
 	
 	public Card() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Card(String nomArticle, Integer prixInitial, LocalDate dateFinEncheres, String nomVendeur) {

@@ -52,10 +52,10 @@
                             <p>Catégorie :</p>
                             <select class="selectcat" name="categorie" id="categorie">
                                 <option value="toutes">Toutes</option>
-                                <option value="informatique">Informatique</option>
-                                <option value="ameublement">Ameublement</option>
-                                <option value="vetement">Vêtement</option>
-                                <option value="sportloisirs">Sport&Loisirs</option>
+                                <option value="1">Informatique</option>
+                                <option value="2">Ameublement</option>
+                                <option value="3">Vêtement</option>
+                                <option value="4">Sport&Loisirs</option>
                             </select>
                         </div>
 
@@ -111,6 +111,8 @@
             <!-- UNE card enchères -->
             <div class="cont_card">      
             
+            
+          <c:if test="${defaultCard == true}">
           <c:forEach items="${articleModel.lstArticles}" var="article" varStatus = "status">
                 <div class="card">
                     <img src="./img/horloge.jpg" alt="" style="object-fit:contain;
@@ -118,7 +120,7 @@
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <input  class="link nomArticle" type="submit" name="btn_Article${status.count}" value="${article.nomArticle}" />
+                        <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
                         <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.miseAprix} points</p>
@@ -133,17 +135,33 @@
                             </div>
                     </div>
                 </div>
-       
-       
-       
-       
-       
-       
-       
-       
-       
             </c:forEach>
-
+			</c:if>
+		<c:if test="${defaultCard == false}">
+          <c:forEach items="${articleModel.lstCardbyName}" var="article" varStatus = "status">
+                <div class="card">
+                    <img src="./img/horloge.jpg" alt="" style="object-fit:contain;
+                    width:100%;
+                    height:200px;
+                    border: solid 1px #CCC">
+                    <div class="textArticle">
+                        <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
+                        <div class="box_card">
+                            <p> Prix : </p>
+                            <p> ${article.prixInitial} points</p>
+                        </div>
+                        <div class="box_card">
+                            <p> Fin de l'enchère : </p>
+                            <p>${article.dateFinEncheres}</p>
+                        </div>
+                            <div class="vendeur box_card">
+                                <p>Vendeur : </p>
+                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="${nomVendeur}" />
+                            </div>
+                    </div>
+                </div>
+            </c:forEach>
+			</c:if>
 
                 <!--  TEST C/C -->
 <!-- 

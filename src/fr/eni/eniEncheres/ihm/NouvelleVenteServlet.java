@@ -51,7 +51,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/nouvelleVente.jsp";
 		ArticleVenduModel articleVenduModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),
-				null);
+				null, null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		System.out.println("USER : : " + utilisateurModel);
 		System.out.println("USER : : " + utilisateurModel.getUtilisateur());

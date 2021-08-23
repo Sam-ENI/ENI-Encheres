@@ -7,11 +7,15 @@ import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.ArticleVenduDAOFact;
+import fr.eni.eniEncheres.dal.CardDecoDAO;
+import fr.eni.eniEncheres.dal.CardDecoDAOFact;
 import fr.eni.eniEncheres.dal.DALException;
+import fr.eni.eniEncheres.dto.Card;
 
 public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	ArticleVenduDAO dao = ArticleVenduDAOFact.getInstanceDAO();
-
+	CardDecoDAO daoCard = CardDecoDAOFact.getInstanceDAO();
+	
 	@Override
 	public void addArticleVendu(ArticleVendu articleVendu) throws BLLException {
 		try {
@@ -48,13 +52,11 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	@Override
 	public List<ArticleVendu> getAllArticleVendu() throws BLLException {
 		List<ArticleVendu> listArticleVendus = new ArrayList<ArticleVendu>();
-		System.out.println("KMKLJLKHJNMKLHKLn");
 		try {
 			listArticleVendus = dao.getAll();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		System.out.println(listArticleVendus);
 		return listArticleVendus;
 	}
 	
@@ -80,6 +82,28 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	
+	public List<Card> getListArticleByName(String name) {
+		List<Card> temp = new ArrayList<>();
+		try {
+			temp = daoCard.selectAllByNomArt(name);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
+	
+	public List<Card> getListArticleByCat(Integer cat) {
+		List<Card> temp = new ArrayList<>();
+		try {
+			temp = daoCard.selectAllByCat(cat);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return temp;
 	}
 	
 

@@ -2,7 +2,7 @@ package fr.eni.eniEncheres.dal;
 
 import java.util.List;
 
-import fr.eni.eniEncheres.bll.BLLException;
+
 import fr.eni.eniEncheres.bo.Utilisateur;
 
 public interface UtilisateurDAO {
