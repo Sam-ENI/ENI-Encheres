@@ -107,7 +107,8 @@ public class NouvelleVenteServlet extends HttpServlet {
 			articleVenduModel.getRetrait().setCode_postal(request.getParameter("codePostal"));
 			articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
 			articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
-
+			
+			 nextPage = "/WEB-INF/index.jsp";
 			request.getRequestDispatcher(nextPage).forward(request, response);
 		}
 

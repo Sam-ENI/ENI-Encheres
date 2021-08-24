@@ -16,5 +16,7 @@ public interface ArticleVenduManager {
 	
 	public ArticleVendu getArticleByName (String string) throws BLLException;
 	
+	public ArticleVendu getArticleVenduById (int id )throws BLLException;
+	
 	public Categorie getCategById (int id);
 }
