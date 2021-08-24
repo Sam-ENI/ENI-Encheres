@@ -13,11 +13,11 @@
 <h1>ENI Enchères</h1>
 <h2 class="titre"> Modifier votre profil </h2>
 <c:if test="${not empty erreurs }">
-		<div class = "alert" style="color:red; font-weight:bold;">
+		<div class = "alert" style="color:black; font-weight:bold;">
 			Il y a des erreurs :
 			<ul>
 				<c:forEach items="${erreurs }" var ="e">
-					<li style="color: red;font-weight:bold;">${e }</li>
+					<li style="color: black;font-weight:bold;">${e }</li>
 				</c:forEach>
 			</ul>
 		</div>

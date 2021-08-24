@@ -53,17 +53,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 		return listU;
 	}
-	
+
 	// Créer un user temp pour recup le contact dans la boucle
-	// le retourner 
+	// le retourner
 	public Utilisateur isUserExistPseudo(String pseudo, String mdp) throws BLLException {
 		boolean isExist = false;
 		Utilisateur utilisateurTemp = null;
 		// Verification si l'utilisateur existe dans la BDD
 		try {
 			for (Utilisateur utilisateur : dao.getAll()) {
-				if (utilisateur.getMotDePasse().equals(mdp)
-						&& utilisateur.getPseudo().equals(pseudo)) {
+				if (utilisateur.getMotDePasse().equals(mdp) && utilisateur.getPseudo().equals(pseudo)) {
 					utilisateurTemp = utilisateur;
 					isExist = true;
 				}
@@ -71,22 +70,22 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
+
 		// Si l'user existe : Retourne TRUE
 		// Sinon : Crée une exeception
 		if (isExist)
 			return utilisateurTemp;
 		else
-			throw new BLLException("Mauvais pseudo/mdp !");
+			throw new BLLException("Mauvais pseudo/mdp!");
 	}
+
 	public Utilisateur isUserExistEmail(String email, String mdp) throws BLLException {
 		boolean isExist = false;
 		Utilisateur utilisateurTemp = null;
 		// Verification si l'utilisateur existe dans la BDD
 		try {
 			for (Utilisateur utilisateur : dao.getAll()) {
-				if (utilisateur.getMotDePasse().equals(mdp)
-						&& utilisateur.getEmail().equals(email)) {
+				if (utilisateur.getMotDePasse().equals(mdp) && utilisateur.getEmail().equals(email)) {
 					utilisateurTemp = utilisateur;
 					isExist = true;
 				}
@@ -94,7 +93,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
+
 		// Si l'user existe : Retourne TRUE
 		// Sinon : Crée une exeception
 		if (isExist)
@@ -102,34 +101,52 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		else
 			throw new BLLException("Mauvais email/mdp !");
 	}
-	
-	
-	public boolean verifInscription(String mdp, String mdpConfirm, String pseudo, String mail) throws BLLException {
+
+	public boolean verifInscription(String mdp, String mdpConfirm, String pseudo, String mail) throws BLLExceptionList {
+		BLLExceptionList exceptionVerif = new BLLExceptionList();
+
+		// Verification pseudo vide
+		if (mdp.equals("")) {
+			exceptionVerif.ajoutMessage("Le mot de passe est vide");
+		}
 		// Verification si les deux mdp correspondent
-		if (!mdp.equals(mdpConfirm))
-			throw new BLLException("Les deux mots de passe ne correspondent pas !");
-		// Vérification si le mot de passe est alphanumérique
-		if(pseudo == null || !pseudo.matches("^[a-zA-Z0-9]*$")) 
-			throw new BLLException("Le pseudo ne peut contenir que des caractères alphanumérique [a-z] / [A-Z] / [0-9]");
+		if (!mdp.equals(mdpConfirm)) {
+			exceptionVerif.ajoutMessage("Les deux mots de passe ne correspondent pas !");
+		}
+		// Verification si le pseudo est vide
+		if (pseudo.equals("")) {
+			exceptionVerif.ajoutMessage("Le pseudo est vide");
+		}
+		// Vérification si le pseudo est alphanumérique
+		if (!pseudo.matches("^[a-zA-Z0-9]*$")) {
+			exceptionVerif
+					.ajoutMessage("Le pseudo ne peut contenir que des caractères alphanumérique [a-z] / [A-Z] / [0-9]");
+		}
 		// Vérification du format du mail
-		if(mail == null || !mail.matches(".+@.+\\.[a-z]+"))
-			throw new BLLException("adresse email non conforme");
+		if (mail.equals("") || !mail.matches(".+@.+\\.[a-z]+")) {
+			exceptionVerif
+			.ajoutMessage("le format du mail n'est pas valide \"ex : encheres@eni.com\" ou le champ est vide");
+		}
+			
 		// Vérification si pseudo/email est unique
 		try {
 			for (Utilisateur user : dao.getAll()) {
 				if (user.getPseudo().equals(pseudo))
-					throw new BLLException("Le pseudo est déjà utilisé !");
+					exceptionVerif.ajoutMessage("Le pseudo est déjà utilisé !");
 				if (user.getEmail().equals(mail))
-					throw new BLLException("L'email est déjà utilisé !");
+					exceptionVerif.ajoutMessage("L'email est déjà utilisé !");
+				break;
 			}
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-		
-		return true;
+
+		if (!exceptionVerif.estVide()) {
+			throw exceptionVerif;
+		} else {
+			return true;
+		}
 	}
-
-
 
 }
