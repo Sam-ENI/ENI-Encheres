@@ -10,9 +10,9 @@
 <title>Votre Profil</title>
 </head>
 <body>
-<h1>Votre Profil</h1>
+	<h1 class="logo">ENI-Encheres</h1>
+	<h1>Votre Profil</h1>
 	<div class="form">
-	
 		<form action="ProfilServlet" method="POST">
 			<div class="center">
 				<p><span class="nomChamps" >Pseudo : </span><span class="model" >${utilisateurModel.utilisateur.pseudo}</span></p>

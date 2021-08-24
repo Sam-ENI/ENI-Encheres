@@ -17,11 +17,12 @@ public interface ArticleVenduManager {
 	
 	public ArticleVendu getArticleByName (String string) throws BLLException;
 	
-	public ArticleVendu getArticleVenduById (int id )throws BLLException;
+	public Categorie getCategById (int id) throws BLLException;
 	
-	public Categorie getCategById (int id);
+	public List<Card> getListArticleByName(String name) throws BLLException;
 	
-	public List<Card> getListArticleByName(String name);
+	public List<Card> getListArticleByCat(Integer cat) throws BLLException;
 	
-	public List<Card> getListArticleByCat(Integer cat);
+	public List<Card> getListArticleByCatAndName(String name, Integer cat) throws BLLException;
+	
 }
