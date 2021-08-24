@@ -76,7 +76,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return null;
 	}
 	
-	public Categorie getCategById (int id) {
+	public Categorie getCategById (int id) throws BLLException{
 		try {
 			return dao.selectCategorieByNumeroCategorie(id);
 		} catch (DALException e) {
@@ -87,7 +87,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	
 	
 	
-	public List<Card> getListArticleByName(String name) {
+	public List<Card> getListArticleByName(String name)throws BLLException {
 		List<Card> temp = new ArrayList<>();
 		try {
 			temp = daoCard.selectAllByNomArt(name);
@@ -97,10 +97,20 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return temp;
 	}
 	
-	public List<Card> getListArticleByCat(Integer cat) {
+	public List<Card> getListArticleByCat(Integer cat) throws BLLException{
 		List<Card> temp = new ArrayList<>();
 		try {
 			temp = daoCard.selectAllByCat(cat);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
+	
+	public List<Card> getListArticleByCatAndName(String name, Integer cat) throws BLLException {
+		List<Card> temp = new ArrayList<>();
+		try {
+			temp = daoCard.selectAllByNomArtAndCat(name, cat);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}

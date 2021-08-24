@@ -102,23 +102,21 @@ public class AccueilServlet extends HttpServlet {
 		// BOUTON RECHERCHER
 		if (request.getParameter("rechecher") != null) {
 			
-			
-			
-			
-			articleModel.setLstCardbyName(managerArticle.getListArticleByName(request.getParameter("nomArticle")));
-			
-			// SI une catégorie est choisie
-			if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes")) {
-				articleModel.setLstCardbyName(managerArticle.getListArticleByCat(Integer.parseInt(request.getParameter("categorie"))));
-			}
-			
-			// SI il y a un nom et une catégorie choisi
-			if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes") && request.getParameter("nomArticle") != null ) {
+			try {
+				// SI il y a un nom dans la barre de recherche
+				articleModel.setLstCardbyName(managerArticle.getListArticleByName(request.getParameter("nomArticle")));
+				// SI une catégorie est choisie
+				if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes")) 
+					articleModel.setLstCardbyName(managerArticle.getListArticleByCat(Integer.parseInt(request.getParameter("categorie"))));
 				
+				// SI il y a un nom et une catégorie choisi
+				if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes") && request.getParameter("nomArticle") != null ) 
+					articleModel.setLstCardbyName(managerArticle.getListArticleByCatAndName(request.getParameter("nomArticle"),Integer.parseInt(request.getParameter("categorie"))));
+				
+				
+			} catch (BLLException e) {
+				e.printStackTrace();
 			}
-
-			
-			
 			defaultCard = false;
 		}
 		 

@@ -1,5 +1,9 @@
 @charset "ISO-8859-1";
 
+h2{
+	color: red;
+}
+
 .flex-outer {
     list-style-type: none;
     padding: 0;

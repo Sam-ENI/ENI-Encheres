@@ -12,8 +12,8 @@
 <body>
 <h1>ENI Enchères</h1>
 <h2 class="titre"> Modifier votre profil </h2>
-
-        <div class="alert <c:if test="${erreur == null}"> hidden </c:if>">
+<%-- <c:if test="${erreur == null}"> hidden </c:if><!--  --> --%>
+        <div class="alert ">
             <span class="closebtn">${erreur}</span>
         </div>
         

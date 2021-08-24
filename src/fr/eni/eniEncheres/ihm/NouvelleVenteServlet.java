@@ -78,18 +78,34 @@ public class NouvelleVenteServlet extends HttpServlet {
 			switch (request.getParameter("categorie")) {
 			case "informatique":
 				System.out.println("C RENTRERRRRRR");
-				articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(1));
+				try {
+					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(1));
+				} catch (BLLException e1) {
+					e1.printStackTrace();
+				}
 				break;
 			case "ameublement":
-				articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(2));
+				try {
+					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(2));
+				} catch (BLLException e1) {
+					e1.printStackTrace();
+				}
 
 				break;
 			case "vetement":
-				articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(3));
+				try {
+					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(3));
+				} catch (BLLException e1) {
+					e1.printStackTrace();
+				}
 
 				break;
 			case "sportloisirs":
-				articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(4));
+				try {
+					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(4));
+				} catch (BLLException e1) {
+					e1.printStackTrace();
+				}
 				break;
 			}
 			
