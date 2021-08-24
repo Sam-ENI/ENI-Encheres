@@ -20,10 +20,6 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 public class ConnexionUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
-	Utilisateur u1 = new Utilisateur("lol", "dupont", "jack", "j@dd.com", "021547898", "5 des oui", "44000", "Nantes",
-			"1245", 0, false);
-	private int cpt = 0;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -49,17 +45,6 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		// AJOUT D'UN ADMIN
-		try {
-			if (cpt == 0) {
-				manager.addUtilisateur(u1);
-				cpt++;
-			}
-		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel utilisateurModel = null;

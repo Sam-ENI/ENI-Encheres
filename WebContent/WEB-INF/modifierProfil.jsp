@@ -13,6 +13,7 @@
 <h1>ENI Enchères</h1>
 <h2 class="titre"> Modifier votre profil </h2>
 <c:if test="${not empty erreurs }">
+<<<<<<< HEAD
 <div class="cont_alert">
 		<div class = "alert">
 			<p style="font-weight:bold;">Il y a des erreurs :</p>
