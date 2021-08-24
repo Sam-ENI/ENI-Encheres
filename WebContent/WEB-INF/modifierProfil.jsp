@@ -1,21 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <link href="./css/modifierprofil.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modifier Profil</title>
+<meta charset="UTF-8">
+<link href="./css/modifierprofil.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modification profil ENI-Enchères</title>
 </head>
 <body>
 <h1>ENI Enchères</h1>
 <h2 class="titre"> Modifier votre profil </h2>
-<%-- <c:if test="${erreur == null}"> hidden </c:if><!--  --> --%>
-        <div class="alert ">
-            <span class="closebtn">${erreur}</span>
-        </div>
+<c:if test="${not empty erreurs }">
+		<div class = "alert" style="color:red; font-weight:bold;">
+			Il y a des erreurs :
+			<ul>
+				<c:forEach items="${erreurs }" var ="e">
+					<li style="color: red;font-weight:bold;">${e }</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>	
         
         <div class="sucess <c:if test="${msgModif == null}"> hidden </c:if>">
             <span class="closebtn">${msgModif}</span>
@@ -71,19 +77,19 @@
 					<label class="label">Confirmation :</label> <input class="input"
 						type="password" name="confirmation"><br>
 				</li>
-						<li class="credit">
-			<p>Crédit : </p>
-			<p> ${model.utilisateur.credit} points </p>
-		</li>
+				<li class="credit">
+					<p>Crédit : </p>
+					<p> ${model.utilisateur.credit} points </p>
+				</li>
 			</ul>
+			
 		</div>
-
-		<div class=btn>
+		<div class="btn">
 			<input class="btn_enregistrer" type="submit" name="enregistrer" value="Enregistrer">
 			<input class="btn_supprimer" type="submit" name="supprimerCompte"
 				value="Supprimer mon compte">
 		</div>
-	</form>
+</form>
 
 </body>
 </html>
