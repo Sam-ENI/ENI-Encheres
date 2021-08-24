@@ -1,72 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Modification du profil</title>
+    <meta charset="ISO-8859-1">
+    <link href="./css/modifierprofil.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modifier Profil</title>
 </head>
 <body>
 <h1>ENI Enchères</h1>
+<h2 class="titre"> Modifier votre profil </h2>
 
+        <div class="alert <c:if test="${erreur == null}"> hidden </c:if>">
+            <span class="closebtn">${erreur}</span>
+        </div>
+        
+        <div class="sucess <c:if test="${msgModif == null}"> hidden </c:if>">
+            <span class="closebtn">${msgModif}</span>
+        </div>
+	<div class="msgModif">${msgModif}</div>
+	<div class="msgErreur">${erreur}</div>
 <form class="form" action="ModifierProfilServlet" method="POST">
-		<div class=doubleForm>
-			<div class="form1">
-
-				<div class="center">
+		<div class="container">
+			<ul class="flex-outer">
+				<li>
 					<label class="label">Pseudo :</label> <input class="input"
 						type="text" name="pseudo" value="${utilisateurModel.utilisateur.pseudo}"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Prénom :</label> <input class="input"
 						type="text" name="prenom" value="${utilisateurModel.utilisateur.prenom}"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Téléphone :</label> <input class="input"
 						type="text" name="telephone" value="${utilisateurModel.utilisateur.telephone}"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Code Postal :</label> <input class="input"
 						type="text" name="codePostal" value="${utilisateurModel.utilisateur.codePostal}"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Mot de passe :</label> <input class="input"
 						type="password" name="mdp"><br>
-				</div>
-			</div>
-			<div class="form2">
-				<div class="center">
+				</li>
+			</ul>
+
+
+			
+			
+			<ul class="flex-outer">
+				<li>
 					<label class="label">Nom :</label> <input class="input" type="text"
 						name="nom"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Email :</label> <input class="input"
 						type="text" name="email"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Rue :</label> <input class="input" type="text"
 						name="rue" value="${utilisateurModel.utilisateur.rue}"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Ville :</label> <input class="input"
 						type="text" name="ville" value="${utilisateurModel.utilisateur.ville}"><br>
-				</div>
-				<div class="center">
+				</li>
+				<li>
 					<label class="label">Confirmation :</label> <input class="input"
 						type="password" name="confirmation"><br>
-				</div>
-			</div>
+				</li>
+						<li class="credit">
+			<p>Crédit : </p>
+			<p> ${model.utilisateur.credit} points </p>
+		</li>
+			</ul>
 		</div>
-		<div class="credit">
-			<p>Crédit : ${model.utilisateur.credit}</p>
-		</div>
-		<div class=btn_form>
+
+		<div class=btn>
 			<input class="btn_enregistrer" type="submit" name="enregistrer" value="Enregistrer">
 			<input class="btn_supprimer" type="submit" name="supprimerCompte"
 				value="Supprimer mon compte">
 		</div>
 	</form>
-	<div class="msgModif">${msgModif}</div>
-	<div class="msgErreur">${erreur}</div>
+
 </body>
 </html>

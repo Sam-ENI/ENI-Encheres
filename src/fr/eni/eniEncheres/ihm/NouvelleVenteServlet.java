@@ -53,8 +53,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 		ArticleVenduModel articleVenduModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),
 				null, null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-		System.out.println("USER : : " + utilisateurModel);
-		System.out.println("USER : : " + utilisateurModel.getUtilisateur());
+
 
 		if (request.getParameter("enregister") != null) {
 			System.out.println(request.getParameter("utilisateurModel"));
@@ -94,7 +93,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 				break;
 			}
 			
-			System.out.println(articleVenduModel);
+			
 			try {
 				manager.addArticleVendu(articleVenduModel.getArticleVendu());
 				articleVenduModel.setLstArticles(manager.getAllArticleVendu());
@@ -108,10 +107,13 @@ public class NouvelleVenteServlet extends HttpServlet {
 			articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
 			articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
 
-			request.getRequestDispatcher(nextPage).forward(request, response);
 		}
+		
+		if (request.getParameter("annuler") !=null )
+			nextPage = "/WEB-INF/index.jsp";
+		
+		request.getRequestDispatcher(nextPage).forward(request, response);
 
-		System.out.println(articleVenduModel.getArticleVendu());
 	}
 	
 	
