@@ -40,7 +40,9 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null);
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null, null);
+		Boolean defaultCard = true;
+
 		String nextPage = "/WEB-INF/index.jsp";
 		try {
 			articleModel.setLstArticles(managerArticle.getAllArticleVendu());
@@ -52,7 +54,7 @@ public class AccueilServlet extends HttpServlet {
 			isConnecte = true;
 		}
 		
-		System.out.println("KKOKOOKKOKOK :" +articleModel.getLstArticles());
+		request.setAttribute("defaultCard", defaultCard);
 		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getRequestDispatcher(nextPage).forward(request, response);
@@ -66,9 +68,10 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/index.jsp";
 		Boolean isConnecte = true;
+		Boolean defaultCard = true;
 
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),  null);
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),  null, null);
 
 		
 		
@@ -85,7 +88,7 @@ public class AccueilServlet extends HttpServlet {
 		}
 		
 		// CLICK SUR NOM D'UN ARTICLE
-		if (request.getParameter("nomArticle") != null) {
+		if (request.getParameter("btn_Article") != null) {
 			try {
 				articleModel.setArticleVendu(managerArticle.getArticleByName(request.getParameter("nomArticle")));
 			} catch (BLLException e) {
@@ -96,15 +99,41 @@ public class AccueilServlet extends HttpServlet {
 			nextPage = "/WEB-INF/encheres.jsp";
 		}
 		
+		// BOUTON RECHERCHER
+		if (request.getParameter("rechecher") != null) {
+			
+			
+			
+			
+			articleModel.setLstCardbyName(managerArticle.getListArticleByName(request.getParameter("nomArticle")));
+			
+			// SI une catégorie est choisie
+			if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes")) {
+				articleModel.setLstCardbyName(managerArticle.getListArticleByCat(Integer.parseInt(request.getParameter("categorie"))));
+			}
+			
+			// SI il y a un nom et une catégorie choisi
+			if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes") && request.getParameter("nomArticle") != null ) {
+				
+			}
+
+			
+			
+			defaultCard = false;
+		}
+		 
+		
 		// BOUTON DECONNEXION
 		if (request.getParameter("deco") != null) {
 			isConnecte = false;
 			utilisateurModel = null;
 		}
 		
+		
+		request.setAttribute("defaultCard", defaultCard);
+		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
-
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 

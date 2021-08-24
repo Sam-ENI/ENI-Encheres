@@ -29,6 +29,7 @@ header {
     margin: 10px 20px 0 30px;
 }
 
+
 .hidden {
     display: none;
 }
@@ -46,6 +47,8 @@ header {
     height: 30px;
     margin-left: 10px;
 }
+
+
 
 .right_cont_rech {
     display: flex;

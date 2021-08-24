@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.dto.Card;
 
 public interface ArticleVenduManager {
 	public void addArticleVendu(ArticleVendu articleVendu) throws BLLException;
@@ -19,4 +20,8 @@ public interface ArticleVenduManager {
 	public ArticleVendu getArticleVenduById (int id )throws BLLException;
 	
 	public Categorie getCategById (int id);
+	
+	public List<Card> getListArticleByName(String name);
+	
+	public List<Card> getListArticleByCat(Integer cat);
 }
