@@ -5,15 +5,15 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.Enchere;
 
-public class EncheresModel {
+public class EnchereModel {
 	private Enchere enchere;
 	private List<Enchere> lstEncheres = new ArrayList<Enchere>();
 
-	public EncheresModel() {
+	public EnchereModel() {
 
 	}
 
-	public EncheresModel(Enchere enchere, List<Enchere> lstEncheres) {
+	public EnchereModel(Enchere enchere, List<Enchere> lstEncheres) {
 		super();
 		this.enchere = enchere;
 		this.lstEncheres = lstEncheres;

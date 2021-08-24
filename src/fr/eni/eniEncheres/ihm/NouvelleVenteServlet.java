@@ -12,10 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.ArticleVenduManagerFactory;
 import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.EnchereManager;
+import fr.eni.eniEncheres.bll.EnchereManagerFact;
 import fr.eni.eniEncheres.bll.ArticleVenduManager;
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.bo.Enchere;
 import fr.eni.eniEncheres.bo.Retrait;
+import fr.eni.eniEncheres.bo.Utilisateur;
+import fr.eni.eniEncheres.dal.EnchereDAOFact;
 
 /**
  * Servlet implementation class NouvelleVenteServlet
@@ -24,6 +29,7 @@ import fr.eni.eniEncheres.bo.Retrait;
 public class NouvelleVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleVenduManager manager = ArticleVenduManagerFactory.getInstance();
+	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -53,7 +59,9 @@ public class NouvelleVenteServlet extends HttpServlet {
 		ArticleVenduModel articleVenduModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),
 				null, null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-
+		EnchereModel enchereModel = new EnchereModel(new Enchere( LocalDate.of(1970, 1, 1),0,new Utilisateur(),new ArticleVendu()),null);
+		System.out.println("USER : : " + utilisateurModel);
+		System.out.println("USER : : " + utilisateurModel.getUtilisateur());
 
 		if (request.getParameter("enregister") != null) {
 			System.out.println(request.getParameter("utilisateurModel"));
@@ -66,7 +74,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 			String date = request.getParameter("dateDebutEncheres");
 			LocalDate localDate = LocalDate.parse(date, formatter);
 			articleVenduModel.getArticleVendu().setDateDebutEncheres(localDate);
-
 			String date2 = request.getParameter("dateFinEncheres");
 			LocalDate localDate2 = LocalDate.parse(date2, formatter);
 			articleVenduModel.getArticleVendu().setDateFinEncheres(localDate2);
@@ -74,7 +81,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 			// articleVenduModel.getArticleVendu().setPrixVente(Integer.parseInt(request.getParameter("prixVente")));
 			articleVenduModel.getArticleVendu().setEtatVente(false);
 			articleVenduModel.getArticleVendu().setUtilisateur(utilisateurModel.getUtilisateur());
-
 			switch (request.getParameter("categorie")) {
 			case "informatique":
 				System.out.println("C RENTRERRRRRR");
@@ -107,12 +113,24 @@ public class NouvelleVenteServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 				break;
+				
 			}
+			System.out.println(localDate);
+			//enchereModel
+			enchereModel.getEnchere().setDateEnchere(localDate);
+			enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("miseAprix")));
+			enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
+			enchereModel.getEnchere().setArticleVendu(articleVenduModel.getArticleVendu());
 			
 			
+			
+			
+			System.out.println(articleVenduModel);
 			try {
 				manager.addArticleVendu(articleVenduModel.getArticleVendu());
 				articleVenduModel.setLstArticles(manager.getAllArticleVendu());
+				enchereManager.addEnchere(enchereModel.getEnchere());
+				enchereModel.setLstEncheres(enchereManager.getAllEnchere());
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
@@ -122,14 +140,12 @@ public class NouvelleVenteServlet extends HttpServlet {
 			articleVenduModel.getRetrait().setCode_postal(request.getParameter("codePostal"));
 			articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
 			articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
-
+			
+			 nextPage = "/WEB-INF/index.jsp";
+			request.getRequestDispatcher(nextPage).forward(request, response);
 		}
-		
-		if (request.getParameter("annuler") !=null )
-			nextPage = "/WEB-INF/index.jsp";
-		
-		request.getRequestDispatcher(nextPage).forward(request, response);
 
+		System.out.println(articleVenduModel.getArticleVendu());
 	}
 	
 	

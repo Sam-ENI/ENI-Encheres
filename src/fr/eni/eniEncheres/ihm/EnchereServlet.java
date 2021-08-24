@@ -15,14 +15,14 @@ import fr.eni.eniEncheres.bo.Enchere;
  * Servlet implementation class EncheresServlet
  */
 @WebServlet("/EncheresServlet")
-public class EncheresServlet extends HttpServlet {
+public class EnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public EncheresServlet() {
+	public EnchereServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,7 +44,7 @@ public class EncheresServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/encheres.jsp";
-		EncheresModel encheresModel = new EncheresModel(new Enchere(), null);
+		EnchereModel encheresModel = new EnchereModel(new Enchere(), null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 
 		if (request.getParameter("encherir") != null) {
