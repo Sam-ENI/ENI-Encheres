@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.BLLExceptionList;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
 import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 
@@ -47,19 +48,25 @@ public class ModifierProfilServlet extends HttpServlet {
 		// MODIFIER PROFIL
 		if(request.getParameter("enregistrer")!= null) {
 			try {
-				if(manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),request.getParameter("nom"),request.getParameter("email"))) {
-					utilisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-					utilisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
-					utilisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
-					utilisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
-					utilisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
-					utilisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
-					utilisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
-					utilisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
-					utilisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
-					manager.updateUtilisateur(utilisateurModel.getUtilisateur());
-					request.setAttribute("msgModif", "Votre profil à été modifié");
-					nextPage = "/WEB-INF/modifierProfil.jsp";	
+				try {
+					if(manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),request.getParameter("pseudo"),request.getParameter("email"))) {
+						utilisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+						utilisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
+						utilisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
+						utilisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
+						utilisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
+						utilisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
+						utilisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
+						utilisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
+						utilisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
+						manager.updateUtilisateur(utilisateurModel.getUtilisateur());
+						request.setAttribute("msgModif", "Votre profil à été modifié");
+						nextPage = "/WEB-INF/modifierProfil.jsp";	
+					}
+				} catch (BLLExceptionList e) {
+					request.setAttribute("erreurs", e.getMessages());
+					nextPage = "/WEB-INF/modifierProfil.jsp";
+					e.printStackTrace();
 				}
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());;

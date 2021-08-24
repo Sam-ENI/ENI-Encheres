@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,16 @@
 </head>
 <body>
 <h1>ENI Enchères</h1>
-
+<c:if test="${not empty erreurs }">
+		<div class = "error" style="color:red; font-weight:bold;">
+			Il y a des erreurs :
+			<ul>
+				<c:forEach items="${erreurs }" var ="e">
+					<li style="color: red;font-weight:bold;">${e }</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>	
 <form class="form" action="ModifierProfilServlet" method="POST">
 		<div class=doubleForm>
 			<div class="form1">
@@ -58,15 +68,15 @@
 			</div>
 		</div>
 		<div class="credit">
-			<p>Crédit : ${model.utilisateur.credit}</p>
+			<div>Crédit : ${model.utilisateur.credit}</div>
 		</div>
 		<div class=btn_form>
 			<input class="btn_enregistrer" type="submit" name="enregistrer" value="Enregistrer">
 			<input class="btn_supprimer" type="submit" name="supprimerCompte"
 				value="Supprimer mon compte">
+			
 		</div>
 	</form>
-	<div class="msgModif">${msgModif}</div>
-	<div class="msgErreur">${erreur}</div>
+	<div class="msgModif" style="color:red;">${msgModif}</div>
 </body>
 </html>
