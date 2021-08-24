@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.eniEncheres.bll.UtilisateurManager;
-import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 
 /**
  * Servlet implementation class ProfilServlet
@@ -16,7 +14,7 @@ import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 @WebServlet("/ProfilServlet")
 public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
+
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,9 +43,13 @@ public class ProfilServlet extends HttpServlet {
 		String nextPage = "/WEB-INF/profil.jsp";
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		System.out.println("USER PROFIL : " + utilisateurModel);
+		
+		// BOUTON MODIFIER
 		if(request.getParameter("modifierBtn") != null) {
 			nextPage ="/WEB-INF/modifierProfil.jsp";
 		}
+		
+		
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

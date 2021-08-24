@@ -29,12 +29,25 @@ public interface CardDetailDAO {
 	 */
 	public List<CardDetail> selectEnchereRemporter (Integer no_utilisateur) ;
 	/**
+	 * Retourne une liste de Carte  détaillé de ventes en cours selon le numéro d'utilisateur de la session
 	 * 
-	 * @param no_utilisateur
-	 * @return
+	 * @param no_utilisateur : le numéro d'utilisateur de la session
+	 * @return une liste de Carte détaillé
 	 */
 	public List<CardDetail> selectVentesEnCours (Integer no_utilisateur) ;
+	/**
+	 * Retourne une liste de Carte  détaillé de ventes non débutées selon le numéro d'utilisateur de la session
+	 * 
+	 * @param no_utilisateur : le numéro d'utilisateur de la session
+	 * @return une liste de Carte détaillé
+	 */
 	public List<CardDetail> selectVentesNonDebuter (Integer no_utilisateur) ;
+	/**
+	 * Retourne une liste de Carte  détaillé de ventes terminée selon le numéro d'utilisateur de la session
+	 * 
+	 * @param no_utilisateur : le numéro d'utilisateur de la session
+	 * @return une liste de Carte détaillé
+	 */
 	public List<CardDetail> selectVentesTerminer (Integer no_utilisateur) ;
 
 }

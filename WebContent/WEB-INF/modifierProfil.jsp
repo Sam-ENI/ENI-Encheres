@@ -13,21 +13,26 @@
 <h1>ENI Enchères</h1>
 <h2 class="titre"> Modifier votre profil </h2>
 <c:if test="${not empty erreurs }">
-		<div class = "alert" style="color:red; font-weight:bold;">
-			Il y a des erreurs :
+<div class="cont_alert">
+		<div class = "alert">
+			<p style="font-weight:bold;">Il y a des erreurs :</p>
 			<ul>
 				<c:forEach items="${erreurs }" var ="e">
-					<li style="color: red;font-weight:bold;">${e }</li>
+					<li >${e }</li>
 				</c:forEach>
 			</ul>
 		</div>
+</div>
+
 	</c:if>	
-        
-        <div class="sucess <c:if test="${msgModif == null}"> hidden </c:if>">
-            <span class="closebtn">${msgModif}</span>
+        <c:if test="${not empty msgModif}">
+        <div class="cont_alert">
+                <div class="sucess ">
+            <p>${msgModif}</p>
         </div>
-	<div class="msgModif">${msgModif}</div>
-	<div class="msgErreur">${erreur}</div>
+        </div>
+
+        </c:if>
 <form class="form" action="ModifierProfilServlet" method="POST">
 		<div class="container">
 			<ul class="flex-outer">
