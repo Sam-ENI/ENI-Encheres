@@ -76,11 +76,11 @@ public class EnchereDAOImpl implements EnchereDAO {
 				Enchere enchere = new Enchere();
 				enchere.setUtilisateur(daoUser.getByID(Integer.parseInt(rs.getString("no_utilisateur"))));
 				enchere.setArticleVendu(daoAticle.getArticleVenduById(Integer.parseInt(rs.getString("no_article"))));
-				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_enchere"));
-				LocalDate ld = jsd.toLocalDate();
+				
+				LocalDate ld = rs.getDate("date_enchere").toLocalDate();
 				enchere.setDateEnchere(ld);
 				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
-
+				result.add(enchere);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
