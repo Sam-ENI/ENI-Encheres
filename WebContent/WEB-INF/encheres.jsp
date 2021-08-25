@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="EncheresServlet" method="post"></form>
+<form action="EnchereServlet" method="post">
 	Ma proposition : <input type="number" name="montant_enchere">
 	<input type="submit" name="encherir" value="Enchérir">
-
+</form>
 </body>
 </html>

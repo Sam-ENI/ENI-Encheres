@@ -24,5 +24,7 @@ public interface ArticleVenduManager {
 	public List<Card> getListArticleByCat(Integer cat) throws BLLException;
 	
 	public List<Card> getListArticleByCatAndName(String name, Integer cat) throws BLLException;
+
+	ArticleVendu getArticleVenduById(int id) throws BLLException;
 	
 }

@@ -35,7 +35,12 @@ public class EnchereManagerImpl implements EnchereManager {
 
 	@Override
 	public void updateEnchere(Enchere enchere) throws BLLException {
-		// TODO Auto-generated method stub
+		try {
+			daoEnchere.update(enchere);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
