@@ -97,7 +97,7 @@ public class AccueilServlet extends HttpServlet {
 		// CLICK SUR NOM D'UN ARTICLE
 		if (request.getParameter("btn_Article") != null) {
 			try {
-				articleModel.setArticleVendu(managerArticle.getArticleByName(request.getParameter("btn_Article")));
+				articleModel.setArticleVendu(managerArticle.getS(request.getParameter("btn_Article")));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
