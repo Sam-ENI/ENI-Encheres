@@ -55,7 +55,7 @@ public class Card {
 	@Override
 	public String toString() {
 		return "Card [nomArticle=" + nomArticle + ", prixInitial=" + prixInitial + ", dateFinEncheres="
-				+ dateFinEncheres + ", nomVendeur=" + nomVendeur + "]";
+				+ dateFinEncheres + ", nomVendeur=" + nomVendeur + "]\n";
 	}
 	
 }

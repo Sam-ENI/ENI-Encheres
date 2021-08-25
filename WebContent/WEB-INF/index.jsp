@@ -62,7 +62,7 @@
                         <!-- Si utilisateur connectée -->
                         <div class="listFilter <c:if test="${isConnecte == false}"> hidden </c:if>">
                             <div class="achats">
-                                <input type="radio" name="choixFiltre" id="achats" value="achats">
+                                <input type="radio" name="choixFiltre" id="achats" value="achats"  checked >
                                 <label for="achats">Achats</label>
                                 <div class="chekbox_cont">
                                     <div class="box">
@@ -120,7 +120,7 @@
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
+                        <button class="link nomArticle" type="submit" name="btn_Article" value="${article.noArticle}">${article.nomArticle}</button>
                         <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.miseAprix} points</p>
@@ -138,14 +138,15 @@
             </c:forEach>
 			</c:if>
 		<c:if test="${defaultCard == false}">
-          <c:forEach items="${articleModel.lstCardbyName}" var="article" varStatus = "status">
+          <c:forEach items="${articleModel.lstCard}" var="article">
                 <div class="card">
                     <img src="./img/horloge.jpg" alt="" style="object-fit:contain;
                     width:100%;
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" />
+                   <button class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}">${article.nomArticle}</button>
+                        <!--   <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" /> -->
                         <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.prixInitial} points</p>
@@ -156,7 +157,7 @@
                         </div>
                             <div class="vendeur box_card">
                                 <p>Vendeur : </p>
-                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="${nomVendeur}" />
+                                <input class="link btn_vendeur" type="submit" name="pseudoVendeur" value="${article.nomVendeur}" />
                             </div>
                     </div>
                 </div>

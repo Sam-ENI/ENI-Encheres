@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
@@ -13,20 +14,20 @@ public class ArticleVenduModel {
 	private Retrait retrait;
 	private Categorie categorie;
 	private List<ArticleVendu> lstArticles = new ArrayList<>();
-	private List<Card> lstCardbyName = new ArrayList<>();
+	private List<Card> lstCard = new ArrayList<>();
 
 	public ArticleVenduModel() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ArticleVenduModel(ArticleVendu articleVendu, Retrait retrait, Categorie categorie,
-			List<ArticleVendu> lstArticles, List<Card> lstCardbyName) {
+			List<ArticleVendu> lstArticles, List<Card> lstCard) {
 		super();
 		this.articleVendu = articleVendu;
 		this.retrait = retrait;
 		this.categorie = categorie;
 		this.lstArticles = lstArticles;
-		this.lstCardbyName = lstCardbyName;
+		this.lstCard = lstCard;
 	}
 
 	public ArticleVendu getArticleVendu() {
@@ -61,22 +62,18 @@ public class ArticleVenduModel {
 		this.lstArticles = lstArticles;
 	}
 
-	public List<Card> getLstCardbyName() {
-		return lstCardbyName;
+	public List<Card> getLstCard() {
+		return lstCard;
 	}
 
-	public void setLstCardbyName(List<Card> lstCardbyName) {
-		this.lstCardbyName = lstCardbyName;
+	public void setLstCard(List<Card> lstCard) {
+		this.lstCard = lstCard;
 	}
 
 	@Override
 	public String toString() {
 		return "ArticleVenduModel [articleVendu=" + articleVendu + ", retrait=" + retrait + ", categorie=" + categorie
-				+ ", lstArticles=" + lstArticles + ", lstCardbyName=" + lstCardbyName + "]";
+				+ ", lstArticles=" + lstArticles + ", lstCard=" + lstCard + "]";
 	}
-
-	
-	
-	
 
 }

@@ -85,7 +85,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return null;
 	}
 
-	@Override
 	public ArticleVendu getArticleVenduById(int id) throws BLLException {
 		// TODO Auto-generated method stub
 		return null;
