@@ -4,6 +4,6 @@ import fr.eni.eniEncheres.dal.jdbc.CardDetailDAOImpl;
 
 public class CardDetailDAOFact {
 	public static CardDetailDAO getInstanceCardDetail() {
-		return new CardDetailDAOImpl ();
+		return new CardDetailDAOImpl();
 	}
 }

@@ -2,6 +2,7 @@ package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
@@ -59,7 +60,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 		ArticleVenduModel articleVenduModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),
 				null, null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-		EnchereModel enchereModel = new EnchereModel(new Enchere( LocalDate.of(1970, 1, 1),0,new Utilisateur(),new ArticleVendu()),null);
+		EnchereModel enchereModel = new EnchereModel(new Enchere( LocalDateTime.now(),0,new Utilisateur(),new ArticleVendu()),null);
 		System.out.println("USER : : " + utilisateurModel);
 		System.out.println("USER : : " + utilisateurModel.getUtilisateur());
 
@@ -72,7 +73,10 @@ public class NouvelleVenteServlet extends HttpServlet {
 			// conversion String en LocalDate
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			String date = request.getParameter("dateDebutEncheres");
+			
 			LocalDate localDate = LocalDate.parse(date, formatter);
+			LocalDateTime ldt = localDate.atStartOfDay();
+			
 			articleVenduModel.getArticleVendu().setDateDebutEncheres(localDate);
 			String date2 = request.getParameter("dateFinEncheres");
 			LocalDate localDate2 = LocalDate.parse(date2, formatter);
@@ -117,11 +121,11 @@ public class NouvelleVenteServlet extends HttpServlet {
 			}
 			System.out.println(localDate);
 			//enchereModel
-			enchereModel.getEnchere().setDateEnchere(localDate);
+			enchereModel.getEnchere().setDateEnchere(ldt);
 			enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("miseAprix")));
 			enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
 			enchereModel.getEnchere().setArticleVendu(articleVenduModel.getArticleVendu());
-			
+			System.out.println(enchereModel + " " + "nouvelleServlet");
 			
 			
 			
@@ -141,6 +145,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 			articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
 			articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
 			
+			//request.getSession().setAttribute("enchereModel", enchereModel);
 			 nextPage = "/WEB-INF/index.jsp";
 			request.getRequestDispatcher(nextPage).forward(request, response);
 		}
