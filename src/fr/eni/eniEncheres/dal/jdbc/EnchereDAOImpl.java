@@ -20,7 +20,7 @@ import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
 public class EnchereDAOImpl implements EnchereDAO {
 	private final String INSERT = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere) VALUES (?,?,?,?)";
-	private final String UPDATE = "UPDATE ENCHERES SET no_utilisateur =?,no_article=?,date_enchere=?, montant_enchere=? WHERE no_utilisateur=? and no_article=?";
+	private final String UPDATE = "UPDATE ENCHERES SET no_utilisateur =?,no_article=?,date_enchere=?, montant_enchere=? WHERE no_article=?";
 	private final String DELETE = "DELETE FROM ENCHERES WHERE no_utilisateur =? and no_article =?";
 	private final String SELECT = "SELECT no_utilisateur,no_article,date_enchere,montant_enchere FROM ENCHERES";
 	private final String SELECTBYID = "SELECT no_categorie,libelle FROM ENCHERES WHERE no_categorie=?";
@@ -53,12 +53,9 @@ public class EnchereDAOImpl implements EnchereDAO {
 			// conversion LocalDate en java.sql.date
 			// Timestamp timestamp = Timestamp.valueOf(localDate.atStartOfDay());
 			// java.sql.Date jsd = java.sql.Date.valueOf(();
-			System.out.println(enchere.getDateEnchere());
-			System.out.println(Timestamp.valueOf(enchere.getDateEnchere()));
 			stmt.setTimestamp(3, Timestamp.valueOf(enchere.getDateEnchere()));
 			stmt.setInt(4, enchere.getMontant_enchere());
-			stmt.setInt(5, enchere.getUtilisateur().getNoUtilisateur());
-			stmt.setInt(6, enchere.getArticleVendu().getNoArticle());
+			stmt.setInt(5, enchere.getArticleVendu().getNoArticle());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

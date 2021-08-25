@@ -86,7 +86,11 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	}
 
 	public ArticleVendu getArticleVenduById(int id) throws BLLException {
-		// TODO Auto-generated method stub
+		try {
+			return dao.getArticleVenduById(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	

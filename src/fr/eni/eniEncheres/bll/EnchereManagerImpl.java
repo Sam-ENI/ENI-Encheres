@@ -38,7 +38,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		try {
 			daoEnchere.update(enchere);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -107,21 +107,24 @@
                 </div>
 
             </div>
-
+ </form>
             <!-- UNE card enchères -->
             <div class="cont_card">      
             
-            
+                   
           <c:if test="${defaultCard == true}">
-          <c:forEach items="${articleModel.lstArticles}" var="article" varStatus = "status">
+          <c:forEach items="${articleModel.lstCard}" var="article" varStatus = "status">
                 <div class="card">
                     <img src="./img/horloge.jpg" alt="" style="object-fit:contain;
                     width:100%;
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                        <button class="link nomArticle" type="submit" name="btn_Article" value="${article.noArticle}">${article.nomArticle}</button>
-                        <div class="box_card">
+                   <form action="AccueilServlet" method="POST">
+                   		<input type="hidden" name="idArticle" value="${article.noArticle}">
+                   		<input class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}">
+                   </form>
+                                            <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.miseAprix} points</p>
                         </div>
@@ -145,8 +148,10 @@
                     height:200px;
                     border: solid 1px #CCC">
                     <div class="textArticle">
-                   <button class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}">${article.nomArticle}</button>
-                        <!--   <input  class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}" /> -->
+                    <form action="AccueilServlet" method="POST">
+                   		<input type="hidden" name="idArticle" value="${article.noArticle}">
+                   		<input class="link nomArticle" type="submit" name="btn_Article" value="${article.nomArticle}">
+                   </form>
                         <div class="box_card">
                             <p> Prix : </p>
                             <p> ${article.prixInitial} points</p>
@@ -164,7 +169,6 @@
             </c:forEach>
 			</c:if>
             </div>
-        </form>
     </div>
 </body>
 

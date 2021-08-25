@@ -12,47 +12,47 @@ import fr.eni.eniEncheres.dto.Card;
 import fr.eni.eniEncheres.dto.Card;
 
 public class CardDecoDAOImpl implements CardDecoDAO {
-	private final String SELECT_ALL_BY_NOM = ("SELECT nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
+	private final String SELECT_ALL_BY_NOM = ("SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON e.no_article = av.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur" + " WHERE nom_article LIKE ? ");
 
-	private final String SELECT_ALL_BY_CAT = ("SELECT nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
+	private final String SELECT_ALL_BY_CAT = ("SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON e.no_article = av.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " INNER JOIN CATEGORIES c ON c.no_categorie = av.no_categorie" + " WHERE av.no_categorie = ?");
 
-	private final String SELECT_ALL_BY_NOM_AND_CAT = ("SELECT nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
+	private final String SELECT_ALL_BY_NOM_AND_CAT = ("SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON e.no_article = av.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " INNER JOIN CATEGORIES c ON c.no_categorie = av.no_categorie" + " WHERE av.no_categorie = ?"
 			+ " AND nom_article LIKE ?");
 
-	private final String SELECT_ENCHERE_OUVERTES = "SELECT nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
+	private final String SELECT_ENCHERE_OUVERTES = "SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON e.no_article = av.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " WHERE av.date_fin_encheres > SYSDATETIME()  AND av.date_debut_encheres < SYSDATETIME()";
 
-	private final String SELECT_ENCHERE_EN_COURS_BY_NO_UTILISATEUR = "SELECT nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
+	private final String SELECT_ENCHERE_EN_COURS_BY_NO_UTILISATEUR = "SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON av.no_article = e.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " WHERE av.date_fin_encheres > SYSDATETIME() AND av.date_debut_encheres < SYSDATETIME() AND  e.no_utilisateur = ?";
 
-	private final String SELECT_ENCHERE_REMPORTER_BY_NO_UTILISATEUR = "SELECT nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
+	private final String SELECT_ENCHERE_REMPORTER_BY_NO_UTILISATEUR = "SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON av.no_article = e.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " WHERE av.date_fin_encheres < SYSDATETIME()  AND  e.no_utilisateur = ?";
 
-	private final String SELECT_VENTE_EN_COURS_BY_NO_UTILISATEUR = "SELECT nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
+	private final String SELECT_VENTE_EN_COURS_BY_NO_UTILISATEUR = "SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON av.no_article = e.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " WHERE av.date_fin_encheres > SYSDATETIME() AND av.date_debut_encheres < SYSDATETIME()  AND  av.no_utilisateur = ?";
 
-	private final String SELECT_VENTE_NON_DEBUTER_BY_NO_UTILISATEUR = "SELECT nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
+	private final String SELECT_VENTE_NON_DEBUTER_BY_NO_UTILISATEUR = "SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON av.no_article = e.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " WHERE av.date_debut_encheres > SYSDATETIME()  AND  av.no_utilisateur = ?";
 
-	private final String SELECT_VENTE_TERMINER_BY_NO_UTILISATEUR = "SELECT nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
+	private final String SELECT_VENTE_TERMINER_BY_NO_UTILISATEUR = "SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON av.no_article = e.no_article"
 			+ " INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur"
 			+ " WHERE av.date_fin_encheres < SYSDATETIME()  AND  av.no_utilisateur = ?";
@@ -66,6 +66,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -88,6 +89,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -110,6 +112,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -132,6 +135,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -154,7 +158,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
-
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -178,7 +182,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
-
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -202,7 +206,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
-
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -226,7 +230,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
-
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
@@ -250,7 +254,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();
-
+				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
 				card.setPrixInitial(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());

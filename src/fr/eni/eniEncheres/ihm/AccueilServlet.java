@@ -96,13 +96,14 @@ public class AccueilServlet extends HttpServlet {
 
 		// CLICK SUR NOM D'UN ARTICLE
 		if (request.getParameter("btn_Article") != null) {
+			System.out.println("AFFICH : " + request.getParameter("btn_Article"));
+			System.out.println("AFFICH2 : " + request.getParameter("idArticle"));
 			try {
-				articleModel.setArticleVendu(managerArticle.getS(request.getParameter("btn_Article")));
+				articleModel.setArticleVendu(managerArticle.getArticleVenduById(Integer.parseInt(request.getParameter("idArticle"))));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 			request.getSession().setAttribute("article", articleModel);
-
 			nextPage = "/WEB-INF/encheres.jsp";
 		}
 
