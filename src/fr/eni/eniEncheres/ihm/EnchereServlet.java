@@ -74,7 +74,7 @@ public class EnchereServlet extends HttpServlet {
 					enchereModel.getEnchere().setArticleVendu(articleModel.getArticleVendu());
 					// daoAticle.getArticleVenduById(Integer.parseInt(rs.getString("no_article")))
 
-					enchereManager.updateEnchere(enchereModel ,enchSauvegarde, request.getParameter("montant_enchere"));
+					enchereManager.updateEnchere(enchereModel ,enchSauvegarde, request.getParameter("montant_enchere"),articleModel);
 
 					enchereManager.crediterUtilsateur(articleModel, enchSauvegarde,
 							enchSauvegarde.getMontant_enchere());

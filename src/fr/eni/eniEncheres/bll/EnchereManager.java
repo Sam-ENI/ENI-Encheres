@@ -16,7 +16,7 @@ public interface EnchereManager {
 
 	public void deleteEnchere(Enchere enchere) throws BLLException;
 
-	public void updateEnchere(EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere) throws BLLExceptionList;
+	public void updateEnchere(EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere, ArticleVenduModel articleModel) throws BLLExceptionList;
 
 	public List<Enchere> getAllEnchere() throws BLLException;
 
@@ -24,4 +24,5 @@ public interface EnchereManager {
 	
 	public Boolean verifSaisieEnchere(String saisieEnchere) throws BLLExceptionList;
 
+	
 }

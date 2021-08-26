@@ -19,6 +19,7 @@ import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente) VALUES (?,?,?,?,?,?,?,?,?)";
+	private final String INSERTRETRAIT = "INSERT INTO RETRAIT  (no_article,rue,code_postal,ville) VALUES(?,?,?,? )";
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?, date_debut_encheres=?,date_fin_encheres=?, prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article = ?";
 	private final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article =?";
 	private final String SELECT = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente FROM ARTICLES_VENDUS";
@@ -57,7 +58,21 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		}
 
 	}
-
+	@Override
+	public void insertRetrait(Retrait retrait) throws DALException {
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(INSERTRETRAIT);
+			stmt.setInt(1, retrait.getArticleVendu().getNoArticle());
+			stmt.setString(2, retrait.getArticleVendu().getUtilisateur().getRue());
+			stmt.setString(3, retrait.getArticleVendu().getUtilisateur().getCodePostal());
+			stmt.setString(4,retrait.getArticleVendu().getUtilisateur().getVille());
+			stmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+	
 	@Override
 	public void update(ArticleVendu articleVendu) {
 		// TODO Auto-generated method stub
@@ -189,4 +204,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		}
 		return articleVendu;
 	}
+
+
 }
