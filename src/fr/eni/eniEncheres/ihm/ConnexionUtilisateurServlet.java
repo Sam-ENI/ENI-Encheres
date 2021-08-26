@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.CardDecoManager;
+import fr.eni.eniEncheres.bll.CardDecoManagerFactory;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
 import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
+import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.bo.Retrait;
 import fr.eni.eniEncheres.bo.Utilisateur;
 
 /**
@@ -20,6 +25,8 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 public class ConnexionUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
+	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -48,7 +55,8 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel utilisateurModel = null;
-
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
+				null);
 		if (request.getParameter("Connexion") != null) {
 			Utilisateur u = new Utilisateur();
 			try {
@@ -69,13 +77,19 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			}
 			Boolean isConnecte = true;
 			request.getSession().setAttribute("isConnecte", isConnecte);
-
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (request.getParameter("Inscription") != null) {
 			nextPage = "/WEB-INF/inscription.jsp";
 		}
-
+		
+		
+		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);	}
 

@@ -3,6 +3,8 @@ package fr.eni.eniEncheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.eniEncheres.dal.ArticleVenduDAO;
+import fr.eni.eniEncheres.dal.ArticleVenduDAOFact;
 import fr.eni.eniEncheres.dal.CardDecoDAO;
 import fr.eni.eniEncheres.dal.CardDecoDAOFact;
 import fr.eni.eniEncheres.dal.DALException;
@@ -118,6 +120,25 @@ public class CardDecoManagerImpl implements CardDecoManager {
 				// Pour chaque element de la liste de base
 				for (Card cardSource : lstSource) {
 					// Si l'objet card est déjà présent dans la liste 
+					if (cardAdd.getNoArticle() == cardSource.getNoArticle()) {
+						isInList = true;
+					}
+				}
+				if (!isInList) 
+					lstSource.add(cardAdd);
+			}
+		return lstSource;
+	}
+	
+	@Override
+	public List<String> addSToListIfNotExists(List<String> lstSource, List<String> lstAdd) {
+		boolean isInList = false;
+			// Pour chaque element de la liste a rajouter
+			for (String cardAdd : lstAdd) {
+				isInList = false;
+				// Pour chaque element de la liste de base
+				for (String cardSource : lstSource) {
+					// Si l'objet card est déjà présent dans la liste 
 					if (cardAdd.equals(cardSource)) {
 						isInList = true;
 					}
@@ -126,6 +147,35 @@ public class CardDecoManagerImpl implements CardDecoManager {
 					lstSource.add(cardAdd);
 			}
 		return lstSource;
+	}
+	
+	@Override
+	public List<Card> filterByNomContains(List<Card> lst,String saisie) {
+		List<Card> rst = new ArrayList<>();
+		// Pour chaque element de la liste a rajouter
+			for (Card card : lst) {
+				if (card.getNomArticle().toLowerCase().contains(saisie.toLowerCase())) {
+					rst.add(card);
+				}
+			}
+		return rst;
+	}
+	@Override
+	public List<Card> filterByCateg(List<Card> lst,int cat) throws BLLException {
+		// Je récupère la liste des enchères par catégorie
+		List<Card> lstEnchereByCat = getAllCardByCat(cat);
+		// Je vérifié un par un la catégorie card de la liste en argument 
+		// Si c'est la même catégorie en argument alors je l'ajoute dans une liste temp
+		List<Card> rst = new ArrayList<>();
+		for (Card card : lst) {
+			for (Card cardCat : lstEnchereByCat) {
+				if (card.getNoArticle() == cardCat.getNoArticle()) {
+					rst.add(card);
+				}
+
+			}
+		}
+		return rst;
 	}
 
 }

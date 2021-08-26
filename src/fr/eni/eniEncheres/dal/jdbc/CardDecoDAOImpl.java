@@ -68,7 +68,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 				result.add(card);
@@ -91,7 +91,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 				result.add(card);
@@ -114,7 +114,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 				result.add(card);
@@ -137,7 +137,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 				result.add(card);
@@ -160,7 +160,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 
@@ -184,7 +184,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 
@@ -208,7 +208,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 
@@ -232,7 +232,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 
@@ -256,7 +256,7 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 				Card card = new Card();
 				card.setNoArticle(rs.getInt("no_article"));
 				card.setNomArticle(rs.getString("nom_article"));
-				card.setPrixInitial(rs.getInt("montant_enchere"));
+				card.setMontant_enchere(rs.getInt("montant_enchere"));
 				card.setDateFinEncheres((rs.getDate("date_fin_encheres")).toLocalDate());
 				card.setNomVendeur(rs.getString("pseudo"));
 
