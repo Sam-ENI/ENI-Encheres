@@ -10,7 +10,11 @@
 <title>Modification profil ENI-Enchères</title>
 </head>
 <body>
-<h1>ENI Enchères</h1>
+<div class="cont_logo" >
+	<form action ="ModifierProfilServlet" method="POST">
+     <%@ include file="logo.jsp"%>
+	</form>
+</div>
 <h2 class="titre"> Modifier votre profil </h2>
 <c:if test="${not empty erreurs }">
 <div class="cont_alert">

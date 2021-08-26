@@ -55,6 +55,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel utilisateurModel = null;
+		Boolean isConnecte = false;
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
 				null);
 		if (request.getParameter("Connexion") != null) {
@@ -75,8 +76,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
-			Boolean isConnecte = true;
-			request.getSession().setAttribute("isConnecte", isConnecte);
+			isConnecte = true;
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));
 			} catch (BLLException e) {
@@ -88,7 +88,17 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			nextPage = "/WEB-INF/inscription.jsp";
 		}
 		
+		if (request.getParameter("logo") != null) {
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+			nextPage = "/WEB-INF/index.jsp";
+		}
 		
+		
+		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);	}

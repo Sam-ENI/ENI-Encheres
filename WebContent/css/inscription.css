@@ -1,111 +1,151 @@
 @charset "UTF-8";
-
 body {
-	background-color: #F3EBF6;
-	font-family: 'Ubuntu', sans-serif;
-	border: 2px solid black;
+    background-color: #F3EBF6;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 30px;
+    padding: 0;
 }
 
 .alert {
-	background-color: rgb(242,215,213);
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    background-color: rgb(242, 215, 213);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 800px;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;
     /* Red */
-    color: rgb(192,57,43);
+    color: rgb(192, 57, 43);
     margin-bottom: 15px;
-    border-left: 10px solid rgb(192,57,43);
+    border-left: 10px solid rgb(192, 57, 43);
 }
-
-.cont_alert {
-	width: 100%;
+.cont_logo {
 	display:flex;
 	justify-content: center;
 	align-items: center;
 }
 
+.cont_alert {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 h2 {
-	text-align: center;
-	width: 80vh;
-	border: 2px solid black;
-	font-size: 2em;
-}
-
-.form {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	border: 2px solid black;
-}
-
-.form1 {
-	float: left;
-	border: 2px solid black;
-	width: 50%;
-}
-
-.form1 input {
-	
-}
-
-.form2 {
-	border: 2px solid black;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+    text-decoration: underline;
 }
 
 .btn_form {
-	text-align: center;
+    text-align: center;
 }
 
-.center {
-	text-align: center;
+.input {
+    display: block;
+    width: 200px;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    text-align: center;
+    margin-bottom: 27px;
+    border: 2px solid black;
 }
 
-.input { //
-	display: block;
-	width: 200px;
-	color: rgb(38, 50, 56);
-	font-weight: 700;
-	font-size: 14px;
-	letter-spacing: 1px;
-	background: #ffffff385056;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 20px;
-	outline: none;
-	box-sizing: border-box;
-	border: 2px solid rgba(0, 0, 0, 0.02);
-	maring-top: 10px;
-	margin-bottom: 50px;
-	margin-right: 50px;
-	text-align: center;
-	margin-bottom: 27px;
-	border: 2px solid black;
+.btn_creer,
+.btn_annuler {
+    margin: 16px;
+    padding: 16px;
+    background-color: rgb(112, 111, 111);
+    color: aliceblue;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.2s;
 }
 
-.label {
-	display: inline-block;
-	width: 140px;
-	text-align: left;
+.btn_creer:hover,
+.btn_annuler:hover {
+    background-color: rgb(39, 39, 39);
+    transform: scale(1.2);
 }
 
-.btn_creer, .btn_annuler {
-	margin: 16px;
-	padding: 16px;
-	background-color: rgb(112, 111, 111);
-	color: aliceblue;
-	border: none;
-	border-radius: 20px;
-	font-size: 20px;
-	cursor: pointer;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	transition: all 0.2s;
+.flex-outer {
+    list-style-type: none;
+    padding: 0;
 }
 
-.btn_creer:hover, .btn_annuler:hover {
-	background-color: rgb(39, 39, 39);
-	transform: scale(1.2);
+.flex-outer {
+    max-width: 800px;
+}
+
+.flex-outer li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-outer li label,
+.flex-outer li p {
+    padding: 8px;
+    font-weight: 300;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+.flex-outer>li>label,
+.flex-outer li p {
+    flex: 1 0 140px;
+    max-width: 240px;
+}
+
+.flex-outer>li>label+* {
+    flex: 1 0 220px;
+}
+
+.flex-outer li p {
+    margin: 0;
+}
+
+.flex-outer li button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container * {
+    box-sizing: border-box;
 }

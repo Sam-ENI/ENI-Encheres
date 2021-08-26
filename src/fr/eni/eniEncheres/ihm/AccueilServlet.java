@@ -50,6 +50,7 @@ public class AccueilServlet extends HttpServlet {
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
 				null);
 		Boolean defaultCard = true;
+		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		String nextPage = "/WEB-INF/index.jsp";
 		try {
 			articleModel.setLstCard(managerCard.getAllCardByNom(""));
@@ -63,6 +64,7 @@ public class AccueilServlet extends HttpServlet {
 
 		request.setAttribute("defaultCard", defaultCard);
 		request.setAttribute("articleModel", articleModel);
+		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -218,6 +220,22 @@ public class AccueilServlet extends HttpServlet {
 		if (request.getParameter("deco") != null) {
 			isConnecte = false;
 			utilisateurModel = null;
+		}
+		
+		if (request.getParameter("logo") != null) {
+			try {
+				System.out.println(managerCard.getAllCardByNom(""));
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+				System.out.println(articleModel.getLstCard());
+
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+			if (utilisateurModel != null) 
+				isConnecte = true;
+			else
+				isConnecte = false;
+			nextPage = "/WEB-INF/index.jsp";
 		}
 
 		request.setAttribute("lstvide", lstvide);
