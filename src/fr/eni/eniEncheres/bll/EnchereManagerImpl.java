@@ -1,5 +1,6 @@
 package fr.eni.eniEncheres.bll;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,18 +40,21 @@ public class EnchereManagerImpl implements EnchereManager {
 	}
 
 	@Override
-	public void updateEnchere( EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere , ArticleVenduModel articleModel) throws BLLExceptionList {
+	public void updateEnchere(EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere,
+			ArticleVenduModel articleModel) throws BLLExceptionList {
 		BLLExceptionList exceptionUpdateEnchereVerif = new BLLExceptionList();
 		System.out.println(enchSauvegarde.getMontant_enchere());
 		System.out.println(Integer.parseInt(saisieEnchere));
 		Boolean EnchereSurMOnObjet = true;
-		
-		if(articleModel.getArticleVendu().getUtilisateur().getNoUtilisateur() == enchereModel.getEnchere().getUtilisateur().getNoUtilisateur()) {
+
+		if (articleModel.getArticleVendu().getUtilisateur().getNoUtilisateur() == enchereModel.getEnchere()
+				.getUtilisateur().getNoUtilisateur()) {
 			exceptionUpdateEnchereVerif.ajoutMessage("Vous ne pouvez pas enchérir sur votre objet");
-			 EnchereSurMOnObjet = false;
+			EnchereSurMOnObjet = false;
 		}
-		
-		if(enchereModel.getEnchere().getUtilisateur().getNoUtilisateur() == enchSauvegarde.getUtilisateur() .getNoUtilisateur() & EnchereSurMOnObjet) {
+
+		if (enchereModel.getEnchere().getUtilisateur().getNoUtilisateur() == enchSauvegarde.getUtilisateur()
+				.getNoUtilisateur() & EnchereSurMOnObjet) {
 			exceptionUpdateEnchereVerif.ajoutMessage("Vous avez déjà enchérit sur cet objet");
 		}
 		// on vérifie si le montant saisie est supérieur à l"enchere en cours
@@ -73,13 +77,18 @@ public class EnchereManagerImpl implements EnchereManager {
 
 	}
 
-	public Boolean verifSaisieEnchere(String saisieEnchere) throws BLLExceptionList {
+	public Boolean verifSaisieEnchere(String saisieEnchere, ArticleVenduModel articleModel) throws BLLExceptionList {
 		BLLExceptionList exceptionVerif = new BLLExceptionList();
 		// on vérifie si le champs de saisie n'est pas vide
 		if (saisieEnchere.equals("")) {
 			exceptionVerif.ajoutMessage("La saisie de l'Enchere ne peut pas être vide");
+
 			throw exceptionVerif;
-		} else {
+		} else if (articleModel.getArticleVendu().getDateFinEncheres().isBefore(LocalDate.now())) {
+			exceptionVerif.ajoutMessage("L'enchère est terminée");
+			throw exceptionVerif;
+		}
+		{
 			return true;
 		}
 	}
@@ -143,6 +152,5 @@ public class EnchereManagerImpl implements EnchereManager {
 		}
 
 	}
-
 
 }

@@ -1,7 +1,6 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +96,7 @@ public class AccueilServlet extends HttpServlet {
 
 		// CLICK SUR NOM D'UN ARTICLE
 		if (request.getParameter("btn_Article") != null) {
+			
 			try {
 				articleModel.setArticleVendu(
 						managerArticle.getArticleVenduById(Integer.parseInt(request.getParameter("idArticle"))));

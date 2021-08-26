@@ -22,7 +22,7 @@ public interface EnchereManager {
 
 	public Enchere selectEncherebyNoArticle(Integer noArticle);
 	
-	public Boolean verifSaisieEnchere(String saisieEnchere) throws BLLExceptionList;
+	public Boolean verifSaisieEnchere(String saisieEnchere, ArticleVenduModel articleModel) throws BLLExceptionList;
 
 	
 }
