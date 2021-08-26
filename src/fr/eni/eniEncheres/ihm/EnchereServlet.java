@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.BLLExceptionList;
 import fr.eni.eniEncheres.bll.EnchereManager;
 import fr.eni.eniEncheres.bll.EnchereManagerFact;
 import fr.eni.eniEncheres.bo.ArticleVendu;
@@ -49,25 +50,46 @@ public class EnchereServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/encheres.jsp";
-		EnchereModel enchereModel = new EnchereModel(new Enchere( LocalDateTime.now(),0,new Utilisateur(),new ArticleVendu()),null);
+		EnchereModel enchereModel = new EnchereModel(
+				new Enchere(LocalDateTime.now(), 0, new Utilisateur(), new ArticleVendu()), null);
 		ArticleVenduModel articleModel = (ArticleVenduModel) request.getSession().getAttribute("article");
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
+		Enchere enchSauvegarde = null;
 
 		if (request.getParameter("encherir") != null) {
-			enchereModel.getEnchere().setDateEnchere(LocalDateTime.now());
-			enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("montant_enchere")));
-			enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
-			enchereModel.getEnchere().setArticleVendu(articleModel.getArticleVendu());
-			//daoAticle.getArticleVenduById(Integer.parseInt(rs.getString("no_article")))
+			enchSauvegarde = enchereManager.selectEncherebyNoArticle(articleModel.getArticleVendu().getNoArticle());
 			try {
-				enchereManager.updateEnchere(enchereModel.getEnchere());
-				enchereModel.setLstEncheres(enchereManager.getAllEnchere());
-				System.out.println("liiiiiiiiiiiiii");
-			} catch (BLLException e) {
-				// TODO Auto-generated catch block
+				if (enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere"))) {
+					System.out.println(
+							"LAAA : " + enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere")));
+
+					enchereModel.getEnchere().setDateEnchere(LocalDateTime.now());
+					enchereModel.getEnchere()
+							.setMontant_enchere(Integer.parseInt(request.getParameter("montant_enchere")));
+					enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
+					enchereModel.getEnchere().setArticleVendu(articleModel.getArticleVendu());
+					// daoAticle.getArticleVenduById(Integer.parseInt(rs.getString("no_article")))
+
+					enchereManager.updateEnchere(enchereModel ,enchSauvegarde, request.getParameter("montant_enchere"));
+
+					enchereManager.crediterUtilsateur(articleModel, enchSauvegarde,
+							enchSauvegarde.getMontant_enchere());
+
+					enchereManager.debiterUtilisateur(enchereModel.getEnchere(),
+							Integer.parseInt(request.getParameter("montant_enchere")));
+				}
+			} catch (BLLExceptionList e) {
+				System.out.println(e);
+				request.setAttribute("erreurs", e.getMessages());
+				e.printStackTrace();
+			}catch (BLLException e) {
+				System.out.println(e);
+				request.setAttribute("erreur", e.getMessage());
 				e.printStackTrace();
 			}
+
 		}
+		request.setAttribute("enchSauvegarde", enchSauvegarde);
 		nextPage = "/WEB-INF/encheres.jsp";
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

@@ -68,7 +68,7 @@ public class CreationCompteServlet extends HttpServlet {
 					utilisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
 					utilisateurModel.getUtilisateur().setCredit(0);
 					utilisateurModel.getUtilisateur().setAdministrateur(false);
-					request.getSession().setAttribute("utlisateurModel", utilisateurModel);
+					request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 					Boolean isConnecte = true;
 					request.setAttribute("isConnecte", isConnecte);
 					manager.addUtilisateur(utilisateurModel.getUtilisateur());

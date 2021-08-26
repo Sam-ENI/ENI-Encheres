@@ -7,6 +7,9 @@ import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Enchere;
 
 public interface EnchereDAO {
+	
+	public Enchere selectEncherebyNoArticle (Integer noArticle)throws DALException ;
+
 	public void insert(Enchere enchere) throws DALException ;
 
 	public void update(Enchere enchere)throws DALException;

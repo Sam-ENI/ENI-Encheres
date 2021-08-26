@@ -64,6 +64,7 @@ public class AccueilServlet extends HttpServlet {
 
 		request.setAttribute("defaultCard", defaultCard);
 		request.setAttribute("articleModel", articleModel);
+		
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -190,6 +191,7 @@ public class AccueilServlet extends HttpServlet {
 		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
+		System.out.println("servlet accueil "+ utilisateurModel  );
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
