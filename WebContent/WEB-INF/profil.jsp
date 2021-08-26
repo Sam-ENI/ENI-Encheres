@@ -1,16 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link href="./css/profil.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Votre Profil</title>
 </head>
 <body>
-	<h1 class="logo">ENI-Encheres</h1>
+<div class="cont_logo" >
+	<form action ="ProfilServlet" method="POST">
+     <%@ include file="logo.jsp"%>
+	</form>
+</div>
+
 	<h1>Votre Profil</h1>
 	<div class="form">
 		<form action="ProfilServlet" method="POST">
@@ -21,9 +26,9 @@
 				<p><span class="nomChamps" >Nom : </span><span class="model" >${utilisateurModel.utilisateur.nom}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">Prénom : </span><span class="model" >${utilisateurModel.utilisateur.prenom}</span></p>
+				<p><span class="nomChamps">PrÃ©nom : </span><span class="model" >${utilisateurModel.utilisateur.prenom}</span></p>
 			</div>
-			<div class="center">
+			<div class="center"> 
 				<p><span class="nomChamps">Email : </span><span class="model" >${utilisateurModel.utilisateur.email}</span></p>
 			</div>
 			<div class="center">

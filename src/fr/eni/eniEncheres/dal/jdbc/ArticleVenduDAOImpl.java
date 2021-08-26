@@ -11,6 +11,7 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.bo.Retrait;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dal.UtilisateurDAO;
@@ -23,6 +24,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String SELECT = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente FROM ARTICLES_VENDUS";
 	private final String SELECTBYNUMEROCAT = "SELECT no_categorie,libelle FROM CATEGORIES WHERE no_categorie=?";
 	private final String SELECTARTICLEBYID = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente FROM ARTICLES_VENDUS WHERE no_article=?";
+	private final String SELECT_RETRAIT_BY_NO_ARTICLE = "SELECT rue, code_postal, ville FROM RETRAITS WHERE no_article = ?";
 
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
@@ -101,7 +103,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				// table ArticleVendu
 				articleVendu.setUtilisateur(daoUser.getByID(Integer.parseInt(rs.getString("no_utilisateur"))));
 
-				
 				articleVendu.setCategorie(selectCategorieByNumeroCategorie(rs.getInt("no_categorie")));
 				articleVendu.setEtatVente(Boolean.parseBoolean(rs.getString("etat_vente")));
 				result.add(articleVendu);
@@ -137,6 +138,25 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 
 	@Override
+	public Retrait selectRetraitByNoArticle(Integer noArticle) throws DALException {
+		Retrait ret = new Retrait();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_RETRAIT_BY_NO_ARTICLE);
+			stmt.setInt(1, noArticle);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				ret.setCode_postal(rs.getString("code_postal"));
+				ret.setRue(rs.getString("rue"));
+				ret.setVille(rs.getString("ville"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ret;
+
+	}
+
+	@Override
 	public ArticleVendu getArticleVenduById(int id) throws DALException {
 		ArticleVendu articleVendu = new ArticleVendu();
 		UtilisateurDAO daoUser = UtilisateurDAOFact.getInstanceDAO();
@@ -146,7 +166,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 
-				
 				articleVendu.setNoArticle(rs.getInt("no_article"));
 				articleVendu.setNomArticle(rs.getString("nom_article"));
 				articleVendu.setDescription(rs.getString("description"));
@@ -158,7 +177,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setDateFinEncheres(ld2);
 				articleVendu.setMiseAprix(Integer.parseInt(rs.getString("prix_initial")));
 				articleVendu.setPrixVente(Integer.parseInt(rs.getString("prix_vente")));
-				
+
 				articleVendu.setUtilisateur(daoUser.getByID(Integer.parseInt(rs.getString("no_utilisateur"))));
 				articleVendu.setCategorie(selectCategorieByNumeroCategorie(rs.getInt("no_categorie")));
 				articleVendu.setEtatVente(Boolean.parseBoolean(rs.getString("etat_vente")));
@@ -166,7 +185,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return articleVendu;

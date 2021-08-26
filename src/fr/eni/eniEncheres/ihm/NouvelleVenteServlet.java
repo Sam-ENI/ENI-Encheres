@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.ArticleVenduManagerFactory;
 import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.CardDecoManager;
+import fr.eni.eniEncheres.bll.CardDecoManagerFactory;
 import fr.eni.eniEncheres.bll.EnchereManager;
 import fr.eni.eniEncheres.bll.EnchereManagerFact;
 import fr.eni.eniEncheres.bll.ArticleVenduManager;
@@ -31,6 +33,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleVenduManager manager = ArticleVenduManagerFactory.getInstance();
 	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
+	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -47,6 +50,8 @@ public class NouvelleVenteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/nouvelleVente.jsp";
+		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
+		request.setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
@@ -61,12 +66,10 @@ public class NouvelleVenteServlet extends HttpServlet {
 				null, null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		EnchereModel enchereModel = new EnchereModel(new Enchere( LocalDateTime.now(),0,new Utilisateur(),new ArticleVendu()),null);
-		System.out.println("USER : : " + utilisateurModel);
-		System.out.println("USER : : " + utilisateurModel.getUtilisateur());
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
+				null);
 
 		if (request.getParameter("enregister") != null) {
-			System.out.println(request.getParameter("utilisateurModel"));
-			System.out.println((request.getParameter("categorie")).getClass());
 
 			articleVenduModel.getArticleVendu().setNomArticle(request.getParameter("article"));
 			articleVenduModel.getArticleVendu().setDescription(request.getParameter("description"));
@@ -119,17 +122,12 @@ public class NouvelleVenteServlet extends HttpServlet {
 				break;
 				
 			}
-			System.out.println(localDate);
 			//enchereModel
 			enchereModel.getEnchere().setDateEnchere(ldt);
 			enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("miseAprix")));
 			enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
 			enchereModel.getEnchere().setArticleVendu(articleVenduModel.getArticleVendu());
-			System.out.println(enchereModel + " " + "nouvelleServlet");
-			
-			
-			
-			System.out.println(articleVenduModel);
+
 			try {
 				manager.addArticleVendu(articleVenduModel.getArticleVendu());
 				articleVenduModel.setLstArticles(manager.getAllArticleVendu());
@@ -147,14 +145,20 @@ public class NouvelleVenteServlet extends HttpServlet {
 			
 			//request.getSession().setAttribute("enchereModel", enchereModel);
 			 nextPage = "/WEB-INF/index.jsp";
-			request.getRequestDispatcher(nextPage).forward(request, response);
+		//	 request.setAttribute("utilisateurModel", utilisateurModel);
 		}
 
-		System.out.println(articleVenduModel.getArticleVendu());
+		if (request.getParameter("logo") != null) {
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+			nextPage = "/WEB-INF/index.jsp";
+		}
+		
+		request.setAttribute("articleModel", articleModel);
+		
+		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
-	
-	
-	
-	
-
 }

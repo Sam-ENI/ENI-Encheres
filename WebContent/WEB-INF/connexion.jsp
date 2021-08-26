@@ -1,22 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<link href="./css/connexion.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 
 	<title>Connexion</title>
 	</head>
 	<body>
+	
+	<form action ="ConnexionUtilisateurServlet" method="POST">
+     <%@ include file="logo.jsp"%>
+	</form>
+	
 		<div class="connex_container">
 			<h1> Connexion </h1>
-			<div class="alert <c:if test="${erreur == null}"> hidden </c:if>">
-				<span class="closebtn">${erreur}</span>
+		<c:if test="${not empty erreur }">
+			<div class="cont_alert">
+				<div class="alert">
+					<p style="font-weight: bold;">Il y a des erreurs :</p>
+					<ul>
+						<c:forEach items="${erreur}" var="e">
+							<li>${e }</li>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
+		</c:if>
 			<form action="ConnexionUtilisateurServlet" method="POST">
 			
 
@@ -34,11 +50,11 @@
 						<input type="checkbox" name="rememberUser">
 						<label for="rememberUser">Se souvenir de moi </label>
 					</div>
-					<a href="lienmdpperdu"> Mot de passe oublié ?</a>
+					<a href="lienmdpperdu"> Mot de passe oubliÃ© ?</a>
 				</div>
 			</div>
 			<div class="btn_cont">
-				<input class="btn_insc" type="submit" name="Inscription" value="Créer un compte">
+				<input class="btn_insc" type="submit" name="Inscription" value="CrÃ©er un compte">
 			</div>
 		</form>
 	</div>

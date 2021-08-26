@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.BLLExceptionList;
+import fr.eni.eniEncheres.bll.CardDecoManager;
+import fr.eni.eniEncheres.bll.CardDecoManagerFactory;
 import fr.eni.eniEncheres.bll.EnchereManager;
 import fr.eni.eniEncheres.bll.EnchereManagerFact;
 import fr.eni.eniEncheres.bo.ArticleVendu;
@@ -24,6 +26,7 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 public class EnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
+	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -91,6 +94,17 @@ public class EnchereServlet extends HttpServlet {
 		}
 		request.setAttribute("enchSauvegarde", enchSauvegarde);
 		nextPage = "/WEB-INF/encheres.jsp";
+		if (request.getParameter("logo") != null) {
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+			nextPage = "/WEB-INF/index.jsp";
+		}
+		
+		request.setAttribute("articleModel", articleModel);
+		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 

@@ -19,6 +19,10 @@ header {
     flex-wrap: wrap;
 }
 
+.ok {
+	margin : 0;
+}
+
 .listFilter {
     display: flex;
     flex-wrap: wrap;

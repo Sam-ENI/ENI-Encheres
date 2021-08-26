@@ -55,4 +55,7 @@ public interface CardDecoManager {
 	 */
 	public List<Card> getAllVentesTerminer (Integer no_utilisateur) throws BLLException;
 	List<Card> addToListIfNotExists(List<Card> lstSource, List<Card> lstAdd);
+	List<String> addSToListIfNotExists(List<String> lstSource, List<String> lstAdd);
+	List<Card> filterByNomContains(List<Card> lst, String saisie);
+	List<Card> filterByCateg(List<Card> lst, int cat) throws BLLException;
 }

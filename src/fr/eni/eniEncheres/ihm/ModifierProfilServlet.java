@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.BLLException;
 import fr.eni.eniEncheres.bll.BLLExceptionList;
+import fr.eni.eniEncheres.bll.CardDecoManager;
+import fr.eni.eniEncheres.bll.CardDecoManagerFactory;
 import fr.eni.eniEncheres.bll.UtilisateurManager;
 import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
+import fr.eni.eniEncheres.bo.ArticleVendu;
+import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.bo.Retrait;
 
 /**
  * Servlet implementation class ModifierProfilServlet
@@ -19,6 +24,7 @@ import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 public class ModifierProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
+	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,7 +50,8 @@ public class ModifierProfilServlet extends HttpServlet {
 		String nextPage = "/WEB-INF/modifierProfil.jsp";
 		boolean isConnecte =  true;
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-		
+		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
+				null);
 		// MODIFIER PROFIL
 		if(request.getParameter("enregistrer")!= null) {
 			try {
@@ -84,6 +91,17 @@ public class ModifierProfilServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		if (request.getParameter("logo") != null) {
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+			nextPage = "/WEB-INF/index.jsp";
+		}
+		
+		request.setAttribute("articleModel", articleModel);
 		
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getSession().setAttribute("utlisateurModel", utilisateurModel);

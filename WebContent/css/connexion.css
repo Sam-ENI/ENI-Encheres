@@ -1,8 +1,9 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 
 body {
 	display:flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: #F3EBF6;
@@ -11,9 +12,7 @@ body {
 
 }
 
-
 .login {
-	margin : 10px;
 }
 
 .psd_input {
@@ -72,7 +71,7 @@ transition: all 0.2s;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height : 480px;
+	height: 500px;
 	width:100%;
 	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 	background-color: rgb(245, 245, 245);
@@ -97,14 +96,28 @@ transition: all 0.2s;
 
 /* The alert message box */
 .alert {
-	width: 90%;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: #f44336; /* Red */
-	color: white;
-	margin-bottom: 15px;
-  }
+    background-color: rgb(242, 215, 213);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    /* Red */
+    color: rgb(192, 57, 43);
+    margin-bottom: 15px;
+    border-left: 10px solid rgb(192, 57, 43);
+}
 
+.cont_alert {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   /* The close button */
 .closebtn {
 	margin-left: 15px;
@@ -119,10 +132,16 @@ transition: all 0.2s;
  .hidden {
  display:none
  }
+ 
+ 
 
+ 
+ 
  @media screen and (max-width: 1250px) { 
 	body {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	height: 100%;
 	}
 	.connex_container {

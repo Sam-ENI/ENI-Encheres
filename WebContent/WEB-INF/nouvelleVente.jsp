@@ -1,24 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <link href="./css/nouvelleVente.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nouvelle Vente</title>
 </head>
 
 <body>
-    <h1>ENI-Encheres</h1>
+	<form action ="NouvelleVenteServlet" method="POST">
+     <%@ include file="logo.jsp"%>
+	</form>
 
     <div class="page_cont">
-        <div class="alert <c:if test="${erreur == null}"> hidden </c:if>">
-            <span class="closebtn">${erreur}</span>
-        </div>
+		<c:if test="${not empty erreur }">
+			<div class="cont_alert">
+				<div class="alert">
+					<p style="font-weight: bold;">Il y a des erreurs :</p>
+					<ul>
+						<c:forEach items="${erreur}" var="e">
+							<li>${e }</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</c:if>
         <div class="image">
             <img src="" alt="image de l'objet en vente">
         </div>
@@ -41,7 +52,7 @@
                                         <option value="toutes">Toutes</option>
                                         <option value="informatique">Informatique</option>
                                         <option value="ameublement">Ameublement</option>
-                                        <option value="vetement">Vêtement</option>
+                                        <option value="vetement">VÃªtement</option>
                                         <option value="sportloisirs">Sport&Loisirs</option>
                                     </select>
                             </li>
@@ -49,13 +60,13 @@
                                 <label for="uploader">Photo de l'article </label> <input type="submit" name="uploader" value="uploader photo">
                             </li>
                             <li>
-                                <label for="miseAprix">Mise à prix : </label> <input type="number" name="miseAprix">
+                                <label for="miseAprix">Mise Ã  prix : </label> <input type="number" name="miseAprix">
                             </li>
                             <li>
-                                <label for="debutEnchere">Début de l'enchère :</label> <input type="date" name="dateDebutEncheres">
+                                <label for="debutEnchere">DÃ©but de l'enchÃ¨re :</label> <input type="date" name="dateDebutEncheres">
                             </li>
                             <li>
-                                <label for="finEnchere">Fin de l'enchère : </label> <input type="date" name="dateFinEncheres">
+                                <label for="finEnchere">Fin de l'enchÃ¨re : </label> <input type="date" name="dateFinEncheres">
                             </li>
 
                         </ul>

@@ -1,4 +1,4 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 h2{
 	text-align: center;
@@ -12,6 +12,12 @@ h2{
 .flex-outer {
     max-width: 800px;
     margin: 20px auto;
+}
+
+.cont_logo {
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .flex-outer li {

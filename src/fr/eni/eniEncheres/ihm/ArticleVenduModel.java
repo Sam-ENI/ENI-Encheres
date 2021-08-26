@@ -67,6 +67,7 @@ public class ArticleVenduModel {
 	}
 
 	public void setLstCard(List<Card> lstCard) {
+		System.out.println("LST1 :" + lstCard);
 		this.lstCard = lstCard;
 	}
 

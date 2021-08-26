@@ -2,23 +2,27 @@ package fr.eni.eniEncheres.dto;
 
 import java.time.LocalDate;
 
+/**
+ * @author vbrault2021
+ *
+ */
 public class Card {
 	
 	private Integer noArticle;
 	private String nomArticle;
-	private Integer prixInitial;
+	private Integer montant_enchere;
 	private LocalDate dateFinEncheres;
 	private String nomVendeur;
 	
 	public Card() {
 	}
 
-	public Card(Integer noArticle, String nomArticle, Integer prixInitial, LocalDate dateFinEncheres,
+	public Card(Integer noArticle, String nomArticle, Integer montant_enchere, LocalDate dateFinEncheres,
 			String nomVendeur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
-		this.prixInitial = prixInitial;
+		this.montant_enchere = montant_enchere;
 		this.dateFinEncheres = dateFinEncheres;
 		this.nomVendeur = nomVendeur;
 	}
@@ -39,12 +43,12 @@ public class Card {
 		this.nomArticle = nomArticle;
 	}
 
-	public Integer getPrixInitial() {
-		return prixInitial;
+	public Integer getMontant_enchere() {
+		return montant_enchere;
 	}
 
-	public void setPrixInitial(Integer prixInitial) {
-		this.prixInitial = prixInitial;
+	public void setMontant_enchere(Integer montant_enchere) {
+		this.montant_enchere = montant_enchere;
 	}
 
 	public LocalDate getDateFinEncheres() {
@@ -65,12 +69,9 @@ public class Card {
 
 	@Override
 	public String toString() {
-		return "Card [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", prixInitial=" + prixInitial
-				+ ", dateFinEncheres=" + dateFinEncheres + ", nomVendeur=" + nomVendeur + "]";
+		return "Card [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", montant_enchere=" + montant_enchere
+				+ ", dateFinEncheres=" + dateFinEncheres + ", nomVendeur=" + nomVendeur + "]\n";
 	}
-	
-	
-	
 }
 
 	

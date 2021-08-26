@@ -10,6 +10,11 @@ h1{
     font-size: 5em;
 }
 
+.cont_logo {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
 .center{
     border: 1px solid black;
     margin-left: 20%;
