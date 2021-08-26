@@ -6,7 +6,7 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
-import fr.eni.eniEncheres.bo.Utilisateur;
+import fr.eni.eniEncheres.bo.Retrait;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.ArticleVenduDAOFact;
 import fr.eni.eniEncheres.dal.CardDecoDAO;
@@ -81,6 +81,15 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	public Categorie getCategById (int id) throws BLLException{
 		try {
 			return dao.selectCategorieByNumeroCategorie(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Retrait getRetraitByNoArticle (int id) throws BLLException{
+		try {
+			return dao.getRetraitByNoArticle(id);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}

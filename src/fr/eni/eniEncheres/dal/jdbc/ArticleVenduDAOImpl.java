@@ -138,7 +138,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public Retrait selectRetraitByNoArticle(Integer noArticle) throws DALException {
+	public Retrait getRetraitByNoArticle(Integer noArticle) throws DALException {
 		Retrait ret = new Retrait();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_RETRAIT_BY_NO_ARTICLE);

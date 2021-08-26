@@ -59,6 +59,7 @@ public class EnchereServlet extends HttpServlet {
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		Enchere enchSauvegarde = null;
 
+		
 		if (request.getParameter("encherir") != null) {
 			enchSauvegarde = enchereManager.selectEncherebyNoArticle(articleModel.getArticleVendu().getNoArticle());
 			try {
@@ -104,7 +105,8 @@ public class EnchereServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("articleModel", articleModel);
-		
+		request.setAttribute("enchere", enchSauvegarde);
+		request.setAttribute("retrait", articleModel.getRetrait());
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 

@@ -158,7 +158,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("articleModel", articleModel);
-		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.bo.Retrait;
 import fr.eni.eniEncheres.dto.Card;
 
 public interface ArticleVenduManager {
@@ -27,6 +28,6 @@ public interface ArticleVenduManager {
 	public List<Card> getListArticleByCatAndName(String name, Integer cat) throws BLLException;
 
 	ArticleVendu getArticleVenduById(int id) throws BLLException;
-	
+	public Retrait getRetraitByNoArticle (int id) throws BLLException;
 	public  Boolean verifNouvelArticle (String nom, String desc,Integer prixDepart, LocalDate dateDepart, LocalDate dateFin, String rue, String cp, String ville) throws BLLExceptionList;
 }

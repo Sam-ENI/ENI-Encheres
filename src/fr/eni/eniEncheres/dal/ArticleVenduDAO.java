@@ -19,5 +19,5 @@ public interface ArticleVenduDAO {
 
 	public ArticleVendu getArticleVenduById(int id) throws DALException;
 
-	Retrait selectRetraitByNoArticle(Integer noArticle) throws DALException;
+	Retrait getRetraitByNoArticle(Integer noArticle) throws DALException;
 }
