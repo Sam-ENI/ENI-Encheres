@@ -18,9 +18,18 @@
 	</form>
 
     <div class="page_cont">
-        <div class="alert <c:if test="${erreur == null}"> hidden </c:if>">
-            <span class="closebtn">${erreur}</span>
-        </div>
+		<c:if test="${not empty erreur }">
+			<div class="cont_alert">
+				<div class="alert">
+					<p style="font-weight: bold;">Il y a des erreurs :</p>
+					<ul>
+						<c:forEach items="${erreur}" var="e">
+							<li>${e }</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</c:if>
         <div class="image">
             <img src="" alt="image de l'objet en vente">
         </div>

@@ -147,13 +147,26 @@ h3 {
 /* The alert message box */
 
 .alert {
-    width: 90%;
+    background-color: rgb(242, 215, 213);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #f44336;
+    padding-left: 30px;
     /* Red */
-    color: white;
+    color: rgb(192, 57, 43);
     margin-bottom: 15px;
+    border-left: 10px solid rgb(192, 57, 43);
+}
+
+.cont_alert {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
