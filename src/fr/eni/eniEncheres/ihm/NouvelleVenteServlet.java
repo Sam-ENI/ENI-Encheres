@@ -70,8 +70,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 				null);
 
 		if (request.getParameter("enregister") != null) {
-			System.out.println(request.getParameter("utilisateurModel"));
-			System.out.println((request.getParameter("categorie")).getClass());
 
 			articleVenduModel.getArticleVendu().setNomArticle(request.getParameter("article"));
 			articleVenduModel.getArticleVendu().setDescription(request.getParameter("description"));
@@ -124,17 +122,12 @@ public class NouvelleVenteServlet extends HttpServlet {
 				break;
 				
 			}
-			System.out.println(localDate);
 			//enchereModel
 			enchereModel.getEnchere().setDateEnchere(ldt);
 			enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("miseAprix")));
 			enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
 			enchereModel.getEnchere().setArticleVendu(articleVenduModel.getArticleVendu());
-			System.out.println(enchereModel + " " + "nouvelleServlet");
-			
-			
-			
-			System.out.println(articleVenduModel);
+
 			try {
 				manager.addArticleVendu(articleVenduModel.getArticleVendu());
 				articleVenduModel.setLstArticles(manager.getAllArticleVendu());

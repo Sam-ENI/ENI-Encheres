@@ -1,10 +1,12 @@
 package fr.eni.eniEncheres.bll;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
+import fr.eni.eniEncheres.bo.Utilisateur;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.ArticleVenduDAOFact;
 import fr.eni.eniEncheres.dal.CardDecoDAO;
@@ -126,5 +128,48 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return temp;
 	}
 	
+	
+	public Boolean verifNouvelArticle (String nom, String desc,Integer prixDepart, LocalDate dateDepart, LocalDate dateFin, String rue, String cp, String ville) throws BLLExceptionList {
+		
+		BLLExceptionList exceptionVerif = new BLLExceptionList();
 
+		// Verification pseudo vide
+		if (nom == null) {
+			exceptionVerif.ajoutMessage("Le nom est vide");
+		}
+		// Verification description vide
+		if (desc == null) {
+			exceptionVerif.ajoutMessage("La description est vide");
+		}
+		// Verification prixDepart vide
+		if (prixDepart == null) {
+			exceptionVerif.ajoutMessage("La mise de départ est vide");
+		}
+		// Verification dateDepart vide
+		if (dateDepart == null) {
+			exceptionVerif.ajoutMessage("La date de début est vide");
+		}
+		// Verification dateFin vide
+		if (dateFin == null) {
+			exceptionVerif.ajoutMessage("La date de fin est vide");
+		}
+		// Verification rue vide
+		if (rue == null) {
+			exceptionVerif.ajoutMessage("La rue est vide");
+		}
+		// Verification cp vide
+		if (cp == null) {
+			exceptionVerif.ajoutMessage("Le code postal est vide");
+		}
+		// Verification ville vide
+		if (ville == null) {
+			exceptionVerif.ajoutMessage("La ville est vide");
+		}
+
+		if (!exceptionVerif.estVide()) {
+			throw exceptionVerif;
+		} else {
+			return true;
+		}
+	}
 }

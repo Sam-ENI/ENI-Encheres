@@ -1,5 +1,6 @@
 package fr.eni.eniEncheres.bll;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.eni.eniEncheres.bo.ArticleVendu;
@@ -27,4 +28,5 @@ public interface ArticleVenduManager {
 
 	ArticleVendu getArticleVenduById(int id) throws BLLException;
 	
+	public  Boolean verifNouvelArticle (String nom, String desc,Integer prixDepart, LocalDate dateDepart, LocalDate dateFin, String rue, String cp, String ville) throws BLLExceptionList;
 }
