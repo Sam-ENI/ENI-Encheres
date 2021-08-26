@@ -24,4 +24,5 @@ public interface EnchereManager {
 	
 	public Boolean verifSaisieEnchere(String saisieEnchere) throws BLLExceptionList;
 
+	
 }
