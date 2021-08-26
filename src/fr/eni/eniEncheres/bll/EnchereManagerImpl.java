@@ -39,12 +39,18 @@ public class EnchereManagerImpl implements EnchereManager {
 	}
 
 	@Override
-	public void updateEnchere( EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere) throws BLLExceptionList {
+	public void updateEnchere( EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere , ArticleVenduModel articleModel) throws BLLExceptionList {
 		BLLExceptionList exceptionUpdateEnchereVerif = new BLLExceptionList();
 		System.out.println(enchSauvegarde.getMontant_enchere());
 		System.out.println(Integer.parseInt(saisieEnchere));
+		Boolean EnchereSurMOnObjet = true;
 		
-		if(enchereModel.getEnchere().getUtilisateur().getNoUtilisateur() == enchSauvegarde.getUtilisateur() .getNoUtilisateur()) {
+		if(articleModel.getArticleVendu().getUtilisateur().getNoUtilisateur() == enchereModel.getEnchere().getUtilisateur().getNoUtilisateur()) {
+			exceptionUpdateEnchereVerif.ajoutMessage("Vous ne pouvez pas enchérir sur votre objet");
+			 EnchereSurMOnObjet = false;
+		}
+		
+		if(enchereModel.getEnchere().getUtilisateur().getNoUtilisateur() == enchSauvegarde.getUtilisateur() .getNoUtilisateur() & EnchereSurMOnObjet) {
 			exceptionUpdateEnchereVerif.ajoutMessage("Vous avez déjà enchérit sur cet objet");
 		}
 		// on vérifie si le montant saisie est supérieur à l"enchere en cours
@@ -52,7 +58,7 @@ public class EnchereManagerImpl implements EnchereManager {
 			exceptionUpdateEnchereVerif.ajoutMessage("Le montant saisie doit être supérieur à l'enchère actuelle");
 		}
 		// on verifie si le credit de l'utilisateur est suffisnt pour faire une enchère
-		if ((enchSauvegarde.getUtilisateur().getCredit() - Integer.parseInt(saisieEnchere.trim())) < 0) {
+		if ((enchereModel.getEnchere().getUtilisateur().getCredit() - Integer.parseInt(saisieEnchere.trim())) < 0) {
 			exceptionUpdateEnchereVerif.ajoutMessage("Crédit insuffisant");
 		}
 		try {
