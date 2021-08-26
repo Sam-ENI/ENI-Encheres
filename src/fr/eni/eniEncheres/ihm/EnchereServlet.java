@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
@@ -63,7 +64,8 @@ public class EnchereServlet extends HttpServlet {
 		if (request.getParameter("encherir") != null) {
 			enchSauvegarde = enchereManager.selectEncherebyNoArticle(articleModel.getArticleVendu().getNoArticle());
 			try {
-				if (enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere"))) {
+				if (enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere"),articleModel)) {
+					
 
 					enchereModel.getEnchere().setDateEnchere(LocalDateTime.now());
 					enchereModel.getEnchere()
