@@ -19,7 +19,7 @@ import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente) VALUES (?,?,?,?,?,?,?,?,?)";
-	private final String INSERTRETRAIT = "INSERT INTO RETRAIT  (no_article,rue,code_postal,ville) VALUES(?,?,?,? )";
+	private final String INSERTRETRAIT = "INSERT INTO RETRAITS  (no_article,rue,code_postal,ville) VALUES(?,?,?,? )";
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?, date_debut_encheres=?,date_fin_encheres=?, prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article = ?";
 	private final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article =?";
 	private final String SELECT = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente FROM ARTICLES_VENDUS";

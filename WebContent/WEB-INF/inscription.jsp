@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-<meta charset="UTF-8">
 <link href="./css/inscription.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inscription ENI-EnchÃ¨res</title>
+<title>Inscription ENI-Enchères</title>
 </head>
 
 <body>
@@ -40,9 +39,9 @@
 
 						<li class="center"><label class="label">Pseudo :</label> <input
 							class="input" type="text" name="pseudo"><br></li>
-						<li class="center"><label class="label">PrÃ©nom :</label> <input
+						<li class="center"><label class="label">Prénom :</label> <input
 							class="input" type="text" name="prenom"><br></li>
-						<li class="center"><label class="label">TÃ©lÃ©phone :</label> <input
+						<li class="center"><label class="label">Téléphone :</label> <input
 							class="input" type="text" name="telephone"><br></li>
 						<li class="center"><label class="label">Code Postal :</label>
 							<input class="input" type="text" name="codePostal"><br>
@@ -66,7 +65,7 @@
 			</div>
 
 			<div class=btn_form>
-				<input class="btn_creer" type="submit" name="creer" value="CrÃ©er">
+				<input class="btn_creer" type="submit" name="creer" value="Créer">
 				<input class="btn_annuler" type="submit" name="annuler"
 					value="Annuler">
 			</div>

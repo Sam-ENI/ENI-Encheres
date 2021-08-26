@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <link href="./css/modifierprofil.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modification profil ENI-EnchÃ¨res</title>
+<title>Modification profil ENI-Enchères</title>
 </head>
 <body>
 <div class="cont_logo" >
@@ -45,11 +44,11 @@
 						type="text" name="pseudo" value="${utilisateurModel.utilisateur.pseudo}"><br>
 				</li>
 				<li>
-					<label class="label">PrÃ©nom :</label> <input class="input"
+					<label class="label">Prénom :</label> <input class="input"
 						type="text" name="prenom" value="${utilisateurModel.utilisateur.prenom}"><br>
 				</li>
 				<li>
-					<label class="label">TÃ©lÃ©phone :</label> <input class="input"
+					<label class="label">Téléphone :</label> <input class="input"
 						type="text" name="telephone" value="${utilisateurModel.utilisateur.telephone}"><br>
 				</li>
 				<li>
@@ -87,8 +86,8 @@
 						type="password" name="confirmation"><br>
 				</li>
 				<li class="credit">
-					<p>CrÃ©dit : </p>
-					<p> ${model.utilisateur.credit} points </p>
+					<p>Crédit : </p>
+					<p> ${utilisateurModel.utilisateur.credit} points </p>
 				</li>
 			</ul>
 			

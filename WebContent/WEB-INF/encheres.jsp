@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -7,7 +7,6 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
     <link href="./css/enchere.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nouvelle Vente</title>
@@ -45,8 +44,7 @@
                                     <h3>${enchere.articleVendu.nomArticle}</h3>
                                 </div>
                             </li>
-                                <li>
-                                    <h3>Description : </h3>
+                                <li class="desc">
                                     <div class="text_area">${enchere.articleVendu.description}</div>
                                 </li>
                                 <li>
@@ -58,11 +56,11 @@
                                     <p>${enchere.montant_enchere} pts par ${enchere.utilisateur.pseudo}</p>
                                 </li>
                                 <li>
-                                    <h3>Mise Ã  prix : </h3>
+                                    <h3>Mise à prix : </h3>
                                     <p>${enchere.articleVendu.miseAprix} points</p>
                                 </li>
                                 <li>
-                                    <h3>Fin de l'enchÃ¨re : </h3>
+                                    <h3>Fin de l'enchère : </h3>
                                     <p>${enchere.articleVendu.dateFinEncheres}</p>
                                 </li>
                                 <li>

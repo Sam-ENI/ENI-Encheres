@@ -28,6 +28,14 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 
 	}
+	
+	public void addRetrait(Retrait retrait) throws BLLException {
+		try {
+			dao.insertRetrait(retrait);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void deleteArticleVendu(ArticleVendu articleVendu) throws BLLException {
@@ -138,40 +146,40 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	}
 	
 	
-	public Boolean verifNouvelArticle (String nom, String desc,Integer prixDepart, LocalDate dateDepart, LocalDate dateFin, String rue, String cp, String ville) throws BLLExceptionList {
+	public Boolean verifNouvelArticle (String nom, String desc,String prixDepart, String dateDepart, String dateFin, String rue, String cp, String ville) throws BLLExceptionList {
 		
 		BLLExceptionList exceptionVerif = new BLLExceptionList();
 
 		// Verification pseudo vide
-		if (nom == null) {
+		if (nom.equals("")) {
 			exceptionVerif.ajoutMessage("Le nom est vide");
 		}
 		// Verification description vide
-		if (desc == null) {
+		if (desc.equals("")) {
 			exceptionVerif.ajoutMessage("La description est vide");
 		}
 		// Verification prixDepart vide
-		if (prixDepart == null) {
+		if (prixDepart.equals("")) {
 			exceptionVerif.ajoutMessage("La mise de départ est vide");
 		}
 		// Verification dateDepart vide
-		if (dateDepart == null) {
+		if (dateDepart.equals("")) {
 			exceptionVerif.ajoutMessage("La date de début est vide");
 		}
 		// Verification dateFin vide
-		if (dateFin == null) {
+		if (dateFin.equals("")) {
 			exceptionVerif.ajoutMessage("La date de fin est vide");
 		}
 		// Verification rue vide
-		if (rue == null) {
+		if (rue.equals("")) {
 			exceptionVerif.ajoutMessage("La rue est vide");
 		}
 		// Verification cp vide
-		if (cp == null) {
+		if (cp.equals("")) {
 			exceptionVerif.ajoutMessage("Le code postal est vide");
 		}
 		// Verification ville vide
-		if (ville == null) {
+		if (ville.equals("")) {
 			exceptionVerif.ajoutMessage("La ville est vide");
 		}
 

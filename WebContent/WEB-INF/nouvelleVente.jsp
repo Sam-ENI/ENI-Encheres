@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
     <link href="./css/nouvelleVente.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nouvelle Vente</title>
@@ -18,12 +17,12 @@
 	</form>
 
     <div class="page_cont">
-		<c:if test="${not empty erreur }">
+		<c:if test="${not empty erreurs }">
 			<div class="cont_alert">
 				<div class="alert">
 					<p style="font-weight: bold;">Il y a des erreurs :</p>
 					<ul>
-						<c:forEach items="${erreur}" var="e">
+						<c:forEach items="${erreurs}" var="e">
 							<li>${e }</li>
 						</c:forEach>
 					</ul>
@@ -49,10 +48,9 @@
                             <li>
                                 <p>Categorie :</p>
                                 <select name="categorie" id="categorie">
-                                        <option value="toutes">Toutes</option>
                                         <option value="informatique">Informatique</option>
                                         <option value="ameublement">Ameublement</option>
-                                        <option value="vetement">VÃªtement</option>
+                                        <option value="vetement">Vêtement</option>
                                         <option value="sportloisirs">Sport&Loisirs</option>
                                     </select>
                             </li>
@@ -60,13 +58,13 @@
                                 <label for="uploader">Photo de l'article </label> <input type="submit" name="uploader" value="uploader photo">
                             </li>
                             <li>
-                                <label for="miseAprix">Mise Ã  prix : </label> <input type="number" name="miseAprix">
+                                <label for="miseAprix">Mise à prix : </label> <input type="number" name="miseAprix">
                             </li>
                             <li>
-                                <label for="debutEnchere">DÃ©but de l'enchÃ¨re :</label> <input type="date" name="dateDebutEncheres">
+                                <label for="debutEnchere">Début de l'enchère :</label> <input type="date" name="dateDebutEncheres">
                             </li>
                             <li>
-                                <label for="finEnchere">Fin de l'enchÃ¨re : </label> <input type="date" name="dateFinEncheres">
+                                <label for="finEnchere">Fin de l'enchère : </label> <input type="date" name="dateFinEncheres">
                             </li>
 
                         </ul>

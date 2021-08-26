@@ -102,7 +102,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		try {
 			enchere = daoEnchere.selectEncherebyNoArticle(noArticle);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return enchere;

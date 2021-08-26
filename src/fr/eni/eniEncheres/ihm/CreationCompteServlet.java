@@ -93,6 +93,11 @@ public class CreationCompteServlet extends HttpServlet {
 			
 		}
 		if (request.getParameter("annuler") != null) {
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
 			nextPage = "/WEB-INF/index.jsp";
 			isConnecte = false;
 		}

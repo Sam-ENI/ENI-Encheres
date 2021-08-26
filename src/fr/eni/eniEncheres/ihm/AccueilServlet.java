@@ -103,18 +103,15 @@ public class AccueilServlet extends HttpServlet {
 			try {
 				articleModel.setArticleVendu(
 						managerArticle.getArticleVenduById(Integer.parseInt(request.getParameter("idArticle"))));
-							
+				request.setAttribute("retrait",
+						managerArticle.getRetraitByNoArticle(Integer.parseInt(request.getParameter("idArticle"))));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+			System.out.println("n : " + Integer.parseInt(request.getParameter("idArticle")));
+			System.out.println(enchereManager.selectEncherebyNoArticle(Integer.parseInt(request.getParameter("idArticle"))));
 			Enchere t = enchereManager.selectEncherebyNoArticle(Integer.parseInt(request.getParameter("idArticle")));
-			try {
-				request.setAttribute("retrait", managerArticle.getRetraitByNoArticle(Integer.parseInt(request.getParameter("idArticle"))));
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
+
 			request.getSession().setAttribute("article", articleModel);
 			request.getSession().setAttribute("enchere", t);
 			nextPage = "/WEB-INF/encheres.jsp";
@@ -129,12 +126,10 @@ public class AccueilServlet extends HttpServlet {
 
 				List<Card> lstCard = new ArrayList<>();
 
-
-					// Si un nom est choisie et la catégorie est pas égale à "toutes"
-					if (request.getParameter("nomArticle") != null
-							&& request.getParameter("categorie").equals("toutes")) {
-						lstCard = managerCard.getAllCardByNom(request.getParameter("nomArticle"));
-					}
+				// Si un nom est choisie et la catégorie est pas égale à "toutes"
+				if (request.getParameter("nomArticle") != null && request.getParameter("categorie").equals("toutes")) {
+					lstCard = managerCard.getAllCardByNom(request.getParameter("nomArticle"));
+				}
 
 				// SI une catégorie est choisie et est pas égale à "toutes"
 				if (request.getParameter("categorie") != null && !request.getParameter("categorie").equals("toutes")
@@ -151,9 +146,10 @@ public class AccueilServlet extends HttpServlet {
 				}
 
 				/* BOUTON ACHATS */
-				if (request.getParameter("choixFiltre").equals("achats") && utilisateurModel != null && (request.getParameter("encheresOuvertes") != null
-						|| request.getParameter("encheresEnCours") !=  null
-						|| request.getParameter("encheresRemporte") !=  null)) {
+				if (request.getParameter("choixFiltre").equals("achats") && utilisateurModel != null
+						&& (request.getParameter("encheresOuvertes") != null
+								|| request.getParameter("encheresEnCours") != null
+								|| request.getParameter("encheresRemporte") != null)) {
 					// Enchères ouvertes
 					if (request.getParameter("encheresOuvertes") != null) {
 						List<Card> c = managerCard.getAlltEnchereOuvertes();

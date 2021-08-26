@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<link href="./css/connexion.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -50,11 +49,11 @@
 						<input type="checkbox" name="rememberUser">
 						<label for="rememberUser">Se souvenir de moi </label>
 					</div>
-					<a href="lienmdpperdu"> Mot de passe oubliÃ© ?</a>
+					<a href="lienmdpperdu"> Mot de passe oublié ?</a>
 				</div>
 			</div>
 			<div class="btn_cont">
-				<input class="btn_insc" type="submit" name="Inscription" value="CrÃ©er un compte">
+				<input class="btn_insc" type="submit" name="Inscription" value="Créer un compte">
 			</div>
 		</form>
 	</div>

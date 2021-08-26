@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 	
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <link href="./css/profil.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Votre Profil</title>
@@ -26,7 +25,7 @@
 				<p><span class="nomChamps" >Nom : </span><span class="model" >${utilisateurModel.utilisateur.nom}</span></p>
 			</div>
 			<div class="center">
-				<p><span class="nomChamps">PrÃ©nom : </span><span class="model" >${utilisateurModel.utilisateur.prenom}</span></p>
+				<p><span class="nomChamps">Prénom : </span><span class="model" >${utilisateurModel.utilisateur.prenom}</span></p>
 			</div>
 			<div class="center"> 
 				<p><span class="nomChamps">Email : </span><span class="model" >${utilisateurModel.utilisateur.email}</span></p>

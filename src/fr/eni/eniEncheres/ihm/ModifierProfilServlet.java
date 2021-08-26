@@ -87,6 +87,7 @@ public class ModifierProfilServlet extends HttpServlet {
 				isConnecte = false;
 				utilisateurModel = null;
 				nextPage = "/WEB-INF/index.jsp";
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}

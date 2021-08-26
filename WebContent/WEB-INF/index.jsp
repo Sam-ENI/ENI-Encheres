@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <link href="./css/index.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Accueil</title>
@@ -18,19 +17,19 @@
     			 <%@ include file="logo.jsp"%>
 			</form>		
 			<form action="AccueilServlet" method="POST">
-				<!-- Si utilisateur dÃ©connectÃ©e-->
+				<!-- Si utilisateur déconnectée-->
 				<!-- on cache le bouton "S'inscrire - Se connecter" -->
 				<input
 					class="link <c:if test="${isConnecte == true}"> hidden </c:if>"
 					type="submit" name="insci/connex" value="S'inscrire - Se connecter">
 
-				<!-- Si utilisateur connectÃ©e -->
+				<!-- Si utilisateur connectée -->
 				<nav
 					class="nav  <c:if test="${isConnecte == false}"> hidden </c:if>">
-					<input type="submit" name="Encheres" value="EnchÃ¨res"> <input
+					<input type="submit" name="Encheres" value="Enchères"> <input
 						type="submit" name="vente" value="Vendre un article"> <input
 						type="submit" name="profil" value="Mon profil"> <input
-						type="submit" name="deco" value="DÃ©connexion">
+						type="submit" name="deco" value="Déconnexion">
 				</nav>
 				<!-- FIN -->
 			</form>
@@ -38,13 +37,13 @@
 		<div class="intro">
 			<img src="./img/background.jpg" alt="background header">
 			<div class="txt_head">
-				<h1>DONNER UNE SECONDE VIE Ã€ VOS OBJETS</h1>
-				<span> Gagner des points en mettant en enchÃ¨res vos objets,
+				<h1>DONNER UNE SECONDE VIE À VOS OBJETS</h1>
+				<span> Gagner des points en mettant en enchères vos objets,
 					pour obtenir toutes sortes d'objets ! </span>
 			</div>
 		</div>
 
-		<h1 class="titre">Liste des enchÃ¨res</h1>
+		<h1 class="titre">Liste des enchères</h1>
 		<form action="AccueilServlet" method="post">
 			<div class="cont_rech">
 				<div class="left_cont_rech">
@@ -54,19 +53,19 @@
 								placeholder="Le nom de l'article contient"> <img
 								src="./img/loupe.PNG" alt="Loupe">
 						</div>
-						<div class="desc">RECHERCHE AVANCEÃ‰</div>
+						<div class="desc">RECHERCHE AVANCEÉ</div>
 						<div class="cat">
-							<p>CatÃ©gorie :</p>
+							<p>Catégorie :</p>
 							<select class="selectcat" name="categorie" id="categorie">
 								<option value="toutes">Toutes</option>
 								<option value="1">Informatique</option>
 								<option value="2">Ameublement</option>
-								<option value="3">VÃªtement</option>
+								<option value="3">Vêtement</option>
 								<option value="4">Sport&Loisirs</option>
 							</select>
 						</div>
 
-						<!-- Si utilisateur connectÃ©e -->
+						<!-- Si utilisateur connectée -->
 						<div
 							class="listFilter <c:if test="${isConnecte == false}"> hidden </c:if>">
 							<div class="achats">
@@ -75,18 +74,18 @@
 								<div class="chekbox_cont">
 									<div class="box">
 										<input type="checkbox" name="encheresOuvertes"
-											id="encheresOuvertes"> <label for="encheresOuvertes">EnchÃ¨res
+											id="encheresOuvertes"> <label for="encheresOuvertes">Enchères
 											ouvertes</label>
 									</div>
 									<div class="box">
 										<input type="checkbox" name="encheresEnCours"
 											id="encheresEnCours"> <label for="encheresEnCours">Mes
-											enchÃ¨res en cours</label>
+											enchères en cours</label>
 									</div>
 									<div class="box">
 										<input type="checkbox" name="encheresRemporte"
 											id="encheresRemporte"> <label for="encheresRemporte">Mes
-											enchÃ¨res remportÃ©es</label>
+											enchères remportées</label>
 									</div>
 								</div>
 							</div>
@@ -101,11 +100,11 @@
 									<div class="box">
 										<input type="checkbox" name="venteNonDebute"
 											id="venteNonDebute"> <label for="venteNonDebute">Mes
-											ventes non dÃ©butÃ©es</label>
+											ventes non débutées</label>
 									</div>
 									<div class="box">
 										<input type="checkbox" name="venteTerminer" id="venteTerminer">
-										<label for="venteTerminer">Mes ventes terminÃ©es</label>
+										<label for="venteTerminer">Mes ventes terminées</label>
 									</div>
 								</div>
 							</div>
@@ -120,7 +119,7 @@
 
 			</div>
 		</form>
-		<!-- UNE card enchÃ¨res -->
+		<!-- UNE card enchères -->
 		<c:if test="${lstvide != null}">
 				<h1>${lstvide}</h1>
 			</c:if>
@@ -143,7 +142,7 @@
 							<p>${article.montant_enchere} points</p>
 						</div>
 						<div class="box_card">
-							<p>Fin de l'enchÃ¨re :</p>
+							<p>Fin de l'enchère :</p>
 							<p>${article.dateFinEncheres}</p>
 						</div>
 						<div class="vendeur box_card">
@@ -170,7 +169,7 @@
                             <p> ${article.montant_enchere} points</p>
                         </div>
                         <div class="box_card">
-                            <p> Fin de l'enchÃ¨re : </p>
+                            <p> Fin de l'enchère : </p>
                             <p>${article.dateFinEncheres}</p>
                         </div>
                             <div class="vendeur box_card">
@@ -185,7 +184,7 @@
 </body>
 
 
-<!-- Code JS pour dÃ©sactiver les checkbox en fonction des bouton radio achats/ventes -->
+<!-- Code JS pour désactiver les checkbox en fonction des bouton radio achats/ventes -->
 <script>
 	// Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {

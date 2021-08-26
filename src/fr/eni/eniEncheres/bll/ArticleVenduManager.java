@@ -29,5 +29,6 @@ public interface ArticleVenduManager {
 
 	ArticleVendu getArticleVenduById(int id) throws BLLException;
 	public Retrait getRetraitByNoArticle (int id) throws BLLException;
-	public  Boolean verifNouvelArticle (String nom, String desc,Integer prixDepart, LocalDate dateDepart, LocalDate dateFin, String rue, String cp, String ville) throws BLLExceptionList;
+	public Boolean verifNouvelArticle (String nom, String desc,String prixDepart, String dateDepart, String dateFin, String rue, String cp, String ville) throws BLLExceptionList; 
+	public void addRetrait(Retrait retrait) throws BLLException ;
 }

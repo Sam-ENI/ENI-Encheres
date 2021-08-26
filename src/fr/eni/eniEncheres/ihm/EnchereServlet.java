@@ -59,13 +59,11 @@ public class EnchereServlet extends HttpServlet {
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		Enchere enchSauvegarde = null;
 
-		
+	
 		if (request.getParameter("encherir") != null) {
 			enchSauvegarde = enchereManager.selectEncherebyNoArticle(articleModel.getArticleVendu().getNoArticle());
 			try {
 				if (enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere"))) {
-					System.out.println(
-							"LAAA : " + enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere")));
 
 					enchereModel.getEnchere().setDateEnchere(LocalDateTime.now());
 					enchereModel.getEnchere()
@@ -83,11 +81,9 @@ public class EnchereServlet extends HttpServlet {
 							Integer.parseInt(request.getParameter("montant_enchere")));
 				}
 			} catch (BLLExceptionList e) {
-				System.out.println(e);
 				request.setAttribute("erreurs", e.getMessages());
 				e.printStackTrace();
 			}catch (BLLException e) {
-				System.out.println(e);
 				request.setAttribute("erreur", e.getMessage());
 				e.printStackTrace();
 			}
@@ -105,7 +101,7 @@ public class EnchereServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("articleModel", articleModel);
-		request.setAttribute("enchere", enchSauvegarde);
+		request.setAttribute("enchere", enchereModel);
 		request.setAttribute("retrait", articleModel.getRetrait());
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

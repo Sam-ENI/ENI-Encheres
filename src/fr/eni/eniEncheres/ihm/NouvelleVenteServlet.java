@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniEncheres.bll.ArticleVenduManagerFactory;
 import fr.eni.eniEncheres.bll.BLLException;
+import fr.eni.eniEncheres.bll.BLLExceptionList;
 import fr.eni.eniEncheres.bll.CardDecoManager;
 import fr.eni.eniEncheres.bll.CardDecoManagerFactory;
 import fr.eni.eniEncheres.bll.EnchereManager;
@@ -65,90 +66,113 @@ public class NouvelleVenteServlet extends HttpServlet {
 		ArticleVenduModel articleVenduModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(),
 				null, null);
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
-		EnchereModel enchereModel = new EnchereModel(new Enchere( LocalDateTime.now(),0,new Utilisateur(),new ArticleVendu()),null);
+		EnchereModel enchereModel = new EnchereModel(
+				new Enchere(LocalDateTime.now(), 0, new Utilisateur(), new ArticleVendu()), null);
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
 				null);
 
 		if (request.getParameter("enregister") != null) {
-
-			articleVenduModel.getArticleVendu().setNomArticle(request.getParameter("article"));
-			articleVenduModel.getArticleVendu().setDescription(request.getParameter("description"));
-			// conversion String en LocalDate
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			String date = request.getParameter("dateDebutEncheres");
-			
-			LocalDate localDate = LocalDate.parse(date, formatter);
-			LocalDateTime ldt = localDate.atStartOfDay();
-			
-			articleVenduModel.getArticleVendu().setDateDebutEncheres(localDate);
-			String date2 = request.getParameter("dateFinEncheres");
-			LocalDate localDate2 = LocalDate.parse(date2, formatter);
-			articleVenduModel.getArticleVendu().setDateFinEncheres(localDate2);
-			articleVenduModel.getArticleVendu().setMiseAprix(Integer.parseInt(request.getParameter("miseAprix")));
-			// articleVenduModel.getArticleVendu().setPrixVente(Integer.parseInt(request.getParameter("prixVente")));
-			articleVenduModel.getArticleVendu().setEtatVente(false);
-			articleVenduModel.getArticleVendu().setUtilisateur(utilisateurModel.getUtilisateur());
-			switch (request.getParameter("categorie")) {
-			case "informatique":
-				System.out.println("C RENTRERRRRRR");
-				try {
-					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(1));
-				} catch (BLLException e1) {
-					e1.printStackTrace();
-				}
-				break;
-			case "ameublement":
-				try {
-					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(2));
-				} catch (BLLException e1) {
-					e1.printStackTrace();
-				}
-
-				break;
-			case "vetement":
-				try {
-					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(3));
-				} catch (BLLException e1) {
-					e1.printStackTrace();
-				}
-
-				break;
-			case "sportloisirs":
-				try {
-					articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(4));
-				} catch (BLLException e1) {
-					e1.printStackTrace();
-				}
-				break;
-				
-			}
-			//enchereModel
-			enchereModel.getEnchere().setDateEnchere(ldt);
-			enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("miseAprix")));
-			enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
-			enchereModel.getEnchere().setArticleVendu(articleVenduModel.getArticleVendu());
-
 			try {
-				manager.addArticleVendu(articleVenduModel.getArticleVendu());
-				articleVenduModel.setLstArticles(manager.getAllArticleVendu());
-				enchereManager.addEnchere(enchereModel.getEnchere());
-				enchereModel.setLstEncheres(enchereManager.getAllEnchere());
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
+				if (manager.verifNouvelArticle(request.getParameter("article"), request.getParameter("description"),
+						request.getParameter("miseAprix"), request.getParameter("dateDebutEncheres"),
+						request.getParameter("dateFinEncheres"), request.getParameter("rue"),
+						request.getParameter("codePostal"), request.getParameter("ville"))) {
 
-			// CREATION RETRAIT DE l'ARTICLE
-			articleVenduModel.getRetrait().setRue(request.getParameter("rue"));
-			articleVenduModel.getRetrait().setCode_postal(request.getParameter("codePostal"));
-			articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
-			articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
-			
-			//request.getSession().setAttribute("enchereModel", enchereModel);
-			 nextPage = "/WEB-INF/index.jsp";
-		//	 request.setAttribute("utilisateurModel", utilisateurModel);
+					articleVenduModel.getArticleVendu().setNomArticle(request.getParameter("article"));
+					articleVenduModel.getArticleVendu().setDescription(request.getParameter("description"));
+					// conversion String en LocalDate
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					String date = request.getParameter("dateDebutEncheres");
+
+					LocalDate localDate = LocalDate.parse(date, formatter);
+					LocalDateTime ldt = localDate.atStartOfDay();
+
+					articleVenduModel.getArticleVendu().setDateDebutEncheres(localDate);
+					String date2 = request.getParameter("dateFinEncheres");
+					LocalDate localDate2 = LocalDate.parse(date2, formatter);
+					articleVenduModel.getArticleVendu().setDateFinEncheres(localDate2);
+					articleVenduModel.getArticleVendu()
+							.setMiseAprix(Integer.parseInt(request.getParameter("miseAprix")));
+					// articleVenduModel.getArticleVendu().setPrixVente(Integer.parseInt(request.getParameter("prixVente")));
+					articleVenduModel.getArticleVendu().setEtatVente(false);
+					articleVenduModel.getArticleVendu().setUtilisateur(utilisateurModel.getUtilisateur());
+					switch (request.getParameter("categorie")) {
+					case "informatique":
+						System.out.println("C RENTRERRRRRR");
+						try {
+							articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(1));
+						} catch (BLLException e1) {
+							e1.printStackTrace();
+						}
+						break;
+					case "ameublement":
+						try {
+							articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(2));
+						} catch (BLLException e1) {
+							e1.printStackTrace();
+						}
+
+						break;
+					case "vetement":
+						try {
+							articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(3));
+						} catch (BLLException e1) {
+							e1.printStackTrace();
+						}
+
+						break;
+					case "sportloisirs":
+						try {
+							articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(4));
+						} catch (BLLException e1) {
+							e1.printStackTrace();
+						}
+						break;
+
+					}
+					// enchereModel
+					enchereModel.getEnchere().setDateEnchere(ldt);
+					enchereModel.getEnchere().setMontant_enchere(Integer.parseInt(request.getParameter("miseAprix")));
+					enchereModel.getEnchere().setUtilisateur(utilisateurModel.getUtilisateur());
+					enchereModel.getEnchere().setArticleVendu(articleVenduModel.getArticleVendu());
+
+					try {
+						manager.addArticleVendu(articleVenduModel.getArticleVendu());
+						articleVenduModel.setLstArticles(manager.getAllArticleVendu());
+						enchereManager.addEnchere(enchereModel.getEnchere());
+						enchereModel.setLstEncheres(enchereManager.getAllEnchere());
+					} catch (BLLException e) {
+						e.printStackTrace();
+					}
+
+					// CREATION RETRAIT DE l'ARTICLE
+					articleVenduModel.getRetrait().setRue(request.getParameter("rue"));
+					articleVenduModel.getRetrait().setCode_postal(request.getParameter("codePostal"));
+					articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
+					articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
+					System.out.println(articleVenduModel.getRetrait());
+					try {
+						manager.addRetrait(articleVenduModel.getRetrait());
+					} catch (BLLException e) {
+						e.printStackTrace();
+					}
+					try {
+						articleModel.setLstCard(managerCard.getAllCardByNom(""));
+					} catch (BLLException e1) {
+						e1.printStackTrace();
+					}
+					// request.getSession().setAttribute("enchereModel", enchereModel);
+					nextPage = "/WEB-INF/index.jsp";
+					// request.setAttribute("utilisateurModel", utilisateurModel);
+				}
+			} catch (BLLExceptionList e2) {
+				e2.printStackTrace();
+				request.setAttribute("erreurs", e2.getMessages());
+			}
 		}
 
-		if (request.getParameter("logo") != null) {
+		
+		if (request.getParameter("annuler") != null) {
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));
 			} catch (BLLException e1) {
@@ -157,6 +181,15 @@ public class NouvelleVenteServlet extends HttpServlet {
 			nextPage = "/WEB-INF/index.jsp";
 		}
 		
+		if (request.getParameter("logo") != null) {
+			try {
+				articleModel.setLstCard(managerCard.getAllCardByNom(""));
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+			nextPage = "/WEB-INF/index.jsp";
+		}
+
 		request.setAttribute("articleModel", articleModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

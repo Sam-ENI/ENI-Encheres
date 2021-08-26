@@ -25,7 +25,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	private final String SELECT = "SELECT no_utilisateur,no_article,date_enchere,montant_enchere FROM ENCHERES";
 	private final String SELECTBYID = "SELECT no_categorie,libelle FROM ENCHERES WHERE no_categorie=?";
 	private final String SELECTBYNOARTICLE = "SELECT no_utilisateur,no_article,date_enchere,montant_enchere FROM ENCHERES WHERE no_article=? ";
-
+	
 	@Override
 	public void insert(Enchere enchere) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -117,14 +117,13 @@ public class EnchereDAOImpl implements EnchereDAO {
 		ArticleVenduDAO daoAticle = ArticleVenduDAOFact.getInstanceDAO();
 		Enchere enchere = new Enchere();
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECT);
+			PreparedStatement stmt = con.prepareStatement(SELECTBYNOARTICLE);
+			stmt.setInt(1, noArticle);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-				
 				enchere.setUtilisateur(daoUser.getByID(Integer.parseInt(rs.getString("no_utilisateur"))));
 				enchere.setArticleVendu(daoAticle.getArticleVenduById(Integer.parseInt(rs.getString("no_article"))));
 				Timestamp ts = rs.getTimestamp("date_enchere");
-
 				enchere.setDateEnchere(ts.toLocalDateTime());
 				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
 			}
@@ -133,8 +132,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 				throw new DALException("Problème SQL");
 			}
 		return enchere;
-			
-	
 		}
 		
 
