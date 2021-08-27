@@ -84,12 +84,9 @@ public class EnchereManagerImpl implements EnchereManager {
 		// on vérifie si le champs de saisie n'est pas vide
 		if (saisieEnchere.equals("")) {
 			exceptionVerif.ajoutMessage("La saisie de l'Enchere ne peut pas être vide");
-
+			System.out.println(articleModel.getArticleVendu().getDateFinEncheres());
 			throw exceptionVerif;
-		} else if (articleModel.getArticleVendu().getDateFinEncheres().isBefore(LocalDate.now())) {
-			exceptionVerif.ajoutMessage("L'enchère est terminée");
-			throw exceptionVerif;
-		}
+		} 
 		{
 			return true;
 		}

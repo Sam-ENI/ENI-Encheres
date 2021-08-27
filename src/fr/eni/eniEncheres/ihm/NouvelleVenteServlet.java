@@ -85,11 +85,12 @@ public class NouvelleVenteServlet extends HttpServlet {
 
 					LocalDate localDate = LocalDate.parse(date, formatter);
 					LocalDateTime ldt = localDate.atStartOfDay();
-
 					articleVenduModel.getArticleVendu().setDateDebutEncheres(localDate);
+					
 					String date2 = request.getParameter("dateFinEncheres");
 					LocalDate localDate2 = LocalDate.parse(date2, formatter);
 					articleVenduModel.getArticleVendu().setDateFinEncheres(localDate2);
+					
 					articleVenduModel.getArticleVendu()
 							.setMiseAprix(Integer.parseInt(request.getParameter("miseAprix")));
 					// articleVenduModel.getArticleVendu().setPrixVente(Integer.parseInt(request.getParameter("prixVente")));
