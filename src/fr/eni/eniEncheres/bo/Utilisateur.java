@@ -1,5 +1,11 @@
 package fr.eni.eniEncheres.bo;
 
+/**
+ * Classe de l'utilisateur
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class Utilisateur {
 	private Integer noUtilisateur;
 	private String pseudo;

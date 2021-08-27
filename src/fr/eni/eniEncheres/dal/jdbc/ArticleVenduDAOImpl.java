@@ -17,10 +17,15 @@ import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dal.UtilisateurDAO;
 import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
+/**
+ * Classe d'implémentation de la DAO de l'article
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente) VALUES (?,?,?,?,?,?,?,?,?)";
 	private final String INSERTRETRAIT = "INSERT INTO RETRAITS  (no_article,rue,code_postal,ville) VALUES(?,?,?,? )";
-	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?, date_debut_encheres=?,date_fin_encheres=?, prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article = ?";
 	private final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article =?";
 	private final String SELECT = "SELECT no_article,nom_article,description, date_debut_encheres,date_fin_encheres, prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente FROM ARTICLES_VENDUS";
 	private final String SELECTBYNUMEROCAT = "SELECT no_categorie,libelle FROM CATEGORIES WHERE no_categorie=?";
@@ -58,6 +63,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		}
 
 	}
+
 	@Override
 	public void insertRetrait(Retrait retrait) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -65,18 +71,11 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setInt(1, retrait.getArticleVendu().getNoArticle());
 			stmt.setString(2, retrait.getArticleVendu().getUtilisateur().getRue());
 			stmt.setString(3, retrait.getArticleVendu().getUtilisateur().getCodePostal());
-			stmt.setString(4,retrait.getArticleVendu().getUtilisateur().getVille());
+			stmt.setString(4, retrait.getArticleVendu().getUtilisateur().getVille());
 			stmt.executeUpdate();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	}
-	
-	@Override
-	public void update(ArticleVendu articleVendu) {
-		// TODO Auto-generated method stub
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -145,7 +144,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return categorie;
@@ -204,6 +202,5 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		}
 		return articleVendu;
 	}
-
 
 }

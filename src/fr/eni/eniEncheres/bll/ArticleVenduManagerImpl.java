@@ -1,6 +1,5 @@
 package fr.eni.eniEncheres.bll;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,21 +13,27 @@ import fr.eni.eniEncheres.dal.CardDecoDAOFact;
 import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dto.Card;
 
+/**
+ * Classe de l'implementation du manager
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	ArticleVenduDAO dao = ArticleVenduDAOFact.getInstanceDAO();
 	CardDecoDAO daoCard = CardDecoDAOFact.getInstanceDAO();
-	
+
 	@Override
 	public void addArticleVendu(ArticleVendu articleVendu) throws BLLException {
 		try {
 			dao.insert(articleVendu);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	
+
+	@Override
 	public void addRetrait(Retrait retrait) throws BLLException {
 		try {
 			dao.insertRetrait(retrait);
@@ -42,18 +47,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		try {
 			dao.delete(articleVendu);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	@Override
-	public void updateArticleVendu(ArticleVendu articleVendu) throws BLLException {
-		try {
-			dao.update(articleVendu);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -67,26 +60,25 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		System.out.println(listArticleVendus);
 		return listArticleVendus;
 	}
-	
-	
-	public ArticleVendu getArticleByName (String name) throws BLLException{
+
+	@Override
+	public ArticleVendu getArticleByName(String name) throws BLLException {
 		try {
 			for (ArticleVendu av : dao.getAll()) {
 				if (av.getNomArticle().equals(name)) {
 					return av;
 				}
 			}
-			// TODO : Ajouter exception BLL
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	public Categorie getCategById (int id) throws BLLException{
+
+	@Override
+	public Categorie getCategById(int id) throws BLLException {
 		try {
 			return dao.selectCategorieByNumeroCategorie(id);
 		} catch (DALException e) {
@@ -94,8 +86,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 		return null;
 	}
-	
-	public Retrait getRetraitByNoArticle (int id) throws BLLException{
+
+	@Override
+	public Retrait getRetraitByNoArticle(int id) throws BLLException {
 		try {
 			return dao.getRetraitByNoArticle(id);
 		} catch (DALException e) {
@@ -104,6 +97,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return null;
 	}
 
+	@Override
 	public ArticleVendu getArticleVenduById(int id) throws BLLException {
 		try {
 			return dao.getArticleVenduById(id);
@@ -112,10 +106,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 		return null;
 	}
-	
-	
-	
-	public List<Card> getListArticleByName(String name)throws BLLException {
+
+	@Override
+	public List<Card> getListArticleByName(String name) throws BLLException {
 		List<Card> temp = new ArrayList<>();
 		try {
 			temp = daoCard.selectAllByNomArt(name);
@@ -124,8 +117,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 		return temp;
 	}
-	
-	public List<Card> getListArticleByCat(Integer cat) throws BLLException{
+
+	@Override
+	public List<Card> getListArticleByCat(Integer cat) throws BLLException {
 		List<Card> temp = new ArrayList<>();
 		try {
 			temp = daoCard.selectAllByCat(cat);
@@ -134,7 +128,8 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 		return temp;
 	}
-	
+
+	@Override
 	public List<Card> getListArticleByCatAndName(String name, Integer cat) throws BLLException {
 		List<Card> temp = new ArrayList<>();
 		try {
@@ -144,10 +139,11 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 		return temp;
 	}
-	
-	
-	public Boolean verifNouvelArticle (String nom, String desc,String prixDepart, String dateDepart, String dateFin, String rue, String cp, String ville) throws BLLExceptionList {
-		
+
+	@Override
+	public Boolean verifNouvelArticle(String nom, String desc, String prixDepart, String dateDepart, String dateFin,
+			String rue, String cp, String ville) throws BLLExceptionList {
+
 		BLLExceptionList exceptionVerif = new BLLExceptionList();
 
 		// Verification pseudo vide

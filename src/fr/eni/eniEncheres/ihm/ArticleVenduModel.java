@@ -9,6 +9,12 @@ import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Retrait;
 import fr.eni.eniEncheres.dto.Card;
 
+/**
+ * Classe du model de l'article
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class ArticleVenduModel {
 	private ArticleVendu articleVendu;
 	private Retrait retrait;
@@ -17,7 +23,6 @@ public class ArticleVenduModel {
 	private List<Card> lstCard = new ArrayList<>();
 
 	public ArticleVenduModel() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ArticleVenduModel(ArticleVendu articleVendu, Retrait retrait, Categorie categorie,

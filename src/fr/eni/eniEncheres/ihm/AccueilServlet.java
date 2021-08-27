@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,6 @@ import fr.eni.eniEncheres.bll.CardDecoManager;
 import fr.eni.eniEncheres.bll.CardDecoManagerFactory;
 import fr.eni.eniEncheres.bll.EnchereManager;
 import fr.eni.eniEncheres.bll.EnchereManagerFact;
-import fr.eni.eniEncheres.bll.UtilisateurManager;
-import fr.eni.eniEncheres.bll.UtilisateurManagerFactory;
 import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Enchere;
@@ -31,7 +30,6 @@ import fr.eni.eniEncheres.dto.Card;
 @WebServlet("/AccueilServlet")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
 	private ArticleVenduManager managerArticle = ArticleVenduManagerFactory.getInstance();
 	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
 	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
@@ -41,7 +39,6 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	public AccueilServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -100,7 +97,7 @@ public class AccueilServlet extends HttpServlet {
 
 		// CLICK SUR NOM D'UN ARTICLE
 		if (request.getParameter("btn_Article") != null) {
-			
+
 			try {
 				articleModel.setArticleVendu(
 						managerArticle.getArticleVenduById(Integer.parseInt(request.getParameter("idArticle"))));
@@ -109,8 +106,6 @@ public class AccueilServlet extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			System.out.println("n : " + Integer.parseInt(request.getParameter("idArticle")));
-			System.out.println(enchereManager.selectEncherebyNoArticle(Integer.parseInt(request.getParameter("idArticle"))));
 			Enchere t = enchereManager.selectEncherebyNoArticle(Integer.parseInt(request.getParameter("idArticle")));
 
 			request.getSession().setAttribute("article", articleModel);
@@ -213,7 +208,6 @@ public class AccueilServlet extends HttpServlet {
 					lstCard = managerCard.getAllCardByNom("");
 				}
 
-				// TODO : A Rajouter dans toutes les redirection à la page d'accueil
 				articleModel.setLstCard(lstCard);
 
 			} catch (BLLException e) {

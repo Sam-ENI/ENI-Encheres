@@ -5,6 +5,12 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.Utilisateur;
 
+/**
+ * Classe du modèle de l'utilisateur
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class UtilisateurModel {
 
 	private Utilisateur utilisateur;

@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.dal.jdbc;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Enchere;
 import fr.eni.eniEncheres.dal.ArticleVenduDAO;
 import fr.eni.eniEncheres.dal.ArticleVenduDAOFact;
@@ -18,14 +18,18 @@ import fr.eni.eniEncheres.dal.EnchereDAO;
 import fr.eni.eniEncheres.dal.UtilisateurDAO;
 import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
+/**
+ * Classe de l'implémentation de l'enchère
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ */
 public class EnchereDAOImpl implements EnchereDAO {
 	private final String INSERT = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere) VALUES (?,?,?,?)";
 	private final String UPDATE = "UPDATE ENCHERES SET no_utilisateur =?,no_article=?,date_enchere=?, montant_enchere=? WHERE no_article=?";
 	private final String DELETE = "DELETE FROM ENCHERES WHERE no_utilisateur =? and no_article =?";
 	private final String SELECT = "SELECT no_utilisateur,no_article,date_enchere,montant_enchere FROM ENCHERES";
-	private final String SELECTBYID = "SELECT no_categorie,libelle FROM ENCHERES WHERE no_categorie=?";
 	private final String SELECTBYNOARTICLE = "SELECT no_utilisateur,no_article,date_enchere,montant_enchere FROM ENCHERES WHERE no_article=? ";
-	
+
 	@Override
 	public void insert(Enchere enchere) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -40,7 +44,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -60,7 +63,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -106,12 +108,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 	}
 
 	@Override
-	public Categorie selectEnchereByID(Integer numeroEnchere) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Enchere selectEncherebyNoArticle(Integer noArticle) throws DALException {
 		UtilisateurDAO daoUser = UtilisateurDAOFact.getInstanceDAO();
 		ArticleVenduDAO daoAticle = ArticleVenduDAOFact.getInstanceDAO();
@@ -127,12 +123,11 @@ public class EnchereDAOImpl implements EnchereDAO {
 				enchere.setDateEnchere(ts.toLocalDateTime());
 				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
 			}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DALException("Problème SQL");
-			}
-		return enchere;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Problème SQL");
 		}
-		
+		return enchere;
+	}
 
 }

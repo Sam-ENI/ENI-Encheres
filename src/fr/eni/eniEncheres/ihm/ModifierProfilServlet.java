@@ -26,37 +26,41 @@ public class ModifierProfilServlet extends HttpServlet {
 	private UtilisateurManager manager = UtilisateurManagerFactory.getInstance();
 	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ModifierProfilServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ModifierProfilServlet() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/modifierProfil.jsp";
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/modifierProfil.jsp";
-		boolean isConnecte =  true;
+		boolean isConnecte = true;
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
 				null);
 		// MODIFIER PROFIL
-		if(request.getParameter("enregistrer")!= null) {
+		if (request.getParameter("enregistrer") != null) {
 			try {
 				try {
-					if(manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),request.getParameter("pseudo"),request.getParameter("email"))) {
+					if (manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),
+							request.getParameter("pseudo"), request.getParameter("email"))) {
 						utilisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
 						utilisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
 						utilisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
@@ -68,7 +72,7 @@ public class ModifierProfilServlet extends HttpServlet {
 						utilisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
 						manager.updateUtilisateur(utilisateurModel.getUtilisateur());
 						request.setAttribute("msgModif", "Votre profil à été modifié");
-						nextPage = "/WEB-INF/modifierProfil.jsp";	
+						nextPage = "/WEB-INF/modifierProfil.jsp";
 					}
 				} catch (BLLExceptionList e) {
 					request.setAttribute("erreurs", e.getMessages());
@@ -76,12 +80,13 @@ public class ModifierProfilServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			} catch (BLLException e) {
-				request.setAttribute("erreur", e.getMessage());;
+				request.setAttribute("erreur", e.getMessage());
+				;
 			}
 		}
-		
+
 		// BOUTON SUPPRIMER LE COMPTE
-		if (request.getParameter("supprimerCompte")!= null) {
+		if (request.getParameter("supprimerCompte") != null) {
 			try {
 				manager.deleteUtilisateur(utilisateurModel.getUtilisateur());
 				isConnecte = false;
@@ -92,7 +97,7 @@ public class ModifierProfilServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		if (request.getParameter("logo") != null) {
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));
@@ -101,9 +106,9 @@ public class ModifierProfilServlet extends HttpServlet {
 			}
 			nextPage = "/WEB-INF/index.jsp";
 		}
-		
+
 		request.setAttribute("articleModel", articleModel);
-		
+
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.getSession().setAttribute("utlisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);

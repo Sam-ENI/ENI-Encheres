@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +25,6 @@ import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Enchere;
 import fr.eni.eniEncheres.bo.Retrait;
 import fr.eni.eniEncheres.bo.Utilisateur;
-import fr.eni.eniEncheres.dal.EnchereDAOFact;
 
 /**
  * Servlet implementation class NouvelleVenteServlet
@@ -41,7 +41,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 	 */
 	public NouvelleVenteServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -98,7 +97,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 					articleVenduModel.getArticleVendu().setUtilisateur(utilisateurModel.getUtilisateur());
 					switch (request.getParameter("categorie")) {
 					case "informatique":
-						System.out.println("C RENTRERRRRRR");
 						try {
 							articleVenduModel.getArticleVendu().setCategorie(manager.getCategById(1));
 						} catch (BLLException e1) {
@@ -150,7 +148,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 					articleVenduModel.getRetrait().setCode_postal(request.getParameter("codePostal"));
 					articleVenduModel.getRetrait().setVille(request.getParameter("ville"));
 					articleVenduModel.getRetrait().setArticleVendu(articleVenduModel.getArticleVendu());
-					System.out.println(articleVenduModel.getRetrait());
 					try {
 						manager.addRetrait(articleVenduModel.getRetrait());
 					} catch (BLLException e) {
@@ -171,7 +168,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 			}
 		}
 
-		
 		if (request.getParameter("annuler") != null) {
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));
@@ -180,7 +176,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 			}
 			nextPage = "/WEB-INF/index.jsp";
 		}
-		
+
 		if (request.getParameter("logo") != null) {
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));

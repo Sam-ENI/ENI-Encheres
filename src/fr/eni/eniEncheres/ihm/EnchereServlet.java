@@ -1,7 +1,7 @@
 package fr.eni.eniEncheres.ihm;
 
 import java.io.IOException;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
@@ -34,7 +34,6 @@ public class EnchereServlet extends HttpServlet {
 	 */
 	public EnchereServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -60,12 +59,10 @@ public class EnchereServlet extends HttpServlet {
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		Enchere enchSauvegarde = null;
 
-	
 		if (request.getParameter("encherir") != null) {
 			enchSauvegarde = enchereManager.selectEncherebyNoArticle(articleModel.getArticleVendu().getNoArticle());
 			try {
-				if (enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere"),articleModel)) {
-					
+				if (enchereManager.verifSaisieEnchere(request.getParameter("montant_enchere"), articleModel)) {
 
 					enchereModel.getEnchere().setDateEnchere(LocalDateTime.now());
 					enchereModel.getEnchere()
@@ -74,7 +71,8 @@ public class EnchereServlet extends HttpServlet {
 					enchereModel.getEnchere().setArticleVendu(articleModel.getArticleVendu());
 					// daoAticle.getArticleVenduById(Integer.parseInt(rs.getString("no_article")))
 
-					enchereManager.updateEnchere(enchereModel ,enchSauvegarde, request.getParameter("montant_enchere"),articleModel);
+					enchereManager.updateEnchere(enchereModel, enchSauvegarde, request.getParameter("montant_enchere"),
+							articleModel);
 
 					enchereManager.crediterUtilsateur(articleModel, enchSauvegarde,
 							enchSauvegarde.getMontant_enchere());
@@ -85,7 +83,7 @@ public class EnchereServlet extends HttpServlet {
 			} catch (BLLExceptionList e) {
 				request.setAttribute("erreurs", e.getMessages());
 				e.printStackTrace();
-			}catch (BLLException e) {
+			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
 				e.printStackTrace();
 			}
@@ -101,7 +99,7 @@ public class EnchereServlet extends HttpServlet {
 			}
 			nextPage = "/WEB-INF/index.jsp";
 		}
-		
+
 		request.setAttribute("articleModel", articleModel);
 		request.setAttribute("enchere", enchereModel);
 		request.setAttribute("retrait", articleModel.getRetrait());

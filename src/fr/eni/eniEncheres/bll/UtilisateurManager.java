@@ -4,6 +4,12 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.Utilisateur;
 
+/**
+ * Interface du manager d'utilisateur
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public interface UtilisateurManager {
 
 	/**

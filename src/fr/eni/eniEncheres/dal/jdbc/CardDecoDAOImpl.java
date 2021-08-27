@@ -1,6 +1,7 @@
 package fr.eni.eniEncheres.dal.jdbc;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +10,13 @@ import java.util.List;
 import fr.eni.eniEncheres.dal.CardDecoDAO;
 import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dto.Card;
-import fr.eni.eniEncheres.dto.Card;
 
+/**
+ * Classe de l'implémentation de la DAO de Card
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class CardDecoDAOImpl implements CardDecoDAO {
 	private final String SELECT_ALL_BY_NOM = ("SELECT av.no_article, nom_article, montant_enchere, date_fin_encheres, u.pseudo FROM ENCHERES e"
 			+ " INNER JOIN ARTICLES_VENDUS av ON e.no_article = av.no_article"
@@ -131,7 +137,6 @@ public class CardDecoDAOImpl implements CardDecoDAO {
 		List<Card> result = new ArrayList<>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_ENCHERE_OUVERTES);
-			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Card card = new Card();

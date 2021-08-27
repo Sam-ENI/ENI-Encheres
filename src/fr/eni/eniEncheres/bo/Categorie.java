@@ -1,5 +1,11 @@
 package fr.eni.eniEncheres.bo;
 
+/**
+ * Classe de la catégorie
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class Categorie {
 	Integer noCategorie;
 	String libelle;

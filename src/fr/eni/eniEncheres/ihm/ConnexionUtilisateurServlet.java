@@ -52,7 +52,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String nextPage = "/WEB-INF/connexion.jsp";
 		UtilisateurModel utilisateurModel = null;
 		Boolean isConnecte = false;
@@ -61,7 +61,8 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		if (request.getParameter("Connexion") != null) {
 			Utilisateur u = new Utilisateur();
 			try {
-				// on récupère le paramètre pseudoEmail et on vérifie s'il est pseudo ou email puis si il existe en BDD
+				// on récupère le paramètre pseudoEmail et on vérifie s'il est pseudo ou email
+				// puis si il existe en BDD
 				if (request.getParameter("pseudoEmail").matches(".+@.+\\.[a-z]+")) {
 					u = manager.isUserExistEmail(request.getParameter("pseudoEmail"), request.getParameter("mdp"));
 				} else {
@@ -87,7 +88,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		if (request.getParameter("Inscription") != null) {
 			nextPage = "/WEB-INF/inscription.jsp";
 		}
-		
+
 		if (request.getParameter("logo") != null) {
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));
@@ -96,11 +97,11 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			}
 			nextPage = "/WEB-INF/index.jsp";
 		}
-		
-		
+
 		request.getSession().setAttribute("isConnecte", isConnecte);
 		request.setAttribute("articleModel", articleModel);
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
-		request.getRequestDispatcher(nextPage).forward(request, response);	}
+		request.getRequestDispatcher(nextPage).forward(request, response);
+	}
 
 }

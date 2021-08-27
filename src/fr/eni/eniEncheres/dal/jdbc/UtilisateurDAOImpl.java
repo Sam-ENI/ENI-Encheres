@@ -12,6 +12,11 @@ import fr.eni.eniEncheres.bo.Utilisateur;
 import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dal.UtilisateurDAO;
 
+/**
+ * Classe de l'implémentation de la DAO de l'utilisateur
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ */
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String INSERT = "INSERT INTO UTILISATEURS(pseudo,nom, prenom,email, telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? WHERE no_utilisateur = ?";
@@ -32,7 +37,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(7, utilisateur.getCodePostal());
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
-			stmt.setInt(10,0);
+			stmt.setInt(10, 0);
 			stmt.setBoolean(11, utilisateur.getAdministrateur());
 
 			int nb = stmt.executeUpdate();
@@ -64,7 +69,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(9, utilisateur.getMotDePasse());
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.getAdministrateur());
-			stmt.setInt(12,utilisateur.getNoUtilisateur());
+			stmt.setInt(12, utilisateur.getNoUtilisateur());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,7 +96,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Utilisateur utilisateur = new Utilisateur();
 				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
@@ -105,8 +110,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-			
-				
+
 				result.add(utilisateur);
 			}
 		} catch (SQLException e) {
@@ -115,27 +119,27 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public Utilisateur getByID(int nbUtilisateur) throws fr.eni.eniEncheres.dal.DALException {
 		Utilisateur utilisateur = new Utilisateur();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
-			stmt.setInt(1,nbUtilisateur);
+			stmt.setInt(1, nbUtilisateur);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-			utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-			utilisateur.setPseudo(rs.getString("pseudo"));
-			utilisateur.setNom(rs.getString("nom"));
-			utilisateur.setPrenom(rs.getString("prenom"));
-			utilisateur.setEmail(rs.getString("email"));
-			utilisateur.setTelephone(rs.getString("telephone"));
-			utilisateur.setRue(rs.getString("rue"));
-			utilisateur.setCodePostal(rs.getString("code_postal"));
-			utilisateur.setVille(rs.getString("ville"));
-			utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-			utilisateur.setCredit(rs.getInt("credit"));
-			utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -143,6 +147,5 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		return utilisateur;
 	}
-
 
 }

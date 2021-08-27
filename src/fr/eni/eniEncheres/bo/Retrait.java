@@ -1,22 +1,20 @@
 package fr.eni.eniEncheres.bo;
 
+/**
+ * Classe du retrait
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class Retrait {
 	String rue;
 	String code_postal;
 	String ville;
 	ArticleVendu articleVendu;
-//	Integer noArticle;
 
 	public Retrait() {
 	}
 
-//	public Retrait(String rue, String code_postal, String ville, Integer noArticle) {
-//	super();
-//	this.rue = rue;
-//	this.code_postal = code_postal;
-//	this.ville = ville;
-//	this.noArticle = noArticle;
-//}
 	public Retrait(String rue, String code_postal, String ville, ArticleVendu articleVendu) {
 		super();
 		this.rue = rue;

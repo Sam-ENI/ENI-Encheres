@@ -5,6 +5,12 @@ import java.util.List;
 
 import fr.eni.eniEncheres.bo.Enchere;
 
+/**
+ * Classe du modèle de l'enchère
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class EnchereModel {
 	private Enchere enchere;
 	private List<Enchere> lstEncheres = new ArrayList<Enchere>();

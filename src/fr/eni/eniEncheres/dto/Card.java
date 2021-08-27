@@ -3,17 +3,19 @@ package fr.eni.eniEncheres.dto;
 import java.time.LocalDate;
 
 /**
- * @author vbrault2021
+ * Classe de la DTO de Card
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
  *
  */
 public class Card {
-	
+
 	private Integer noArticle;
 	private String nomArticle;
 	private Integer montant_enchere;
 	private LocalDate dateFinEncheres;
 	private String nomVendeur;
-	
+
 	public Card() {
 	}
 
@@ -73,5 +75,3 @@ public class Card {
 				+ ", dateFinEncheres=" + dateFinEncheres + ", nomVendeur=" + nomVendeur + "]\n";
 	}
 }
-
-	

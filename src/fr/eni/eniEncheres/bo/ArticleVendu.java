@@ -2,6 +2,12 @@ package fr.eni.eniEncheres.bo;
 
 import java.time.LocalDate;
 
+/**
+ * Classe de l'article
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class ArticleVendu {
 	Integer noArticle;
 	String nomArticle;
@@ -13,27 +19,10 @@ public class ArticleVendu {
 	Boolean etatVente = false;
 	Utilisateur utilisateur;
 	Categorie categorie;
-//	Integer noUtilisateur;
-//	Integer noCategorie;
 
 	public ArticleVendu() {
 	}
 
-//	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-//	LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, Integer noUtilisateur,
-//	Integer noCategorie) {
-//super();
-//this.noArticle = noArticle;
-//this.nomArticle = nomArticle;
-//this.description = description;
-//this.dateDebutEncheres = dateDebutEncheres;
-//this.dateFinEncheres = dateFinEncheres;
-//this.miseAprix = miseAprix;
-//this.prixVente = prixVente;
-//this.noUtilisateur = noUtilisateur;
-//this.noCategorie = noCategorie;
-//
-//}
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer miseAprix, Integer prixVente, Boolean etatVente, Utilisateur utilisateur,
 			Categorie categorie) {

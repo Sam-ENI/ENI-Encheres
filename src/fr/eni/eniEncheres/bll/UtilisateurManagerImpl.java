@@ -8,6 +8,12 @@ import fr.eni.eniEncheres.dal.DALException;
 import fr.eni.eniEncheres.dal.UtilisateurDAO;
 import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 
+/**
+ * Classe d'implémentation du manager de l'utilisateur
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class UtilisateurManagerImpl implements UtilisateurManager {
 	UtilisateurDAO dao = UtilisateurDAOFact.getInstanceDAO();
 
@@ -25,7 +31,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			dao.delete(utilisateur);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -36,7 +41,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			dao.update(utilisateur);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -48,7 +52,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			listU = dao.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return listU;
@@ -125,9 +128,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		// Vérification du format du mail
 		if (mail.equals("") || !mail.matches(".+@.+\\.[a-z]+")) {
 			exceptionVerif
-			.ajoutMessage("le format du mail n'est pas valide \"ex : encheres@eni.com\" ou le champ est vide");
+					.ajoutMessage("le format du mail n'est pas valide \"ex : encheres@eni.com\" ou le champ est vide");
 		}
-			
+
 		// Vérification si pseudo/email est unique
 		try {
 			for (Utilisateur user : dao.getAll()) {

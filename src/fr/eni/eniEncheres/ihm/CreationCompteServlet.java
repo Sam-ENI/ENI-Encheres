@@ -33,7 +33,6 @@ public class CreationCompteServlet extends HttpServlet {
 	 */
 	public CreationCompteServlet() {
 		super();
-		// TODO Auto-generated constructor stubz
 	}
 
 	/**
@@ -58,39 +57,40 @@ public class CreationCompteServlet extends HttpServlet {
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
 				null);
 		UtilisateurModel utilisateurModel = null;
-		Boolean isConnecte =false;
+		Boolean isConnecte = false;
 
 		if (request.getParameter("creer") != null) {
 			try {
-			utilisateurModel = new UtilisateurModel(new Utilisateur(), null);
-			try {
-				if (manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"), request.getParameter("pseudo"), request.getParameter("email"))) {
-					utilisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-					utilisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
-					utilisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
-					utilisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
-					utilisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
-					utilisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
-					utilisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
-					utilisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
-					utilisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
-					utilisateurModel.getUtilisateur().setCredit(0);
-					utilisateurModel.getUtilisateur().setAdministrateur(false);
-					isConnecte = true;
-					manager.addUtilisateur(utilisateurModel.getUtilisateur());
-					utilisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
-					nextPage = "/WEB-INF/index.jsp";
+				utilisateurModel = new UtilisateurModel(new Utilisateur(), null);
+				try {
+					if (manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),
+							request.getParameter("pseudo"), request.getParameter("email"))) {
+						utilisateurModel.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+						utilisateurModel.getUtilisateur().setNom(request.getParameter("nom"));
+						utilisateurModel.getUtilisateur().setPrenom(request.getParameter("prenom"));
+						utilisateurModel.getUtilisateur().setEmail(request.getParameter("email"));
+						utilisateurModel.getUtilisateur().setTelephone(request.getParameter("telephone"));
+						utilisateurModel.getUtilisateur().setRue(request.getParameter("rue"));
+						utilisateurModel.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
+						utilisateurModel.getUtilisateur().setVille(request.getParameter("ville"));
+						utilisateurModel.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
+						utilisateurModel.getUtilisateur().setCredit(0);
+						utilisateurModel.getUtilisateur().setAdministrateur(false);
+						isConnecte = true;
+						manager.addUtilisateur(utilisateurModel.getUtilisateur());
+						utilisateurModel.setLstUtilisateur(manager.getAllUtilisateur());
+						nextPage = "/WEB-INF/index.jsp";
+					}
+				} catch (BLLExceptionList e) {
+					request.setAttribute("erreurs", e.getMessages());
+					nextPage = "/WEB-INF/inscription.jsp";
+					e.printStackTrace();
 				}
-			} catch (BLLExceptionList e) {
-				request.setAttribute("erreurs", e.getMessages());
-				nextPage = "/WEB-INF/inscription.jsp";
-				e.printStackTrace();
-			}
 
 			} catch (BLLException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
-			
+
 		}
 		if (request.getParameter("annuler") != null) {
 			try {
@@ -101,7 +101,7 @@ public class CreationCompteServlet extends HttpServlet {
 			nextPage = "/WEB-INF/index.jsp";
 			isConnecte = false;
 		}
-		
+
 		if (request.getParameter("logo") != null) {
 			try {
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));

@@ -13,6 +13,12 @@ import fr.eni.eniEncheres.dal.UtilisateurDAOFact;
 import fr.eni.eniEncheres.ihm.ArticleVenduModel;
 import fr.eni.eniEncheres.ihm.EnchereModel;
 
+/**
+ * Classe d'implémentation du manager de l'enchère
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class EnchereManagerImpl implements EnchereManager {
 	EnchereDAO daoEnchere = EnchereDAOFact.getInstanceDAO();
 	UtilisateurDAO daoUtilisateur = UtilisateurDAOFact.getInstanceDAO();
@@ -22,7 +28,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		try {
 			daoEnchere.insert(enchere);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -33,7 +38,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		try {
 			daoEnchere.delete(enchere);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -43,8 +47,6 @@ public class EnchereManagerImpl implements EnchereManager {
 	public void updateEnchere(EnchereModel enchereModel, Enchere enchSauvegarde, String saisieEnchere,
 			ArticleVenduModel articleModel) throws BLLExceptionList {
 		BLLExceptionList exceptionUpdateEnchereVerif = new BLLExceptionList();
-		System.out.println(enchSauvegarde.getMontant_enchere());
-		System.out.println(Integer.parseInt(saisieEnchere));
 		Boolean EnchereSurMOnObjet = true;
 
 		if (articleModel.getArticleVendu().getUtilisateur().getNoUtilisateur() == enchereModel.getEnchere()
@@ -99,7 +101,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		try {
 			listEncheres = daoEnchere.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return listEncheres;
@@ -121,10 +122,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		// on compare le numéro d'utilisateur du produit à vendre à celui de
 		// l'utilisateur qui à fait la dernière enchère
 		// pour ne pas créditer le vendeur si aucune enchère n'a été faite
-		System.out.println(
-				"numero createur article" + articleModel.getArticleVendu().getUtilisateur().getNoUtilisateur());
-		System.out.println("numero dernier enricherisseur" + enchereSauvegardee.getUtilisateur().getNoUtilisateur());
-		System.out.println("avant credit" + enchereSauvegardee.getUtilisateur().getCredit());
 		if (articleModel.getArticleVendu().getUtilisateur().getNoUtilisateur() != enchereSauvegardee.getUtilisateur()
 				.getNoUtilisateur()) {
 			enchereSauvegardee.getUtilisateur().setCredit(enchereSauvegardee.getUtilisateur().getCredit() + montant);
@@ -132,10 +129,8 @@ public class EnchereManagerImpl implements EnchereManager {
 			try {
 				daoUtilisateur.update(enchereSauvegardee.getUtilisateur());
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("après credit" + enchereSauvegardee.getUtilisateur().getCredit());
 		}
 
 	}
@@ -146,7 +141,6 @@ public class EnchereManagerImpl implements EnchereManager {
 		try {
 			daoUtilisateur.update(enchere.getUtilisateur());
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

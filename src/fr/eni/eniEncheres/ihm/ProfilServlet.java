@@ -14,7 +14,6 @@ import fr.eni.eniEncheres.bo.ArticleVendu;
 import fr.eni.eniEncheres.bo.Categorie;
 import fr.eni.eniEncheres.bo.Retrait;
 
-
 /**
  * Servlet implementation class ProfilServlet
  */
@@ -23,19 +22,19 @@ public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CardDecoManager managerCard = CardDecoManagerFactory.getInstance();
 
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProfilServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ProfilServlet() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/profil.jsp";
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
@@ -43,31 +42,30 @@ public class ProfilServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = "/WEB-INF/profil.jsp";
 		UtilisateurModel utilisateurModel = (UtilisateurModel) request.getSession().getAttribute("utilisateurModel");
 		ArticleVenduModel articleModel = new ArticleVenduModel(new ArticleVendu(), new Retrait(), new Categorie(), null,
 				null);
 		// BOUTON MODIFIER
-		if(request.getParameter("modifierBtn") != null) {
-			nextPage ="/WEB-INF/modifierProfil.jsp";
+		if (request.getParameter("modifierBtn") != null) {
+			nextPage = "/WEB-INF/modifierProfil.jsp";
 		}
 		if (request.getParameter("logo") != null) {
 			try {
-				System.out.println(managerCard.getAllCardByNom(""));
 				articleModel.setLstCard(managerCard.getAllCardByNom(""));
-				System.out.println(articleModel.getLstCard());
-
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
 			nextPage = "/WEB-INF/index.jsp";
 		}
-		
+
 		request.setAttribute("articleModel", articleModel);
-		
+
 		request.getSession().setAttribute("utilisateurModel", utilisateurModel);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

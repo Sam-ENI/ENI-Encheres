@@ -2,24 +2,21 @@ package fr.eni.eniEncheres.bo;
 
 import java.time.LocalDateTime;
 
+/**
+ * Classe de l'enchère
+ * 
+ * @author FRANDIN/AKAFFOU/BRAULT
+ *
+ */
 public class Enchere {
 	private LocalDateTime dateEnchere;
 	private Integer montant_enchere;
 	private Utilisateur utilisateur;
 	private ArticleVendu articleVendu;
-//	Integer noUtilisateur;
-//	Integer noArticle;
 
 	public Enchere() {
 	}
 
-//	public Enchere(LocalDate dateEnchere, Integer montant_enchere, Integer noUtilisateur, Integer noArticle) {
-//	super();
-//	this.dateEnchere = dateEnchere;
-//	this.montant_enchere = montant_enchere;
-//	this.noUtilisateur = noUtilisateur;
-//	this.noArticle = noArticle;
-//}
 	public Enchere(LocalDateTime dateEnchere, Integer montant_enchere, Utilisateur utilisateur,
 			ArticleVendu articleVendu) {
 		super();
